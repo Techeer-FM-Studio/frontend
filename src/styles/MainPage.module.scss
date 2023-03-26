@@ -5,29 +5,41 @@
     width: 1200px;
     height: 96px;
     background-color: gray;
+    margin-bottom: 48px;
   }
   .contentLayout {
-    max-width: 1200px;
+    max-width: 1180px;
+    margin-left: 10px;
     border: solid black;
-    .calendar {
-      width: 380px;
-      height: 528px;
-      border: solid black;
-    }
-    .routine {
-      width: 380px;
-      height: 528px;
-      border: solid black;
-    }
-    .info {
-      width: 380px;
-      height: 288px;
-      border: solid black;
-    }
-    .nextRoutine {
-      width: 380px;
-      height: 224px;
-      border: solid black;
+    .contentCenter {
+      display: flex; /* display 속성을 flex로 설정합니다. */
+      justify-content: space-between; /* 요소들을 좌우로 정렬합니다. */
+      margin-bottom: 48px;
+      .calendar {
+        width: 380px;
+        height: 528px;
+        border: solid black;
+      }
+      .routine {
+        width: 380px;
+        height: 528px;
+        border: solid black;
+      }
+      .contentRight {
+        display: flex; /* display 속성을 flex로 설정합니다. */
+        flex-direction: column; /* 요소들을 위아래로 정렬합니다. */
+        justify-content: space-between; /* 요소들을 위아래로 정렬합니다. */
+        .info {
+          width: 380px;
+          height: 288px;
+          border: solid black;
+        }
+        .nextRoutine {
+          width: 380px;
+          height: 224px;
+          border: solid black;
+        }
+      }
     }
     .banner {
       width: 580px;

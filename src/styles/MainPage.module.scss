@@ -1,6 +1,7 @@
 .page {
   position: relative;
   width: 1200px;
+  margin: 0 auto; /* 가로 중앙 정렬을 위해 margin 속성을 사용합니다. */
   .header {
     width: 1200px;
     height: 96px;

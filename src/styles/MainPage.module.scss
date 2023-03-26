@@ -1,0 +1,38 @@
+.page {
+  position: relative;
+  width: 1200px;
+  .header {
+    width: 1200px;
+    height: 96px;
+    background-color: gray;
+  }
+  .contentLayout {
+    max-width: 1200px;
+    border: solid black;
+    .calendar {
+      width: 380px;
+      height: 528px;
+      border: solid black;
+    }
+    .routine {
+      width: 380px;
+      height: 528px;
+      border: solid black;
+    }
+    .info {
+      width: 380px;
+      height: 288px;
+      border: solid black;
+    }
+    .nextRoutine {
+      width: 380px;
+      height: 224px;
+      border: solid black;
+    }
+    .banner {
+      width: 580px;
+      height: 240px;
+      border: solid black;
+    }
+  }
+}

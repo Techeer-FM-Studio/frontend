@@ -5,7 +5,7 @@
     width: 1200px;
     height: 96px;
     background-color: gray;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
   }
   .contentLayout {
     max-width: 1180px;
@@ -14,7 +14,7 @@
     .contentCenter {
       display: flex; /* display 속성을 flex로 설정합니다. */
       justify-content: space-between; /* 요소들을 좌우로 정렬합니다. */
-      margin-bottom: 48px;
+      margin-bottom: 32px;
       .calendar {
         width: 380px;
         height: 528px;
@@ -41,10 +41,14 @@
         }
       }
     }
-    .banner {
-      width: 580px;
-      height: 240px;
-      border: solid black;
+    .contentBottom {
+      display: flex;
+      .banner {
+        width: 580px;
+        height: 240px;
+        border: solid black;
+        margin-left: auto;
+      }
     }
   }
 }

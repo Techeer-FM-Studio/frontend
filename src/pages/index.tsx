@@ -19,7 +19,9 @@ export default function MainPage() {
             <div className={styles.nextRoutine}>NextRoutine</div>
           </div>
         </div>
-        <div className={styles.banner}>Banner</div>
+        <div className={styles.contentBottom}>
+          <div className={styles.banner}>Banner</div>
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import styles from '../styles/MainPage.module.scss';
+import Calendar from '@/components/Calendar';
 
 export default function MainPage() {
   return (
@@ -12,7 +13,7 @@ export default function MainPage() {
 
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
-          <div className={styles.calendar}>Calendar</div>
+          <Calendar />
           <div className={styles.routine}>Routine</div>
           <div className={styles.contentRight}>
             <div className={styles.info}>Info</div>

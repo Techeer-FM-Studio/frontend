@@ -43,4 +43,7 @@ next-env.d.ts
 *.sass.map
 *.scss.map
 
+# etc
+.gitmessage.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,sass

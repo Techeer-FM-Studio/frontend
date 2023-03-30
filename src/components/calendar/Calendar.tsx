@@ -5,7 +5,7 @@ import moment, { Moment } from 'moment';
 const Calendar = () => {
   const [getMoment, setMoment] = useState(moment());
 
-  const today = getMoment; // today == moment() 입니다.
+  const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek =
     today.clone().endOf('month').week() === 1
@@ -29,12 +29,10 @@ const Calendar = () => {
                 .add(index, 'day');
 
               const handleClick = (date: moment.Moment) => {
-                // 클릭 이벤트 핸들러 함수 정의
                 if (date.format('MM') !== getMoment.format('MM')) {
                   const newMonth = date.clone().month();
                   setMoment(getMoment.clone().month(newMonth));
                 }
-                // 현재 달에 해당하는ㄴ 날짜를 클릭한 경우, 해당 날짜에 대한 처리를 추가
                 console.log(
                   `Button Clicked for year ${days.format(
                     'Y'
@@ -42,37 +40,23 @@ const Calendar = () => {
                 );
               };
 
-              if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
-                return (
-                  <td key={index}>
-                    <button
-                      onClick={() => handleClick(days)}
-                      style={{ backgroundColor: 'red' }}
-                    >
-                      <span>{days.format('D')}</span>
-                    </button>
-                  </td>
-                );
-              } else if (days.format('MM') !== today.format('MM')) {
-                return (
-                  <td key={index}>
-                    <button
-                      onClick={() => handleClick(days)}
-                      style={{ backgroundColor: 'gray' }}
-                    >
-                      <span>{days.format('D')}</span>
-                    </button>
-                  </td>
-                );
-              } else {
-                return (
-                  <td key={index}>
-                    <button onClick={() => handleClick(days)}>
-                      <span>{days.format('D')}</span>
-                    </button>
-                  </td>
-                );
-              }
+              const buttonColor =
+                moment().format('YYYYMMDD') === days.format('YYYYMMDD')
+                  ? 'red'
+                  : days.format('MM') !== today.format('MM')
+                  ? 'gray'
+                  : 'inherit';
+
+              return (
+                <td key={index}>
+                  <button
+                    onClick={() => handleClick(days)}
+                    style={{ backgroundColor: buttonColor }}
+                  >
+                    <span>{days.format('D')}</span>
+                  </button>
+                </td>
+              );
             })}
         </tr>
       );
@@ -84,19 +68,12 @@ const Calendar = () => {
     <div className={styles.calendar}>
       <div className="control">
         <button
-          onClick={() => {
-            setMoment(getMoment.clone().subtract(1, 'month'));
-          }}
+          onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
         >
           이전달
         </button>
         <span>{today.format('YYYY 년 MM 월')}</span>
-        {/* YYYY는 년도 MM은 달 입니다. */}
-        <button
-          onClick={() => {
-            setMoment(getMoment.clone().add(1, 'month'));
-          }}
-        >
+        <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
           다음달
         </button>
         <button onClick={() => setMoment(moment())}>Today</button>

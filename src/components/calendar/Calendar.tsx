@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment';
 
 const Calendar = () => {
   const [getMoment, setMoment] = useState(moment());
+  const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
 
   const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
@@ -15,6 +16,7 @@ const Calendar = () => {
   const calendarArr = (): JSX.Element[] => {
     let result: JSX.Element[] = [];
     let week = firstWeek;
+
     for (week; week <= lastWeek; week++) {
       result = result.concat(
         <tr key={week}>
@@ -33,6 +35,7 @@ const Calendar = () => {
                   const newMonth = date.clone().month();
                   setMoment(getMoment.clone().month(newMonth));
                 }
+                setRecentlyClickedDay(date); // recentlyClickedDay state를 업데이트합니다.
                 console.log(
                   `Button Clicked for year ${days.format(
                     'Y'
@@ -43,6 +46,9 @@ const Calendar = () => {
               const buttonColor =
                 moment().format('YYYYMMDD') === days.format('YYYYMMDD')
                   ? 'red'
+                  : recentlyClickedDay?.format('YYYYMMDD') ===
+                    days.format('YYYYMMDD')
+                  ? 'green'
                   : days.format('MM') !== today.format('MM')
                   ? 'gray'
                   : 'inherit';

@@ -28,22 +28,41 @@ const Calendar = () => {
                 .startOf('week')
                 .add(index, 'day');
 
+              const handleClick = () => {
+                // 클릭 이벤트 핸들러 함수 정의
+                console.log(
+                  `Button Clicked for week ${week}, day ${days.format('D')}`
+                );
+              };
+
               if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
                 return (
-                  <td key={index} style={{ backgroundColor: 'red' }}>
-                    <span>{days.format('D')}</span>
+                  <td key={index}>
+                    <button
+                      onClick={handleClick}
+                      style={{ backgroundColor: 'red' }}
+                    >
+                      <span>{days.format('D')}</span>
+                    </button>
                   </td>
                 );
               } else if (days.format('MM') !== today.format('MM')) {
                 return (
-                  <td key={index} style={{ backgroundColor: 'gray' }}>
-                    <span>{days.format('D')}</span>
+                  <td key={index}>
+                    <button
+                      onClick={handleClick}
+                      style={{ backgroundColor: 'gray' }}
+                    >
+                      <span>{days.format('D')}</span>
+                    </button>
                   </td>
                 );
               } else {
                 return (
                   <td key={index}>
-                    <span>{days.format('D')}</span>
+                    <button onClick={handleClick}>
+                      <span>{days.format('D')}</span>
+                    </button>
                   </td>
                 );
               }

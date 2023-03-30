@@ -77,6 +77,7 @@ const Calendar = () => {
           다음달
         </button>
         <button onClick={() => setMoment(moment())}>Today</button>
+        <button>+ 일정 추가하기</button>
       </div>
       <table>
         <tbody>{calendarArr()}</tbody>

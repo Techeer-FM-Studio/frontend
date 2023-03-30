@@ -1,85 +1,63 @@
 .calendar {
   width: 38rem;
   height: 52.8rem;
-  border: solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
 
   .control {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 
     button {
-      padding: 8px 16px;
-      background-color: #f5f5f5;
+      background-color: #f0f0f0;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        background-color: #ccc;
+        background-color: #e0e0e0;
       }
     }
 
     span {
-      font-size: 1.2rem;
       font-weight: bold;
+      font-size: 1.2rem;
     }
   }
 
   table {
+    width: 100%;
     border-collapse: collapse;
 
     td {
-      width: 40px;
-      height: 40px;
+      padding: 0.5rem;
       text-align: center;
-      vertical-align: middle;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      height: 100%;
+      border: none;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
 
-      &:hover {
-        background-color: #f5f5f5;
+      span {
+        font-size: 1rem;
+        font-weight: bold;
       }
+    }
 
-      &:active {
-        background-color: #ddd;
-      }
+    td button[style*='red'] {
+      background-color: #ff9797;
+    }
 
-      button {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-
-        span {
-          display: block;
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: #333;
-        }
-      }
-
-      &:first-child {
-        color: #f00;
-      }
-
-      &:nth-child(7n) {
-        color: #00f;
-      }
+    td button[style*='gray'] {
+      background-color: #e0e0e0;
     }
   }
 }

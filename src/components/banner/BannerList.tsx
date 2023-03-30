@@ -5,3 +5,12 @@ function BannerList() {
 }
 
 export default BannerList;
+
+export async function getServerSideProps() {
+  
+  const bannerList = await 
+  
+  return {
+    props: {}, 
+  };
+}

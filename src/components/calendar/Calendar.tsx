@@ -1,4 +1,4 @@
-import styles from '../styles/Calendar.module.scss';
+import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState } from 'react';
 import moment, { Moment } from 'moment';
 

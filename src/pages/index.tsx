@@ -3,8 +3,8 @@
 // Columns = Width == 80, Gutter == 20
 
 import React from 'react';
-import styles from '../styles/MainPage.module.scss';
-import Calendar from '@/components/Calendar';
+import styles from '../styles/pages/MainPage.module.scss';
+import Calendar from '@/components/calendar/Calendar';
 
 export default function MainPage() {
   return (

@@ -99,6 +99,7 @@ const Calendar = () => {
         >
           다음달
         </button>
+        <button onClick={() => setMoment(moment())}>Today</button>
       </div>
       <table>
         <tbody>{calendarArr()}</tbody>

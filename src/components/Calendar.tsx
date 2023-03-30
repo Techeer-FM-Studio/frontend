@@ -1,6 +1,6 @@
 import styles from '../styles/Calendar.module.scss';
 import { useState } from 'react';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 const Calendar = () => {
   const [getMoment, setMoment] = useState(moment());
@@ -28,8 +28,13 @@ const Calendar = () => {
                 .startOf('week')
                 .add(index, 'day');
 
-              const handleClick = () => {
+              const handleClick = (date: any) => {
                 // 클릭 이벤트 핸들러 함수 정의
+                if (date.format('MM') !== getMoment.format('MM')) {
+                  const newMonth = date.clone().month();
+                  setMoment(getMoment.clone().month(newMonth));
+                }
+                // 현재 달에 해당하는ㄴ 날짜를 클릭한 경우, 해당 날짜에 대한 처리를 추가
                 console.log(
                   `Button Clicked for year ${days.format(
                     'Y'
@@ -52,7 +57,7 @@ const Calendar = () => {
                 return (
                   <td key={index}>
                     <button
-                      onClick={handleClick}
+                      onClick={() => handleClick(days)}
                       style={{ backgroundColor: 'gray' }}
                     >
                       <span>{days.format('D')}</span>

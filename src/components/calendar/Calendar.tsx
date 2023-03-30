@@ -46,7 +46,7 @@ const Calendar = () => {
                 return (
                   <td key={index}>
                     <button
-                      onClick={handleClick}
+                      onClick={() => handleClick(days)}
                       style={{ backgroundColor: 'red' }}
                     >
                       <span>{days.format('D')}</span>

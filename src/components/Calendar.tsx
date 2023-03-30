@@ -31,7 +31,9 @@ const Calendar = () => {
               const handleClick = () => {
                 // 클릭 이벤트 핸들러 함수 정의
                 console.log(
-                  `Button Clicked for week ${week}, day ${days.format('D')}`
+                  `Button Clicked for year ${days.format(
+                    'Y'
+                  )} week ${week}, day ${days.format('D')}`
                 );
               };
 

@@ -28,7 +28,7 @@ const Calendar = () => {
                 .startOf('week')
                 .add(index, 'day');
 
-              const handleClick = (date: any) => {
+              const handleClick = (date: moment.Moment) => {
                 // 클릭 이벤트 핸들러 함수 정의
                 if (date.format('MM') !== getMoment.format('MM')) {
                   const newMonth = date.clone().month();
@@ -67,7 +67,7 @@ const Calendar = () => {
               } else {
                 return (
                   <td key={index}>
-                    <button onClick={handleClick}>
+                    <button onClick={() => handleClick(days)}>
                       <span>{days.format('D')}</span>
                     </button>
                   </td>

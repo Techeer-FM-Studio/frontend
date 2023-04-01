@@ -11,7 +11,12 @@ import Calendar from '@/components/calendar/Calendar';
 export default function MainPage() {
   return (
     <div className={styles.page}>
+<<<<<<< Updated upstream
       <Header></Header>
+=======
+      <div className={styles.header}>Header </div>
+
+>>>>>>> Stashed changes
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />

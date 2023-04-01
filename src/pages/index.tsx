@@ -5,6 +5,7 @@
 import React from 'react';
 import styles from '../styles/pages/MainPage.module.scss';
 import Calendar from '@/components/calendar/Calendar';
+import BannerMainLayout from '@/components/banner/BannerMainLayout';
 
 export default function MainPage() {
   return (
@@ -21,7 +22,7 @@ export default function MainPage() {
           </div>
         </div>
         <div className={styles.contentBottom}>
-          <div className={styles.banner}>Banner</div>
+          <BannerMainLayout />
         </div>
       </div>
     </div>

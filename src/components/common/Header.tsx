@@ -28,7 +28,8 @@ function Header() {
           fill
           placeholder="blur"
           alt="logo"
-        ></Image>
+          sizes="(max-width: 100%)"
+        />
       </div>
       <section className={styles.section}>
         <input

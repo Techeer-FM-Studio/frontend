@@ -27,8 +27,13 @@
   width: 38rem;
   height: 52.8rem;
   .RoutineLayoutTop {
-    height: 6.4rem; /* 고정 높이 */
+    height: 6.4rem;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    font-weight: 700; /* 글자 두께 설정 */
+    font-size: 32px; /* 16px그리드 기준 두 칸 */
   }
+
   .RoutineLayoutBottom {
     height: 46.4rem;
     overflow: scroll;

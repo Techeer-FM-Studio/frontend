@@ -2,6 +2,7 @@
 // Rows = Height == 16, Gutter == 16
 // Columns = Width == 80, Gutter == 20
 
+import Header from '@/components/common/Header';
 import React from 'react';
 import styles from '../styles/pages/MainPage.module.scss';
 import Calendar from '@/components/calendar/Calendar';
@@ -10,8 +11,7 @@ import BannerMainLayout from '@/components/banner/BannerMainLayout';
 export default function MainPage() {
   return (
     <div className={styles.page}>
-      <div className={styles.header}>Header </div>
-
+      <Header></Header>
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />

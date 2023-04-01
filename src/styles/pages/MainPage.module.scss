@@ -20,11 +20,6 @@
       display: flex; /* display 속성을 flex로 설정합니다. */
       justify-content: space-between; /* 요소들을 좌우로 정렬합니다. */
       margin-bottom: 3.2rem;
-      .routine {
-        width: 38rem;
-        height: 52.8rem;
-        border: solid black;
-      }
       .contentRight {
         // 우측에 위치하게 될 컴포넌트들에 대한 레이아웃입니다.
         display: flex; /* display 속성을 flex로 설정합니다. */

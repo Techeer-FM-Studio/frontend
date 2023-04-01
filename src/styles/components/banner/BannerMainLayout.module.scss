@@ -40,12 +40,14 @@
           border: none;
           cursor: pointer;
 
+          // SVG 아이콘
           svg {
             width: 24px;
             height: 24px;
             fill: #ffffff;
           }
 
+          // 마우스 호버 시 SVG 아이콘 색상 변경
           &:hover {
             svg {
               fill: #cccccc;

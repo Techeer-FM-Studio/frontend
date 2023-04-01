@@ -1,10 +1,14 @@
 // 그리드 정보
 // Rows = Height == 16, Gutter == 16
 // Columns = Width == 80, Gutter == 20
-
 import React from 'react';
+
+// css
 import styles from '../styles/pages/MainPage.module.scss';
+
+// import pages
 import Calendar from '@/components/calendar/Calendar';
+import RoutineLayout from '@/components/routine/RoutineLayout';
 
 export default function MainPage() {
   return (

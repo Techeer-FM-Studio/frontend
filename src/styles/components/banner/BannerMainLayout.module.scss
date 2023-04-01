@@ -1,12 +1,58 @@
 .BannerMainLayout {
+  position: relative;
   width: 58rem;
   height: 24rem;
-  border: solid black;
   margin-left: auto;
 
-  .BannerImage {
+  .BannerImageWrapper {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
+    .BannerImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .BannerImageOverlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 3.2rem;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.4);
+
+      .ArrowButtonWrapper {
+        display: flex;
+        align-items: center;
+        margin: auto;
+
+        .ImageIndex {
+          color: #ffffff;
+          font-weight: bold;
+        }
+
+        .PrevButton,
+        .NextButton {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+          }
+
+          &:hover {
+            svg {
+              fill: #cccccc;
+            }
+          }
+        }
+      }
+    }
   }
 }

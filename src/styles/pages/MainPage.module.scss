@@ -45,12 +45,6 @@
     .contentBottom {
       // 가장 아래에 들어가게 될 컴포넌트를 감싸는 레이아웃입니다.
       display: flex;
-      .banner {
-        width: 58rem;
-        height: 24rem;
-        border: solid black;
-        margin-left: auto;
-      }
     }
   }
 }

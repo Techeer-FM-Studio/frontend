@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from '../../styles/components/banner/BannerItem.module.scss';
+import { AiFillHeart } from 'react-icons/ai';
+import { GrView } from 'react-icons/gr';
+
 type PropsType = {
   item: {
     url: string;
@@ -11,16 +14,28 @@ type PropsType = {
 };
 
 function BannerItem({ item: { url, like, veiws, writer } }: PropsType) {
-  console.log();
   return (
     <section className={styles.container}>
-      <div>
-        <Image alt="photo" width={200} height={100} src={url}></Image>
+      <div className={styles.img}>
+        <Image
+          alt="photo"
+          fill
+          src={url}
+          style={{ objectFit: 'cover' }}
+        ></Image>
       </div>
-      <div>
+      <div className={styles.info}>
         <div>작성자 : {writer}</div>
-        <div>조회수 : {veiws}</div>
-        <div>좋아요 : {like}</div>
+        <section>
+          <div>
+            <GrView />
+            {veiws}
+          </div>
+          <div>
+            <AiFillHeart style={{ color: 'red' }} />
+            {like}
+          </div>
+        </section>
       </div>
     </section>
   );

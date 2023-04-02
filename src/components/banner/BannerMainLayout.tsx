@@ -33,15 +33,16 @@ const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
 
   // 다음 이미지로 이동하는 함수
   const onNextButtonClick = () => {
-    setCurrentImageIndex((currentIndex: number) =>
-      currentIndex === IMAGE_URLS.length - 1 ? 0 : currentIndex + 1
+    setCurrentImageIndex(
+      (currentIndex: number) => (currentIndex + 1) % IMAGE_URLS.length
     );
   };
 
   // 이전 이미지로 이동하는 함수
   const onPrevButtonClick = () => {
-    setCurrentImageIndex((currentIndex: number) =>
-      currentIndex === 0 ? IMAGE_URLS.length - 1 : currentIndex - 1
+    setCurrentImageIndex(
+      (currentIndex: number) =>
+        (currentIndex + IMAGE_URLS.length - 1) % IMAGE_URLS.length
     );
   };
 
@@ -49,11 +50,12 @@ const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
   useEffect(() => {
     const interval = setInterval(() => {
       onNextButtonClick();
+      // console.log('nextButtonClicked');
     }, 3000);
-
+    // console.log('clearInterval');
     // useEffect 함수의 반환 함수를 활용해 cleanup을 수행함
     return () => clearInterval(interval);
-  }, []);
+  }, [currentImageIndex]);
 
   return (
     // BannerMainLayout 컴포넌트의 최상위 요소, 이미지와 함께 배경색을 입히기 위한 wrapper

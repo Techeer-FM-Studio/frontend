@@ -1,7 +1,20 @@
 import React from 'react';
+import BannerItem from './BannerItem';
+import styles from '../../styles/components/banner/BannerList.module.scss';
+import { BannerItemType } from '@/types/banner';
 
-function BannerList() {
-  return <div>bannerList</div>;
+function BannerList({
+  bannerList,
+}: {
+  bannerList: BannerItemType[] | undefined;
+}) {
+  return (
+    <div className={styles.container}>
+      {bannerList?.map((item: BannerItemType) => (
+        <BannerItem key={item.id} item={item}></BannerItem>
+      ))}
+    </div>
+  );
 }
 
 export default BannerList;

@@ -11,7 +11,7 @@ import BannerMainLayout from '@/components/banner/BannerMainLayout';
 export default function MainPage() {
   return (
     <div className={styles.page}>
-      <Header></Header>
+      <Header />
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />

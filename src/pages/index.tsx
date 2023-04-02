@@ -2,7 +2,6 @@
 // Rows = Height == 16, Gutter == 16
 // Columns = Width == 80, Gutter == 20
 
-import BannerItem from '@/components/banner/BannerItem';
 import Header from '@/components/common/Header';
 import React from 'react';
 import styles from '../styles/pages/MainPage.module.scss';
@@ -11,12 +10,7 @@ import Calendar from '@/components/calendar/Calendar';
 export default function MainPage() {
   return (
     <div className={styles.page}>
-<<<<<<< Updated upstream
       <Header></Header>
-=======
-      <div className={styles.header}>Header </div>
-
->>>>>>> Stashed changes
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />

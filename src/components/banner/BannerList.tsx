@@ -11,7 +11,7 @@ function BannerList({
   return (
     <div className={styles.container}>
       {bannerList?.map((item: BannerItemType) => (
-        <BannerItem item={item}></BannerItem>
+        <BannerItem key={item.id} item={item}></BannerItem>
       ))}
     </div>
   );

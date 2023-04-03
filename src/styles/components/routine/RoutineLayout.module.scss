@@ -1,0 +1,41 @@
+// Routine Layout 상세정보
+// 상단(Routine 글자) : Width 380, Height 64
+// 하단(Routine 목록) : Width 380, Height Auto
+// Overflow 시에 스크롤을 통해 내리기
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.RoutineLayoutBottom::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.RoutineLayoutBottom {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for all browsers except Firefox */
+@media (hover: none) and (pointer: coarse),
+  (-webkit-min-device-pixel-ratio: 1.5),
+  (min-resolution: 120dpi) {
+  .RoutineLayoutBottom::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.RoutineLayout {
+  width: 38rem;
+  height: 52.8rem;
+  .RoutineLayoutTop {
+    height: 6.4rem;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    font-weight: 700; /* 글자 두께 설정 */
+    font-size: 32px; /* 16px그리드 기준 두 칸 */
+  }
+
+  .RoutineLayoutBottom {
+    height: 46.4rem;
+    overflow: scroll;
+  }
+}

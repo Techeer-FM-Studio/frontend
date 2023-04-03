@@ -4,8 +4,13 @@
 
 import Header from '@/components/common/Header';
 import React from 'react';
+
+// css
 import styles from '../styles/pages/MainPage.module.scss';
+
+// import pages
 import Calendar from '@/components/calendar/Calendar';
+import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
 
 export default function MainPage() {
@@ -15,7 +20,9 @@ export default function MainPage() {
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />
-          <div className={styles.routine}>Routine</div>
+          <div className={styles.routine}>
+            <RoutineLayout />
+          </div>
           <div className={styles.contentRight}>
             <div className={styles.info}>Info</div>
             <div className={styles.nextRoutine}>NextRoutine</div>

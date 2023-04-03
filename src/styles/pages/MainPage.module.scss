@@ -3,13 +3,6 @@
   position: relative;
   width: 120rem;
   margin: 0 auto; /* 가로 중앙 정렬을 위해 margin 속성을 사용합니다. */
-  .header {
-    // 헤더가 들어갈 공간을 설정해둔 공간입니다
-    width: 120rem;
-    height: 9.6rem;
-    background-color: gray;
-    margin-bottom: 3.2rem;
-  }
   .contentLayout {
     // 헤더를 제외한 모든 요소들이 들어갈 공간에 대한 속성들이 여기에 들어갑니다.
     max-width: 118rem;
@@ -40,12 +33,6 @@
     .contentBottom {
       // 가장 아래에 들어가게 될 컴포넌트를 감싸는 레이아웃입니다.
       display: flex;
-      .banner {
-        width: 58rem;
-        height: 24rem;
-        border: solid black;
-        margin-left: auto;
-      }
     }
   }
 }

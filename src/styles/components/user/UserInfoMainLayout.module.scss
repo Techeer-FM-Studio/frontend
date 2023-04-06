@@ -1,3 +1,23 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+.DetailedIntro::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.DetailedIntro {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for all browsers except Firefox */
+@media (hover: none) and (pointer: coarse),
+  (-webkit-min-device-pixel-ratio: 1.5),
+  (min-resolution: 120dpi) {
+  .DetailedIntro::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .Wrapper {
   display: flex;
   flex-direction: column;
@@ -41,7 +61,7 @@
   }
   .DetailedIntro {
     height: 9.6rem;
-    overflow: hidden;
+    overflow: scroll;
   }
 }
 

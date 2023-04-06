@@ -53,12 +53,18 @@ const NextRoutineLayout = () => {
         <p>Writer: {mockNextRoutineData.writer}</p>
         <p>Title: {mockNextRoutineData.title}</p>
         <p>Memo: {mockNextRoutineData.memo}</p>
-        <p>Start Time: {new Date(mockNextRoutineData.startAt).toISOString()}</p>
-        <p>End Time: {new Date(mockNextRoutineData.endAt).toISOString()}</p>
+        <p>
+          Start Time:{' '}
+          {new Date(mockNextRoutineData.startAt).toLocaleString('ko-KR')}
+          {/* 기존 데이터 : UTC Time, 07:30분이라고 뜨는데 오후 4시 20분에 확인 해보았더니 10분 전이라고 한다던가 */}
+        </p>
+        <p>
+          End Time:{' '}
+          {new Date(mockNextRoutineData.endAt).toLocaleString('ko-KR')}
+        </p>
         <p>Time Left: {timeLeft} minutes</p>
         <p>Status: {routineStatus}</p>
       </div>
-      <div className={styles.TimeLeft}>TimeLeft</div>
     </div>
   );
 };

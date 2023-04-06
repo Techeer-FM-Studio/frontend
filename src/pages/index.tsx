@@ -12,6 +12,7 @@ import styles from '../styles/pages/MainPage.module.scss';
 import Calendar from '@/components/calendar/Calendar';
 import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
+import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
 
 export default function MainPage() {
   return (
@@ -24,7 +25,7 @@ export default function MainPage() {
             <RoutineLayout />
           </div>
           <div className={styles.contentRight}>
-            <div className={styles.info}>Info</div>
+            <UserInfoMainLayout />
             <div className={styles.nextRoutine}>NextRoutine</div>
           </div>
         </div>

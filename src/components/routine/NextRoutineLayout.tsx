@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/components/routine/NextRoutineLayout.module.scss';
 import { getNextRoutine } from '@/apis/getNextRoutine';
 import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
+import updateTaskStatusAndTimeLeft from '@/utils/updateTaskStatusAndTimeLeft';
 
 const NextRoutineLayout = () => {
   const [timeLeft, setTimeLeft] = useState<{
@@ -27,33 +28,8 @@ const NextRoutineLayout = () => {
         setNextRoutineData(taskInfo);
 
         const interval = setInterval(() => {
-          const currentTime = new Date().getTime();
-          const startAtTime = new Date(taskInfo.startAt).getTime();
-          const endAtTime = new Date(taskInfo.endAt).getTime();
-          const timeDiff = endAtTime - currentTime;
-
-          const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          const minutes = Math.floor(
-            (timeDiff % (1000 * 60 * 60)) / (1000 * 60)
-          );
-
-          setTimeLeft({ days, hours, minutes });
-
-          if (currentTime < startAtTime && !taskInfo.isFinished) {
-            setRoutineStatus('시작 전');
-          } else if (
-            currentTime >= startAtTime &&
-            currentTime < endAtTime &&
-            !taskInfo.isFinished
-          ) {
-            setRoutineStatus('진행 중');
-          } else {
-            setRoutineStatus('종료');
-            clearInterval(interval);
-          }
+          updateTaskStatusAndTimeLeft(taskInfo, setTimeLeft, setRoutineStatus);
+          // 함수를 호출하면서 setTimeLeft와 setRoutineStatus를 인자로 전달합니다.
         }, 1000);
 
         return () => {

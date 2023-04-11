@@ -11,5 +11,7 @@ export type TaskInfo = {
 };
 
 export type TaskInfoListResponse = {
+  year: number;
+  month: number;
   taskInfoList: TaskInfo[];
 };

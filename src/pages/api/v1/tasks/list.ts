@@ -10,6 +10,8 @@ export default function handler(
 ) {
   const mockData: TaskInfoListResponse[] = [
     {
+      year: 2023,
+      month: 4,
       taskInfoList: [
         {
           writer: 'Alice',

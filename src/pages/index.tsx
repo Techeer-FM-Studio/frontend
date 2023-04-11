@@ -13,6 +13,7 @@ import Calendar from '@/components/calendar/Calendar';
 import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
 import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
+import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
 
 export default function MainPage() {
   return (
@@ -26,7 +27,7 @@ export default function MainPage() {
           </div>
           <div className={styles.contentRight}>
             <UserInfoMainLayout />
-            <div className={styles.nextRoutine}>NextRoutine</div>
+            <NextRoutineLayout />
           </div>
         </div>
         <div className={styles.contentBottom}>

@@ -1,0 +1,41 @@
+.NextRoutineLayout {
+  width: 38rem;
+  height: 22.4rem;
+  border: solid black;
+  .SelectMenu {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .RoutineInfo {
+    width: 100%;
+    margin-bottom: 24px;
+
+    p {
+      margin-bottom: 8px;
+      font-size: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.Time {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      &.Status {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .TimeLeft {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+}

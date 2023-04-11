@@ -44,7 +44,7 @@ const NextRoutineLayout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [setTimeLeft, setRoutineStatus]);
 
   // getTimeLeftDisplay 함수를 호출하여, 남은 시간을 보여주는 display string을 생성합니다.
   const timeLeftDisplay = () => {

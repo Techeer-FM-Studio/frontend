@@ -11,9 +11,5 @@ export type TaskInfo = {
 };
 
 export type TaskInfoListResponse = {
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  page: number;
   taskInfoList: TaskInfo[];
 };

@@ -10,10 +10,6 @@ export default function handler(
 ) {
   const mockData: TaskInfoListResponse[] = [
     {
-      totalPages: 1,
-      totalElements: 3,
-      size: 5,
-      page: 1,
       taskInfoList: [
         {
           writer: 'Alice',

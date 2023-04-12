@@ -1,8 +1,13 @@
 import styles from '../../styles/components/calendar/Calendar.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import moment, { Moment } from 'moment';
+import { fetchTaskData } from '@/apis/fetchTaskData';
+import { TaskInfo, TaskInfoListResponse } from '@/types/routine'; // 이 부분을 추가하세요.
+import { text } from 'stream/consumers';
 
 const Calendar = () => {
+  const [tasks, setTasks] = useState<TaskInfo[]>([]);
+
   // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
   const [getMoment, setMoment] = useState(moment());
 
@@ -11,6 +16,26 @@ const Calendar = () => {
 
   // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const data = await fetchTaskData(2023, 4);
+      try {
+        setTasks(data[0].taskInfoList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  const hasEvent = (date: moment.Moment, tasks: TaskInfo[]): boolean => {
+    return tasks.some((task) => {
+      const start = moment(task.startAt);
+      const end = moment(task.endAt);
+      return date.isBetween(start, end, 'day', '[]');
+    });
+  };
 
   // 해당 월의 첫 주와 마지막 주를 계산합니다.
   const firstWeek = today.clone().startOf('month').week();
@@ -59,7 +84,7 @@ const Calendar = () => {
               // 버튼의 배경색을 결정합니다.
               const buttonColor =
                 moment().format('YYYYMMDD') === days.format('YYYYMMDD') // 오늘 날짜일 경우
-                  ? 'red'
+                  ? 'yellow'
                   : recentlyClickedDay?.format('YYYYMMDD') === // 최근에 클릭한 날짜일 경우
                     days.format('YYYYMMDD')
                   ? 'green'
@@ -75,6 +100,10 @@ const Calendar = () => {
                     style={{ backgroundColor: buttonColor }}
                   >
                     <span>{days.format('D')}</span>
+                    <br />
+                    {hasEvent(days, tasks) && (
+                      <span style={{ color: 'red' }}>•</span>
+                    )}{' '}
                   </button>
                 </td>
               );

@@ -12,6 +12,8 @@ import styles from '../styles/pages/MainPage.module.scss';
 import Calendar from '@/components/calendar/Calendar';
 import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
+import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
+import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
 
 export default function MainPage() {
   const [showForm, setShowForm] = useState(false);
@@ -29,8 +31,8 @@ export default function MainPage() {
             <RoutineLayout showForm={showForm} />
           </div>
           <div className={styles.contentRight}>
-            <div className={styles.info}>Info</div>
-            <div className={styles.nextRoutine}>NextRoutine</div>
+            <UserInfoMainLayout />
+            <NextRoutineLayout />
           </div>
         </div>
         <div className={styles.contentBottom}>

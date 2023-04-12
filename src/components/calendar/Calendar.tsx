@@ -2,7 +2,11 @@ import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState } from 'react';
 import moment, { Moment } from 'moment';
 
-const Calendar = () => {
+interface CalendarProps {
+  onAddTaskClick: () => void;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ onAddTaskClick }) => {
   // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
   const [getMoment, setMoment] = useState(moment());
 
@@ -102,7 +106,7 @@ const Calendar = () => {
           다음달
         </button>
         <button onClick={() => setMoment(moment())}>Today</button>
-        <button>+ 일정 추가하기</button>
+        <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
       </div>
       <table>
         <tbody>{calendarArr()}</tbody>

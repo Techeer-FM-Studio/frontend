@@ -3,7 +3,7 @@
 // Columns = Width == 80, Gutter == 20
 
 import Header from '@/components/common/Header';
-import React from 'react';
+import React, { useState } from 'react';
 
 // css
 import styles from '../styles/pages/MainPage.module.scss';
@@ -14,14 +14,19 @@ import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
 
 export default function MainPage() {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
   return (
     <div className={styles.page}>
       <Header />
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
-          <Calendar />
+          <Calendar onAddTaskClick={handleShowForm} />
           <div className={styles.routine}>
-            <RoutineLayout />
+            <RoutineLayout showForm={showForm} />
           </div>
           <div className={styles.contentRight}>
             <div className={styles.info}>Info</div>

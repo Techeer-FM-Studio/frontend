@@ -44,7 +44,7 @@ const Calendar = () => {
       ? 53
       : today.clone().endOf('month').week();
 
-  // calendarArr 함수: 캘린더 테이블을 생성하는 함수입니다.
+  // calendarArr 함수: 캘린더 테이블을 생성하는 함수입니다. -> 나중에 분리할 것
   const calendarArr = (): JSX.Element[] => {
     let result: JSX.Element[] = [];
     let week = firstWeek;

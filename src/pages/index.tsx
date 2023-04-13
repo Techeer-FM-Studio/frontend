@@ -23,7 +23,7 @@ export default function MainPage() {
   };
   return (
     <div className={styles.page}>
-      <Header />
+      <Header />0
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar onAddTaskClick={handleShowForm} />

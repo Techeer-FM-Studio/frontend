@@ -45,17 +45,17 @@ function Header() {
       </section>
       {menuView ? (
         <ul className={styles.menuList}>
-          <Link className={styles.link} href={`banner/list`}>
+          <Link className={styles.link} href={`/banner/list/1?size=6`}>
             배너 페이지
           </Link>
-          <Link className={styles.link} href={`banner/list`}>
+          <Link className={styles.link} href={`/banner/list/1?size=6`}>
             마이 페이지
           </Link>
-          <Link className={styles.link} href={`banner/list`}>
+          <Link className={styles.link} href={`/banner/list/1?size=6`}>
             등등 페이지
           </Link>
         </ul>
-      ) : undefined}
+      ) : null}
     </section>
   );
 }

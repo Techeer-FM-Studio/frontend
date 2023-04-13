@@ -22,9 +22,7 @@ export default function MainPage() {
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           <Calendar />
-          <div className={styles.routine}>
-            <RoutineLayout />
-          </div>
+          <div className={styles.routine}>{/* <RoutineLayout /> */}</div>
           <div className={styles.contentRight}>
             <UserInfoMainLayout />
             <NextRoutineLayout />

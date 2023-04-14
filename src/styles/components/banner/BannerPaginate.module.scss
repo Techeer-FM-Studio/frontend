@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  & > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    cursor: pointer;
+  }
+}

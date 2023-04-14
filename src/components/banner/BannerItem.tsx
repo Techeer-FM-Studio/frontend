@@ -3,38 +3,31 @@ import React from 'react';
 import styles from '../../styles/components/banner/BannerItem.module.scss';
 import { AiFillHeart } from 'react-icons/ai';
 import { GrView } from 'react-icons/gr';
+import { BannerItemType } from '@/types/banner';
 
-type PropsType = {
-  item: {
-    url: string;
-    writer: string;
-    veiws: number;
-    like: number;
-  };
-};
-
-function BannerItem({ item: { url, like, veiws, writer } }: PropsType) {
+function BannerItem({ item }: { item: BannerItemType }) {
   return (
     <section className={styles.container}>
       <div className={styles.img}>
         <Image
           alt="photo"
           fill
-          src={url}
+          src={item.imageUrl[0]}
           style={{ objectFit: 'cover' }}
         ></Image>
       </div>
       <div className={styles.info}>
-        <div>작성자 : {writer}</div>
+        <div>작성자 : {item.owner}</div>
         <section>
           <div>
             <GrView />
-            {veiws}
+            {item.readCnt}
           </div>
           <div>
             <AiFillHeart style={{ color: 'red' }} />
-            {like}
+            {item.likeCnt}
           </div>
+          <div>type : {item.type}</div>
         </section>
       </div>
     </section>

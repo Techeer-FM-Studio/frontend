@@ -145,3 +145,10 @@ html {
 body {
   font-size: 1.6rem;
 }
+
+// 페이지네이션 커스텀 스타일
+.selected {
+  border-radius: 100%;
+  background-color: black;
+  color: white;
+}

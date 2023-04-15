@@ -1,41 +1,72 @@
 .NextRoutineLayout {
   width: 38rem;
   height: 22.4rem;
-  border: solid black;
-  .SelectMenu {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
+  border: solid 1px #ccc;
+  background-color: #f9f9f9;
+  padding: 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .RoutineInfo {
-    width: 100%;
-    margin-bottom: 24px;
+.SelectMenu {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #333;
+}
 
-    p {
-      margin-bottom: 8px;
-      font-size: 16px;
+.RoutineInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  grid-gap: 0.8rem;
+  font-size: 1.6rem;
+  color: #444;
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+  p {
+    margin-bottom: 0;
 
-      &.Time {
-        font-size: 24px;
-        font-weight: bold;
-      }
+    &.Memo {
+      grid-column: 1 / 3;
+      grid-row: 3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-      &.Status {
-        font-size: 16px;
-        font-weight: bold;
-      }
+    &.Time {
+      font-size: 2.4rem;
+      font-weight: bold;
+      color: #2a9d8f;
+      grid-column: 1 / 3;
+      grid-row: 5;
+    }
+
+    &.Status {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #e76f51;
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    &.StartTime {
+      grid-row: 4;
+    }
+
+    &.EndTime {
+      grid-column: 2;
+      grid-row: 4;
+      text-align: right;
     }
   }
+}
 
-  .TimeLeft {
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
+.TimeLeft {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #264653;
 }

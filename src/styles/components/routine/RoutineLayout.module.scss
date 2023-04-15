@@ -37,5 +37,20 @@
   .RoutineLayoutBottom {
     height: 46.4rem;
     overflow: scroll;
+    .TaskItem {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+      .TaskItemTitle {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .TaskItemDetails {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 }

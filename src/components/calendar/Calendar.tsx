@@ -1,5 +1,5 @@
 import styles from '../../styles/components/calendar/Calendar.module.scss';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
 import { fetchTaskData } from '@/apis/fetchTaskData';
 import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
@@ -8,16 +8,19 @@ import RoutineLayout from '../routine/RoutineLayout';
 
 interface CalendarProps {
   onTasksChange: (tasks: TaskInfo[]) => void;
+  onAddTaskClick: () => void;
 }
 
-const Calendar = ({ onTasksChange }: CalendarProps) => {
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-
+const Calendar: React.FC<CalendarProps> = ({
+  onAddTaskClick,
+  onTasksChange,
+}) => {
   // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
   const [getMoment, setMoment] = useState(moment());
 
   // useState hook을 사용하여 최근 클릭한 날짜를 저장하고, setRecentlyClickedDay 함수로 업데이트합니다.
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
+  const [tasks, setTasks] = useState<TaskInfo[]>([]);
 
   // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
@@ -34,26 +37,6 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  useEffect(() => {
-    fetchTasks(today);
-  }, [today]);
-
-  useEffect(() => {
-    if (recentlyClickedDay) {
-      fetchTasks(recentlyClickedDay);
-    }
-  }, [recentlyClickedDay]);
-
-  const updateSelectedTasks = (date: moment.Moment) => {
-    const tasksOnSelectedDay = tasks.filter((task) => {
-      const start = moment(task.startAt);
-      const end = moment(task.endAt);
-      return date.isBetween(start, end, 'day', '[]');
-    });
-    setSelectedTasks(tasksOnSelectedDay);
-    onTasksChange(tasksOnSelectedDay);
   };
 
   useEffect(() => {
@@ -76,6 +59,26 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
     });
   };
 
+  useEffect(() => {
+    fetchTasks(today);
+  }, [today]);
+
+  useEffect(() => {
+    if (recentlyClickedDay) {
+      fetchTasks(recentlyClickedDay);
+    }
+  }, [recentlyClickedDay]);
+
+  const updateSelectedTasks = (date: moment.Moment) => {
+    const tasksOnSelectedDay = tasks.filter((task) => {
+      const start = moment(task.startAt);
+      const end = moment(task.endAt);
+      return date.isBetween(start, end, 'day', '[]');
+    });
+    setSelectedTasks(tasksOnSelectedDay);
+    onTasksChange(tasksOnSelectedDay);
+  };
+
   // 해당 월의 첫 주와 마지막 주를 계산합니다.
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek =
@@ -83,7 +86,7 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
       ? 53
       : today.clone().endOf('month').week();
 
-  // calendarArr 함수: 캘린더 테이블을 생성하는 함수입니다. -> 나중에 분리할 것
+  // calendarArr 함수: 캘린더 테이블을 생성하는 함수입니다.
   const calendarArr = (): JSX.Element[] => {
     let result: JSX.Element[] = [];
     let week = firstWeek;
@@ -124,7 +127,7 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
               // 버튼의 배경색을 결정합니다.
               const buttonColor =
                 moment().format('YYYYMMDD') === days.format('YYYYMMDD') // 오늘 날짜일 경우
-                  ? 'yellow'
+                  ? 'red'
                   : recentlyClickedDay?.format('YYYYMMDD') === // 최근에 클릭한 날짜일 경우
                     days.format('YYYYMMDD')
                   ? 'green'
@@ -171,7 +174,7 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
           다음달
         </button>
         <button onClick={() => setMoment(moment())}>Today</button>
-        <button>+ 일정 추가하기</button>
+        <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
       </div>
       <table>
         <tbody>{calendarArr()}</tbody>

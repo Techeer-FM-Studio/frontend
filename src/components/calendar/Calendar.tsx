@@ -2,10 +2,15 @@ import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useEffect, useState } from 'react';
 import moment, { Moment } from 'moment';
 import { fetchTaskData } from '@/apis/fetchTaskData';
-import { TaskInfo, TaskInfoListResponse } from '@/types/routine'; // 이 부분을 추가하세요.
+import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
 import { text } from 'stream/consumers';
+import RoutineLayout from '../routine/RoutineLayout';
 
-const Calendar = () => {
+interface CalendarProps {
+  onTasksChange: (tasks: TaskInfo[]) => void;
+}
+
+const Calendar = ({ onTasksChange }: CalendarProps) => {
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
 
   // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
@@ -16,6 +21,39 @@ const Calendar = () => {
 
   // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
+
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+
+  const fetchTasks = async (selectedDate: Moment) => {
+    const data = await fetchTaskData(
+      selectedDate.year(),
+      selectedDate.month() + 1
+    );
+    try {
+      setTasks(data[0].taskInfoList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks(today);
+  }, [today]);
+
+  useEffect(() => {
+    if (recentlyClickedDay) {
+      fetchTasks(recentlyClickedDay);
+    }
+  }, [recentlyClickedDay]);
+
+  const updateSelectedTasks = (date: moment.Moment) => {
+    const tasksOnSelectedDay = tasks.filter((task) => {
+      const start = moment(task.startAt);
+      const end = moment(task.endAt);
+      return date.isBetween(start, end, 'day', '[]');
+    });
+    setSelectedTasks(tasksOnSelectedDay);
+  };
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -79,6 +117,7 @@ const Calendar = () => {
                     'Y'
                   )} week ${week}, day ${days.format('D')}`
                 );
+                updateSelectedTasks(date);
               };
 
               // 버튼의 배경색을 결정합니다.

@@ -53,6 +53,7 @@ const Calendar = ({ onTasksChange }: CalendarProps) => {
       return date.isBetween(start, end, 'day', '[]');
     });
     setSelectedTasks(tasksOnSelectedDay);
+    onTasksChange(tasksOnSelectedDay);
   };
 
   useEffect(() => {

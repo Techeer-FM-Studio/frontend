@@ -11,8 +11,8 @@ const RoutineLayout = ({ selectedTasks }: RoutineLayoutProps) => {
       <div className={styles.RoutineLayoutTop}>ROUTINE</div>
       <div className={styles.RoutineLayoutBottom}>
         {selectedTasks?.length > 0 ? (
-          selectedTasks.map((task) => (
-            <div key={task.taskId} className={styles.TaskItem}>
+          selectedTasks.map((task, index) => (
+            <div key={task.taskId || index} className={styles.TaskItem}>
               {task.title}
             </div>
           ))

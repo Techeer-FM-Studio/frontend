@@ -127,7 +127,7 @@ const Calendar: React.FC<CalendarProps> = ({
               // 버튼의 배경색을 결정합니다.
               const buttonColor =
                 moment().format('YYYYMMDD') === days.format('YYYYMMDD') // 오늘 날짜일 경우
-                  ? 'red'
+                  ? 'yellow'
                   : recentlyClickedDay?.format('YYYYMMDD') === // 최근에 클릭한 날짜일 경우
                     days.format('YYYYMMDD')
                   ? 'green'

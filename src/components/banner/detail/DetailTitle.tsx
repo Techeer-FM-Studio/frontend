@@ -1,12 +1,21 @@
-import { DetailType } from '@/types/detail';
-
-function DetailTitle({ title, wirter, createdAt }: DetailType) {
+function DetailTitle({
+  title,
+  owner,
+  readCnt,
+  type,
+}: {
+  title: string;
+  owner: string;
+  readCnt: number;
+  type: string;
+}) {
   return (
     <section>
       <div>{title}</div>
       <article>
-        <div>작성자 : {wirter}</div>
-        <div>생성일 : {createdAt}</div>
+        <div>type : {type}</div>
+        <div>작성자 : {owner}</div>
+        <div>조회수 : {readCnt}</div>
       </article>
     </section>
   );

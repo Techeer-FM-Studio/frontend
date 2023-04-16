@@ -1,0 +1,12 @@
+.page {
+  position: relative;
+  max-width: 1180px;
+
+  margin: 0 auto;
+}
+
+.quill {
+  & > div:last-child {
+    height: 400px;
+  }
+}

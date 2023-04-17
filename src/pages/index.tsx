@@ -14,8 +14,11 @@ import RoutineLayout from '@/components/routine/RoutineLayout';
 import BannerMainLayout from '@/components/banner/BannerMainLayout';
 import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
 import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
+import { TaskInfo } from '@/types/routine';
 
 export default function MainPage() {
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
@@ -26,9 +29,14 @@ export default function MainPage() {
       <Header />
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
-          <Calendar onAddTaskClick={handleShowForm} />
+          {/* 달력 컴포넌트 */}
+          <Calendar
+            onTasksChange={setSelectedTasks}
+            onAddTaskClick={handleShowForm}
+          />
+          {/* 루틴 정보를 나타내는 RoutineLayout 컴포넌트 */}
           <div className={styles.routine}>
-            <RoutineLayout showForm={showForm} />
+            <RoutineLayout selectedTasks={selectedTasks} showForm={showForm} />
           </div>
           <div className={styles.contentRight}>
             <UserInfoMainLayout />

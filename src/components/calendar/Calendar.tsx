@@ -1,20 +1,83 @@
 import styles from '../../styles/components/calendar/Calendar.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
+import { fetchTaskData } from '@/apis/fetchTaskData';
+import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
+import { text } from 'stream/consumers';
+import RoutineLayout from '../routine/RoutineLayout';
 
 interface CalendarProps {
+  onTasksChange: (tasks: TaskInfo[]) => void;
   onAddTaskClick: () => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ onAddTaskClick }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  onAddTaskClick,
+  onTasksChange,
+}) => {
   // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
   const [getMoment, setMoment] = useState(moment());
 
   // useState hook을 사용하여 최근 클릭한 날짜를 저장하고, setRecentlyClickedDay 함수로 업데이트합니다.
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
+  const [tasks, setTasks] = useState<TaskInfo[]>([]);
 
   // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
+
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+
+  const fetchTasks = async (selectedDate: Moment) => {
+    const data = await fetchTaskData(
+      selectedDate.year(),
+      selectedDate.month() + 1
+    );
+    try {
+      setTasks(data[0].taskInfoList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const data = await fetchTaskData(2023, 4);
+      try {
+        setTasks(data[0].taskInfoList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  const hasEvent = (date: moment.Moment, tasks: TaskInfo[]): boolean => {
+    return tasks.some((task) => {
+      const start = moment(task.startAt);
+      const end = moment(task.endAt);
+      return date.isBetween(start, end, 'day', '[]');
+    });
+  };
+
+  useEffect(() => {
+    fetchTasks(today);
+  }, [today]);
+
+  useEffect(() => {
+    if (recentlyClickedDay) {
+      fetchTasks(recentlyClickedDay);
+    }
+  }, [recentlyClickedDay]);
+
+  const updateSelectedTasks = (date: moment.Moment) => {
+    const tasksOnSelectedDay = tasks.filter((task) => {
+      const start = moment(task.startAt);
+      const end = moment(task.endAt);
+      return date.isBetween(start, end, 'day', '[]');
+    });
+    setSelectedTasks(tasksOnSelectedDay);
+    onTasksChange(tasksOnSelectedDay);
+  };
 
   // 해당 월의 첫 주와 마지막 주를 계산합니다.
   const firstWeek = today.clone().startOf('month').week();
@@ -58,12 +121,13 @@ const Calendar: React.FC<CalendarProps> = ({ onAddTaskClick }) => {
                     'Y'
                   )} week ${week}, day ${days.format('D')}`
                 );
+                updateSelectedTasks(date);
               };
 
               // 버튼의 배경색을 결정합니다.
               const buttonColor =
                 moment().format('YYYYMMDD') === days.format('YYYYMMDD') // 오늘 날짜일 경우
-                  ? 'red'
+                  ? 'yellow'
                   : recentlyClickedDay?.format('YYYYMMDD') === // 최근에 클릭한 날짜일 경우
                     days.format('YYYYMMDD')
                   ? 'green'
@@ -79,6 +143,10 @@ const Calendar: React.FC<CalendarProps> = ({ onAddTaskClick }) => {
                     style={{ backgroundColor: buttonColor }}
                   >
                     <span>{days.format('D')}</span>
+                    <br />
+                    {hasEvent(days, tasks) && (
+                      <span style={{ color: 'red' }}>•</span>
+                    )}{' '}
                   </button>
                 </td>
               );

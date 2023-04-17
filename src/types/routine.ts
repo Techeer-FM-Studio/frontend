@@ -1,5 +1,6 @@
 // TODO: api 설계서 나오면 수정하기
 export type TaskInfo = {
+  taskId: number;
   writer: string;
   title: string;
   memo: string;

@@ -84,7 +84,7 @@ const NextRoutineLayout = () => {
         <div className={styles.RoutineInfo}>
           <p>Writer: {nextRoutineData?.writer}</p>
           <p>Title: {nextRoutineData?.title}</p>
-          <p>Memo: {nextRoutineData?.memo}</p>
+          <p>Memo: {nextRoutineData?.memo}</p> <br />
           <p>
             Start Time:{' '}
             {new Date(nextRoutineData?.startAt).toLocaleString('ko-KR')}

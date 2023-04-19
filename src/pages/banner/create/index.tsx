@@ -69,7 +69,7 @@ const modules = {
   },
 };
 
-function createPage() {
+function CreatePage() {
   const [bannerInfo, setBannerInfo] = useState({
     nickname: '',
     title: '',
@@ -154,4 +154,4 @@ function createPage() {
   );
 }
 
-export default createPage;
+export default CreatePage;

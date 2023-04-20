@@ -1,7 +1,7 @@
 // TODO: api 설계서 나오면 수정하기
 export type BannerItemType = {
-  id: number;
   type: string;
+  id: number;
   owner: string;
   title: string;
   memo: string;
@@ -13,6 +13,7 @@ export type BannerItemType = {
   isLiked: boolean;
   isIncluded: boolean;
   readCnt: number;
+  commentList?: BannerComment[];
 };
 
 export type BannerPageableType = {
@@ -21,4 +22,12 @@ export type BannerPageableType = {
   size: number;
   page: number;
   content: BannerItemType[];
+};
+
+export type BannerComment = {
+  commentId: number;
+  writer: string;
+  content: string;
+  startAt: string;
+  updateAt: string;
 };

@@ -30,7 +30,7 @@ function CommentList({
       />
       <button onClick={onSubmitComment}>댓글 달기</button>
       {commentList?.map((comment) => (
-        <CommentItem comment={comment} />
+        <CommentItem key={comment.commentId} comment={comment} />
       ))}
     </section>
   );

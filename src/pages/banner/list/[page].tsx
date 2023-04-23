@@ -17,7 +17,6 @@ function BannerListPage({ data }: { data: BannerPageableType }) {
 
   return (
     <section className={styles.page}>
-      <Header />
       <BannerFilter totalElements={totalElements}></BannerFilter>
       <BannerList bannerList={content}></BannerList>
       <BannerPaginate totalPages={totalPages} page={page}></BannerPaginate>

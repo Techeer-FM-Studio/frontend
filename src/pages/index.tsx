@@ -26,7 +26,6 @@ export default function MainPage() {
   };
   return (
     <div className={styles.page}>
-      <Header />
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           {/* 달력 컴포넌트 */}

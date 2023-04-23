@@ -1,4 +1,5 @@
-// TODO: api 설계서 나오면 수정하기
+// src/types/TaskInfo.ts
+
 export type TaskInfo = {
   taskId: number;
   writer: string;
@@ -7,12 +8,5 @@ export type TaskInfo = {
   startAt: string;
   endAt: string;
   isFinished: boolean;
-  isOpened: boolean;
-  sharedMemberInfo: { sharedMember: string }[];
-};
-
-export type TaskInfoListResponse = {
-  year: number;
-  month: number;
-  taskInfoList: TaskInfo[];
+  sharedMemberNicknameList: string[];
 };

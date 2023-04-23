@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from '@/styles/components/banner/BannerPaginate.module.scss';
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 function BannerPaginate({
   totalPages,
   page,
@@ -26,8 +26,8 @@ function BannerPaginate({
       onPageChange={handlePageChange}
       pageRangeDisplayed={5} // 표시되는 페이지 범위
       pageCount={totalPages} //총 페이지 수
-      nextLabel={<BsArrowRightCircleFill />}
-      previousLabel={<BsArrowLeftCircleFill />}
+      nextLabel={<AiOutlineArrowRight />}
+      previousLabel={<AiOutlineArrowLeft />}
       renderOnZeroPageCount={null}
     ></ReactPaginate>
   );

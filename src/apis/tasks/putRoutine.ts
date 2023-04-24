@@ -4,6 +4,6 @@ import { axiosCustom } from '../createAxios';
 
 export async function putRoutine(taskData: TaskInfo) {
   return await axiosCustom
-    .put<TaskInfo>('api/v1/tasks', taskData)
+    .put<TaskInfo>('tasks', taskData)
     .then((res) => res.data);
 }

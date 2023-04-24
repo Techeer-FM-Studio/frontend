@@ -3,6 +3,7 @@
 import { TaskInfo } from '@/types/routine';
 import styles from '../../styles/components/routine/RoutineLayout.module.scss';
 import moment from 'moment';
+import { postRoutine } from '@/apis/tasks/postRoutine';
 
 interface RoutineLayoutProps {
   selectedTasks: TaskInfo[];
@@ -13,22 +14,64 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   selectedTasks,
   showForm,
 }) => {
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const form = event.currentTarget as HTMLFormElement;
+    const titleInput = form.elements.namedItem('title') as HTMLInputElement;
+    const startDateInput = form.elements.namedItem(
+      'startDate'
+    ) as HTMLInputElement;
+    const startTimeInput = form.elements.namedItem(
+      'startTime'
+    ) as HTMLInputElement;
+    const endDateInput = form.elements.namedItem('endDate') as HTMLInputElement;
+    const endTimeInput = form.elements.namedItem('endTime') as HTMLInputElement;
+    const memoInput = form.elements.namedItem('memo') as HTMLTextAreaElement;
+
+    const startAt = new Date(`${startDateInput.value}T${startTimeInput.value}`);
+    const endAt = new Date(`${endDateInput.value}T${endTimeInput.value}`);
+
+    const taskData: TaskInfo = {
+      taskId: 0,
+      title: titleInput.value,
+      writer: 'Alova', // 작성자 정보를 설정해야 합니다.
+      startAt: startAt.toISOString(),
+      endAt: endAt.toISOString(),
+      memo: memoInput.value,
+      isFinished: false,
+      sharedMemberNicknameList: [],
+    };
+
+    postRoutine(taskData)
+      .then((task) => {
+        console.log('일정이 성공적으로 등록되었습니다:', task);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
   return (
     <div className={styles.RoutineLayout}>
       <div className={styles.RoutineLayoutTop}>ROUTINE</div>
       <div className={styles.RoutineLayoutBottom}>
         {showForm && (
-          <div className={styles.RoutineAddForm}>
+          <form className={styles.RoutineAddForm} onSubmit={handleSubmit}>
             <h3>제목</h3>
             <input type="text" className={styles.input} />
             <h3>시작 날짜</h3>
             <input type="date" className={styles.input} />
+            <input type="time" className={styles.input} />
             <h3>종료 날짜</h3>
             <input type="date" className={styles.input} />
+            <input type="time" className={styles.input} />
             <h3>메모</h3>
             <textarea className={styles.textarea} />
-            <button className={styles.button}>일정 등록하기</button>
-          </div>
+            <button className={styles.button} onClick={handleSubmit}>
+              일정 등록하기
+            </button>
+          </form>
         )}
         {selectedTasks?.length > 0 ? (
           selectedTasks.map((task, index) => {

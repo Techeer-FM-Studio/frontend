@@ -18,5 +18,5 @@ export default function handler(
     sharedMemberNicknameList: ['Bob'],
   };
 
-  return res.status(200).json(mockData);
+  return res.status(200).json(req.body);
 }

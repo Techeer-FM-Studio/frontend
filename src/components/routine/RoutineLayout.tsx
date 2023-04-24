@@ -4,6 +4,7 @@ import { TaskInfo } from '@/types/routine';
 import styles from '../../styles/components/routine/RoutineLayout.module.scss';
 import moment from 'moment';
 import { postRoutine } from '@/apis/tasks/postRoutine';
+import { useEffect, useState } from 'react';
 
 interface RoutineLayoutProps {
   selectedTasks: TaskInfo[];
@@ -14,50 +15,59 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   selectedTasks,
   showForm,
 }) => {
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log(event);
-    const form = event.currentTarget as HTMLFormElement;
-    console.log(form);
-    const titleInput = form.querySelector<HTMLInputElement>(
-      'input[name="title"]'
-    );
-    const startDateInput = form.querySelector<HTMLInputElement>(
-      'input[name="startDate"]'
-    );
-    const startTimeInput = form.querySelector<HTMLInputElement>(
-      'input[name="startTime"]'
-    );
-    const endDateInput = form.querySelector<HTMLInputElement>(
-      'input[name="endDate"]'
-    );
-    const endTimeInput = form.querySelector<HTMLInputElement>(
-      'input[name="endTime"]'
-    );
-    const memoInput = form.querySelector<HTMLTextAreaElement>(
-      'textarea[name="memo"]'
-    );
+  const [formData, setFormData] = useState({
+    title: '',
+    startDate: '',
+    startTime: '',
+    endDate: '',
+    endTime: '',
+    memo: '',
+  });
 
+  useEffect(() => {
     const startAt = new Date(
-      `${startDateInput?.value || '2000-01-01'}T${
-        startTimeInput?.value || '00:00'
-      }`
+      `${formData.startDate || '2000-01-01'}T${formData.startTime || '00:00'}`
     );
     const endAt = new Date(
-      `${endDateInput?.value || '2000-01-01'}T${endTimeInput?.value || '00:00'}`
+      `${formData.endDate || '2000-01-01'}T${formData.endTime || '00:00'}`
     );
 
-    const taskData: TaskInfo = {
-      title: titleInput?.value || '',
-      writer: 'Alova', // 작성자 정보를 설정해야 합니다.
+    setFormData((prevData) => ({
+      ...prevData,
       startAt: startAt.toString(),
       endAt: endAt.toString(),
-      memo: memoInput?.value || '',
+    }));
+  }, [
+    formData.startDate,
+    formData.startTime,
+    formData.endDate,
+    formData.endTime,
+  ]);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const startAt = new Date(`${formData.startDate}T${formData.startTime}`);
+    const endAt = new Date(`${formData.endDate}T${formData.endTime}`);
+
+    const taskData: TaskInfo = {
+      title: formData.title,
+      writer: 'Alova', // 작성자 정보를 설정해야 합니다.
+      startAt: startAt.toISOString(),
+      endAt: endAt.toISOString(),
+      memo: formData.memo,
       isFinished: false,
       sharedMemberNicknameList: [],
     };
-    console.log(taskData);
-
     postRoutine(taskData)
       .then((task) => {
         console.log('일정이 성공적으로 등록되었습니다:', task);
@@ -74,24 +84,50 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         {showForm && (
           <form className={styles.RoutineAddForm} onSubmit={handleSubmit}>
             <h3>제목</h3>
-            <input type="text" name="title" className={styles.input} />
+            <input
+              type="text"
+              name="title"
+              className={styles.input}
+              onChange={handleChange}
+            />
             <h3>시작 날짜</h3>
-            <input type="date" name="startDate" className={styles.input} />
-            <input type="time" name="startTime" className={styles.input} />
+            <input
+              type="date"
+              name="startDate"
+              className={styles.input}
+              onChange={handleChange}
+            />
+            <input
+              type="time"
+              name="startTime"
+              className={styles.input}
+              onChange={handleChange}
+            />
             <h3>종료 날짜</h3>
-            <input type="date" name="endDate" className={styles.input} />
-            <input type="time" name="endTime" className={styles.input} />
+            <input
+              type="date"
+              name="endDate"
+              className={styles.input}
+              onChange={handleChange}
+            />
+            <input
+              type="time"
+              name="endTime"
+              className={styles.input}
+              onChange={handleChange}
+            />
             <h3>메모</h3>
-            <textarea name="memo" className={styles.textarea} />
-            <button
-              type="submit"
-              className={styles.button}
-              onClick={handleSubmit}
-            >
+            <textarea
+              name="memo"
+              className={styles.textarea}
+              onChange={handleChange}
+            />
+            <button type="submit" className={styles.button}>
               일정 등록하기
             </button>
           </form>
         )}
+
         {selectedTasks?.length > 0 ? (
           selectedTasks.map((task, index) => {
             const startAt = moment(task.startAt).format(

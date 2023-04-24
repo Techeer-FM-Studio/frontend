@@ -1,5 +1,4 @@
 // src/components/routine/NextRoutineLayout.tsx
-// getRoutineOne에서 404 발생
 
 import { useEffect, useState } from 'react';
 import styles from '../../styles/components/routine/NextRoutineLayout.module.scss';

@@ -1,5 +1,4 @@
 // src/components/calendar/Calendar.tsx
-// getRoutineListMonthly에서 404 발생
 
 import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState, useEffect } from 'react';

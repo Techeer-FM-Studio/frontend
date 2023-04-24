@@ -55,22 +55,8 @@ function Header() {
             }}
           >
             <Link href={`/banner/list/1?size=6`}>배너 페이지</Link>
-            <Link
-              href={`/`}
-              onClick={() => {
-                alert('구현중입니다😅 메인페이지로 이동합니다.');
-              }}
-            >
-              마이 페이지
-            </Link>
-            <Link
-              href={`/`}
-              onClick={() => {
-                alert('구현중입니다😅 메인페이지로 이동합니다.');
-              }}
-            >
-              로그아웃
-            </Link>
+            <Link href={`/banner/list/1?size=6`}>마이 페이지</Link>
+            <Link href={`/banner/list/1?size=6`}>로그아웃</Link>
           </div>
         ) : null}
       </section>

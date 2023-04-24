@@ -1,36 +1,22 @@
 .container {
   display: flex;
   flex-direction: column;
-  transition: all 0.3s;
-  position: relative;
 
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-1rem);
-    .info {
-      opacity: 1;
-    }
-  }
-  & > div:last-of-type {
-    border-radius: 5px;
-    padding: 0.5rem;
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-  }
+  // background-color: aqua;
+  width: 33.33%;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
 }
 
 .info {
   display: flex;
-
-  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
-  opacity: 0.6;
-
-  & > div {
+  background-color: aliceblue;
+  section {
     display: flex;
-    &:first-of-type {
-      margin-right: auto;
+    div {
+      margin-left: 1rem;
     }
   }
 }
@@ -38,17 +24,5 @@
 .img {
   position: relative;
   width: 100%;
-  height: 18rem;
-}
-
-.CUSTOM {
-  color: #0095ff;
-  background-color: white;
-  border: 1px solid #0095ff;
-}
-
-.OFFICIAL {
-  color: #93c400;
-  background-color: white;
-  border: 1px solid #93c400;
+  height: 15rem;
 }

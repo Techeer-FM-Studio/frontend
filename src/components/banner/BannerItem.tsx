@@ -3,16 +3,11 @@ import React from 'react';
 import styles from '../../styles/components/banner/BannerItem.module.scss';
 import { AiFillHeart } from 'react-icons/ai';
 import { GrView } from 'react-icons/gr';
-import { RxPerson } from 'react-icons/rx';
 import { BannerItemType } from '@/types/banner';
 import { useRouter } from 'next/router';
 
 function BannerItem({ item }: { item: BannerItemType }) {
   const router = useRouter();
-  const type: { [key: string]: string } = {
-    CUSTOM: '커스텀',
-    OFFICIAL: '공식',
-  };
 
   return (
     <section
@@ -30,20 +25,19 @@ function BannerItem({ item }: { item: BannerItemType }) {
         ></Image>
       </div>
       <div className={styles.info}>
-        <div>
-          <RxPerson />
-          <div>{item.owner}</div>
-        </div>
-        <div>
-          <GrView />
-          <div>{item.readCnt}</div>
-        </div>
-        <div>
-          <AiFillHeart style={{ color: 'red' }} />
-          <div>{item.likeCnt}</div>
-        </div>
+        <div>작성자 : {item.owner}</div>
+        <section>
+          <div>
+            <GrView />
+            {item.readCnt}
+          </div>
+          <div>
+            <AiFillHeart style={{ color: 'red' }} />
+            {item.likeCnt}
+          </div>
+          <div>type : {item.type}</div>
+        </section>
       </div>
-      <div className={styles[item.type]}>{type[item.type]}</div>
     </section>
   );
 }

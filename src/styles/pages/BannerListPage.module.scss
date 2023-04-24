@@ -1,9 +1,7 @@
 .page {
-  & > article {
-    width: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
-  }
+  position: relative;
+  width: 120rem;
+  margin: 0 auto;
 }
 
 .title {

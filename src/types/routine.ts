@@ -1,7 +1,7 @@
 // src/types/TaskInfo.ts
 
 export type TaskInfo = {
-  taskId: number;
+  taskId?: number;
   writer: string;
   title: string;
   memo: string;

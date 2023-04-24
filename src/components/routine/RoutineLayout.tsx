@@ -16,32 +16,47 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
 }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    console.log(event);
     const form = event.currentTarget as HTMLFormElement;
-    const titleInput = form.elements.namedItem('title') as HTMLInputElement;
-    const startDateInput = form.elements.namedItem(
-      'startDate'
-    ) as HTMLInputElement;
-    const startTimeInput = form.elements.namedItem(
-      'startTime'
-    ) as HTMLInputElement;
-    const endDateInput = form.elements.namedItem('endDate') as HTMLInputElement;
-    const endTimeInput = form.elements.namedItem('endTime') as HTMLInputElement;
-    const memoInput = form.elements.namedItem('memo') as HTMLTextAreaElement;
+    console.log(form);
+    const titleInput = form.querySelector<HTMLInputElement>(
+      'input[name="title"]'
+    );
+    const startDateInput = form.querySelector<HTMLInputElement>(
+      'input[name="startDate"]'
+    );
+    const startTimeInput = form.querySelector<HTMLInputElement>(
+      'input[name="startTime"]'
+    );
+    const endDateInput = form.querySelector<HTMLInputElement>(
+      'input[name="endDate"]'
+    );
+    const endTimeInput = form.querySelector<HTMLInputElement>(
+      'input[name="endTime"]'
+    );
+    const memoInput = form.querySelector<HTMLTextAreaElement>(
+      'textarea[name="memo"]'
+    );
 
-    const startAt = new Date(`${startDateInput.value}T${startTimeInput.value}`);
-    const endAt = new Date(`${endDateInput.value}T${endTimeInput.value}`);
+    const startAt = new Date(
+      `${startDateInput?.value || '2000-01-01'}T${
+        startTimeInput?.value || '00:00'
+      }`
+    );
+    const endAt = new Date(
+      `${endDateInput?.value || '2000-01-01'}T${endTimeInput?.value || '00:00'}`
+    );
 
     const taskData: TaskInfo = {
-      taskId: 0,
-      title: titleInput.value,
+      title: titleInput?.value || '',
       writer: 'Alova', // 작성자 정보를 설정해야 합니다.
-      startAt: startAt.toISOString(),
-      endAt: endAt.toISOString(),
-      memo: memoInput.value,
+      startAt: startAt.toString(),
+      endAt: endAt.toString(),
+      memo: memoInput?.value || '',
       isFinished: false,
       sharedMemberNicknameList: [],
     };
+    console.log(taskData);
 
     postRoutine(taskData)
       .then((task) => {
@@ -59,16 +74,20 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         {showForm && (
           <form className={styles.RoutineAddForm} onSubmit={handleSubmit}>
             <h3>제목</h3>
-            <input type="text" className={styles.input} />
+            <input type="text" name="title" className={styles.input} />
             <h3>시작 날짜</h3>
-            <input type="date" className={styles.input} />
-            <input type="time" className={styles.input} />
+            <input type="date" name="startDate" className={styles.input} />
+            <input type="time" name="startTime" className={styles.input} />
             <h3>종료 날짜</h3>
-            <input type="date" className={styles.input} />
-            <input type="time" className={styles.input} />
+            <input type="date" name="endDate" className={styles.input} />
+            <input type="time" name="endTime" className={styles.input} />
             <h3>메모</h3>
-            <textarea className={styles.textarea} />
-            <button className={styles.button} onClick={handleSubmit}>
+            <textarea name="memo" className={styles.textarea} />
+            <button
+              type="submit"
+              className={styles.button}
+              onClick={handleSubmit}
+            >
               일정 등록하기
             </button>
           </form>

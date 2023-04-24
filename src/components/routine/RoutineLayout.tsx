@@ -1,3 +1,5 @@
+// src/components/routine/RoutineLayout.tsx
+
 import { TaskInfo } from '@/types/routine';
 import styles from '../../styles/components/routine/RoutineLayout.module.scss';
 import moment from 'moment';

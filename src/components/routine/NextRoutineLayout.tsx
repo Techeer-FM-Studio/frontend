@@ -1,7 +1,9 @@
+// src/components/routine/NextRoutineLayout.tsx
+
 import { useEffect, useState } from 'react';
 import styles from '../../styles/components/routine/NextRoutineLayout.module.scss';
-import { getNextRoutine } from '@/apis/getNextRoutine';
-import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
+import { getRoutineOne } from '@/apis/tasks/getRoutineOne';
+import { TaskInfo } from '@/types/routine';
 
 const NextRoutineLayout = () => {
   const [timeLeft, setTimeLeft] = useState<{
@@ -20,16 +22,15 @@ const NextRoutineLayout = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getNextRoutine(1, 1);
-
-      if (data?.length > 0) {
-        const taskInfo = data[0].taskInfoList[0];
-        setNextRoutineData(taskInfo);
+      const data = await getRoutineOne(1);
+      console.log(data);
+      if (data) {
+        setNextRoutineData(data);
 
         const interval = setInterval(() => {
           const currentTime = new Date().getTime();
-          const startAtTime = new Date(taskInfo.startAt).getTime();
-          const endAtTime = new Date(taskInfo.endAt).getTime();
+          const startAtTime = new Date(data.startAt).getTime();
+          const endAtTime = new Date(data.endAt).getTime();
           const timeDiff = endAtTime - currentTime;
 
           const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -42,12 +43,12 @@ const NextRoutineLayout = () => {
 
           setTimeLeft({ days, hours, minutes });
 
-          if (currentTime < startAtTime && !taskInfo.isFinished) {
+          if (currentTime < startAtTime && !data.isFinished) {
             setRoutineStatus('시작 전');
           } else if (
             currentTime >= startAtTime &&
             currentTime < endAtTime &&
-            !taskInfo.isFinished
+            !data.isFinished
           ) {
             setRoutineStatus('진행 중');
           } else {

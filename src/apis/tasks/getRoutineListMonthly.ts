@@ -12,6 +12,6 @@ export async function getRoutineListMonthly(
   params: GetRoutineListMonthlyParams
 ) {
   return await axiosCustom
-    .get<TaskInfo[]>('api/v1/tasks/list', { params })
+    .get<TaskInfo[]>('tasks/list', { params })
     .then((res) => res.data);
 }

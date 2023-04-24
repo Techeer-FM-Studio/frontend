@@ -7,6 +7,6 @@ export interface DeleteRoutineResponse {
 
 export async function deleteRoutine(taskId: number) {
   return await axiosCustom
-    .delete<DeleteRoutineResponse>(`api/v1/tasks/${taskId}`)
+    .delete<DeleteRoutineResponse>(`tasks/${taskId}`)
     .then((res) => res.data);
 }

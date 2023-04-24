@@ -1,8 +1,10 @@
+// src/components/calendar/Calendar.tsx
+
 import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
-import { fetchTaskData } from '@/apis/fetchTaskData';
-import { TaskInfo, TaskInfoListResponse } from '@/types/routine';
+import { getRoutineListMonthly } from '@/apis/tasks/getRoutineListMonthly';
+import { TaskInfo } from '@/types/routine';
 import { text } from 'stream/consumers';
 import RoutineLayout from '../routine/RoutineLayout';
 
@@ -21,37 +23,30 @@ const Calendar: React.FC<CalendarProps> = ({
   // useState hook을 사용하여 최근 클릭한 날짜를 저장하고, setRecentlyClickedDay 함수로 업데이트합니다.
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
 
   // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
 
-  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
-
   const fetchTasks = async (selectedDate: Moment) => {
-    const data = await fetchTaskData(
-      selectedDate.year(),
-      selectedDate.month() + 1
-    );
     try {
-      setTasks(data[0].taskInfoList);
+      const data = await getRoutineListMonthly({
+        memberId: 'Alice',
+        year: selectedDate.year(),
+        month: selectedDate.month() + 1,
+      });
+      setTasks(data);
     } catch (error) {
       console.error(error);
+      // 에러 핸들링 로직 추가
     }
   };
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const data = await fetchTaskData(2023, 4);
-      try {
-        setTasks(data[0].taskInfoList);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchTasks();
+    fetchTasks(moment('2023-04-01'));
   }, []);
 
-  const hasEvent = (date: moment.Moment, tasks: TaskInfo[]): boolean => {
+  const hasEvent = (date: moment.Moment, tasks: TaskInfo[] = []): boolean => {
     return tasks.some((task) => {
       const start = moment(task.startAt);
       const end = moment(task.endAt);

@@ -1,11 +1,9 @@
 .container {
   width: 100%;
 
-  background-color: rgb(244, 242, 242);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  margin-bottom: 2rem;
+  // background-color: rgb(244, 242, 242);
+  // position: sticky;
+  // top: 0;
 }
 .header {
   position: relative;
@@ -17,6 +15,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  z-index: 100;
 }
 
 .linkList {

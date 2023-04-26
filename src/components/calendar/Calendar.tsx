@@ -43,7 +43,7 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   useEffect(() => {
-    fetchTasks(moment('2023-04-01'));
+    fetchTasks(moment());
   }, []);
 
   const hasEvent = (date: moment.Moment, tasks: TaskInfo[] = []): boolean => {
@@ -87,7 +87,7 @@ const Calendar: React.FC<CalendarProps> = ({
     let week = firstWeek;
 
     // 캘린더 테이블의 행을 생성합니다.
-    for (week; week <= lastWeek; week++) {
+    for (week; week <= lastWeek || result.length < 6; week++) {
       result = result.concat(
         <tr key={week}>
           {Array(7)
@@ -168,7 +168,15 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
           다음달
         </button>
-        <button onClick={() => setMoment(moment())}>Today</button>
+        <button
+          onClick={() => {
+            setMoment(moment());
+            setRecentlyClickedDay(moment());
+            updateSelectedTasks(moment());
+          }}
+        >
+          Today
+        </button>
         <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
       </div>
       <table>

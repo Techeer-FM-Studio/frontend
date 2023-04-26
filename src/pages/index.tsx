@@ -18,7 +18,7 @@ import { TaskInfo } from '@/types/routine';
 
 export default function MainPage() {
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
-
+  console.log(selectedTasks);
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {

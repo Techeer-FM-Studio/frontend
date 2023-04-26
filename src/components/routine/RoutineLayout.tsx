@@ -8,7 +8,6 @@ import { putRoutine } from '@/apis/tasks/putRoutine';
 import { deleteRoutine } from '@/apis/tasks/deleteRoutine';
 
 import { useEffect, useState } from 'react';
-import { getRoutineListMonthly } from '@/apis/tasks/getRoutineListMonthly';
 
 interface RoutineLayoutProps {
   selectedTasks: TaskInfo[];
@@ -24,7 +23,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   onUpdateSelectedTask,
 }) => {
   const [selectedTask, setSelectedTask] = useState<TaskInfo | null>(null);
-
+  console.log('selectedTask', selectedTask);
   const [formData, setFormData] = useState({
     title: '',
     startDate: '',
@@ -34,7 +33,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
     memo: '',
   });
   const [isEditing, setIsEditing] = useState(false);
-
+  console.log('formdata', formData);
   useEffect(() => {
     const startAt = new Date(
       `${formData.startDate || '2000-01-01'}T${formData.startTime || '00:00'}`
@@ -64,6 +63,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
       [name]: value,
     }));
   };
+  console.log('수정된 폼', formData);
 
   const handleEdit = (task: TaskInfo) => {
     setFormData({
@@ -74,6 +74,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
       endTime: moment(task.endAt).format('HH:mm'),
       memo: task.memo,
     });
+
     setIsEditing(true);
     setShowForm(true);
   };
@@ -84,19 +85,20 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
     const endAt = new Date(`${formData.endDate}T${formData.endTime}`);
 
     const taskData: TaskInfo = {
+      taskId: selectedTask?.taskId,
       title: formData.title,
-      writer: 'Alova', // 작성자 정보를 설정해야 합니다.
       startAt: startAt.toISOString(),
       endAt: endAt.toISOString(),
       memo: formData.memo,
       isFinished: false,
-      sharedMemberNicknameList: [],
     };
 
     if (isEditing) {
       if (selectedTask && selectedTask.taskId) {
+        console.log('ok');
         putRoutine(taskData)
           .then((updatedTask) => {
+            console.log(updatedTask);
             console.log('일정이 성공적으로 수정되었습니다:', updatedTask);
             onUpdateSelectedTask(taskData);
             setIsEditing(false); // 수정 상태를 종료합니다.
@@ -109,6 +111,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         console.error('Error: taskId is undefined');
       }
     } else {
+      console.log('fail');
       postRoutine(taskData)
         .then((task) => {
           console.log('일정이 성공적으로 등록되었습니다:', task);
@@ -144,6 +147,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
             <input
               type="text"
               name="title"
+              value={formData.title}
               className={styles.input}
               onChange={handleChange}
             />
@@ -151,12 +155,14 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
             <input
               type="date"
               name="startDate"
+              value={formData.startDate}
               className={styles.input}
               onChange={handleChange}
             />
             <input
               type="time"
               name="startTime"
+              value={formData.startTime}
               className={styles.input}
               onChange={handleChange}
             />
@@ -164,18 +170,21 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
             <input
               type="date"
               name="endDate"
+              value={formData.endDate}
               className={styles.input}
               onChange={handleChange}
             />
             <input
               type="time"
               name="endTime"
+              value={formData.endTime}
               className={styles.input}
               onChange={handleChange}
             />
             <h3>메모</h3>
             <textarea
               name="memo"
+              value={formData.memo}
               className={styles.textarea}
               onChange={handleChange}
             />
@@ -195,7 +204,13 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
             );
 
             return (
-              <div key={task.taskId || index} className={styles.TaskItem}>
+              <div
+                key={task.taskId || index}
+                className={styles.TaskItem}
+                onClick={() => {
+                  setSelectedTask(task);
+                }}
+              >
                 <div className={styles.TaskItemTitle}>제목: {task.title}</div>
                 <div className={styles.TaskItemDetails}>
                   <div>writer: {task.writer}</div>
@@ -203,7 +218,13 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
                   <div>시작: {startAt}</div>
                   <div>종료: {endAt}</div>
                   <div className={styles.TaskItemButton}>
-                    <button onClick={() => handleEdit(task)}>수정하기</button>
+                    <button
+                      onClick={() => {
+                        handleEdit(task);
+                      }}
+                    >
+                      수정하기
+                    </button>
                     <button onClick={() => handleDelete(task)}>삭제하기</button>
                   </div>
                 </div>

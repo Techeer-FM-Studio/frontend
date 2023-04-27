@@ -18,15 +18,23 @@ import { TaskInfo } from '@/types/routine';
 
 export default function MainPage() {
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
-
+  console.log(selectedTasks);
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
+
+  const updateSelectedTask = (updatedTask: TaskInfo) => {
+    setSelectedTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.taskId === updatedTask.taskId ? updatedTask : task
+      )
+    );
+  };
+
   return (
     <div className={styles.page}>
-      <Header />
       <div className={styles.contentLayout}>
         <div className={styles.contentCenter}>
           {/* 달력 컴포넌트 */}
@@ -36,7 +44,12 @@ export default function MainPage() {
           />
           {/* 루틴 정보를 나타내는 RoutineLayout 컴포넌트 */}
           <div className={styles.routine}>
-            <RoutineLayout selectedTasks={selectedTasks} showForm={showForm} />
+            <RoutineLayout
+              selectedTasks={selectedTasks}
+              showForm={showForm}
+              setShowForm={setShowForm}
+              onUpdateSelectedTask={updateSelectedTask}
+            />
           </div>
           <div className={styles.contentRight}>
             <UserInfoMainLayout />

@@ -1,22 +1,36 @@
 .container {
   display: flex;
   flex-direction: column;
+  transition: all 0.3s;
+  position: relative;
 
-  // background-color: aqua;
-  width: 33.33%;
-  padding: 0 1rem;
-  margin-bottom: 3rem;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1rem);
+    .info {
+      opacity: 1;
+    }
+  }
+  & > div:last-of-type {
+    border-radius: 5px;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
 }
 
 .info {
   display: flex;
-  justify-content: space-between;
+
+  align-items: center;
   padding: 1rem;
-  background-color: aliceblue;
-  section {
+  opacity: 0.6;
+
+  & > div {
     display: flex;
-    div {
-      margin-left: 1rem;
+    &:first-of-type {
+      margin-right: auto;
     }
   }
 }
@@ -24,5 +38,17 @@
 .img {
   position: relative;
   width: 100%;
-  height: 15rem;
+  height: 18rem;
+}
+
+.CUSTOM {
+  color: #0095ff;
+  background-color: white;
+  border: 1px solid #0095ff;
+}
+
+.OFFICIAL {
+  color: #93c400;
+  background-color: white;
+  border: 1px solid #93c400;
 }

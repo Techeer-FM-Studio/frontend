@@ -3,11 +3,16 @@
   position: relative;
   width: 120rem;
   margin: 0 auto; /* 가로 중앙 정렬을 위해 margin 속성을 사용합니다. */
+
+  /* 배경 이미지 속성을 추가합니다. */
+  background-image: url('../../../public/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   .contentLayout {
     // 헤더를 제외한 모든 요소들이 들어갈 공간에 대한 속성들이 여기에 들어갑니다.
     max-width: 118rem;
     margin: 0 auto;
-    border: solid black;
     .contentCenter {
       // 배너를 제외한 중앙에 들어가는 모든 요소들이 포함됩니다
       display: flex; /* display 속성을 flex로 설정합니다. */
@@ -18,11 +23,6 @@
         display: flex; /* display 속성을 flex로 설정합니다. */
         flex-direction: column; /* 요소들을 위아래로 정렬합니다. */
         justify-content: space-between; /* 요소들을 위아래로 정렬합니다. */
-        .nextRoutine {
-          width: 38rem;
-          height: 22.4rem;
-          border: solid black;
-        }
       }
     }
     .contentBottom {

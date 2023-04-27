@@ -1,6 +1,5 @@
 import { getBannerList } from '@/apis/getBannerList';
 import BannerList from '@/components/banner/BannerList';
-import Header from '@/components/common/Header';
 import styles from '@/styles/pages/BannerListPage.module.scss';
 import BannerFilter from '@/components/banner/BannerFilter';
 import {
@@ -11,16 +10,19 @@ import {
 import { ParsedUrlQuery } from 'querystring';
 import { BannerPageableType } from '@/types/banner';
 import BannerPaginate from '@/components/banner/BannerPaginate';
+import BannerSlider from '@/components/banner/BannerSlider';
 
 function BannerListPage({ data }: { data: BannerPageableType }) {
   const { totalElements, totalPages, page, size, content } = data;
 
   return (
     <section className={styles.page}>
-      <Header />
-      <BannerFilter totalElements={totalElements}></BannerFilter>
-      <BannerList bannerList={content}></BannerList>
-      <BannerPaginate totalPages={totalPages} page={page}></BannerPaginate>
+      <BannerSlider />
+      <article>
+        <BannerFilter totalElements={totalElements}></BannerFilter>
+        <BannerList bannerList={content}></BannerList>
+        <BannerPaginate totalPages={totalPages} page={page}></BannerPaginate>
+      </article>
     </section>
   );
 }

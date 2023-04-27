@@ -30,7 +30,7 @@ const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
   imageUrls = IMAGE_URLS, // 이미지 URL 배열을 전달받지 않으면 기본 이미지 URL 배열 사용
 }) => {
   const { currentImageIndex, onNextButtonClick, onPrevButtonClick } =
-    useBannerNavigation(IMAGE_URLS.length);
+    useBannerNavigation(imageUrls.length);
 
   return (
     // BannerMainLayout 컴포넌트의 최상위 요소, 이미지와 함께 배경색을 입히기 위한 wrapper

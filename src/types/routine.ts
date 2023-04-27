@@ -10,3 +10,15 @@ export type TaskInfo = {
   isFinished: boolean;
   sharedMemberNicknameList: string[];
 };
+
+export type BannerTaskInfo = {
+  bannerId: number;
+  type: string;
+  writer: string;
+  title: string;
+  memo: string;
+  startAt: string;
+  endAt: string;
+  imageUrl: [string, string];
+  isFinished: boolean;
+};

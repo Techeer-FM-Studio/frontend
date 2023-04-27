@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Image, { StaticImageData } from 'next/image';
+import useBannerNavigation from '../../hooks/useSlideNavigation'; // Import the custom hook
 
 // Import Sass File
 import styles from '../../styles/components/banner/BannerMainLayout.module.scss';
@@ -28,34 +29,8 @@ interface BannerMainLayoutProps {
 const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
   imageUrls = IMAGE_URLS, // 이미지 URL 배열을 전달받지 않으면 기본 이미지 URL 배열 사용
 }) => {
-  // 현재 이미지 인덱스 상태와 상태 갱신 함수를 useState 훅으로 만듦
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-
-  // 다음 이미지로 이동하는 함수
-  const onNextButtonClick = () => {
-    setCurrentImageIndex(
-      (currentIndex: number) => (currentIndex + 1) % IMAGE_URLS.length
-    );
-  };
-
-  // 이전 이미지로 이동하는 함수
-  const onPrevButtonClick = () => {
-    setCurrentImageIndex(
-      (currentIndex: number) =>
-        (currentIndex + IMAGE_URLS.length - 1) % IMAGE_URLS.length
-    );
-  };
-
-  // useEffect 훅으로 3초마다 다음 이미지로 이동하는 setInterval을 생성함
-  useEffect(() => {
-    const interval = setInterval(() => {
-      onNextButtonClick();
-      // console.log('nextButtonClicked');
-    }, 3000);
-    // console.log('clearInterval');
-    // useEffect 함수의 반환 함수를 활용해 cleanup을 수행함
-    return () => clearInterval(interval);
-  }, [currentImageIndex]);
+  const { currentImageIndex, onNextButtonClick, onPrevButtonClick } =
+    useBannerNavigation(IMAGE_URLS.length);
 
   return (
     // BannerMainLayout 컴포넌트의 최상위 요소, 이미지와 함께 배경색을 입히기 위한 wrapper

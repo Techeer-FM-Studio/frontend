@@ -2,11 +2,11 @@
 
 export type TaskInfo = {
   taskId?: number;
-  writer: string;
+  writer?: string;
   title: string;
   memo: string;
   startAt: string;
   endAt: string;
   isFinished: boolean;
-  sharedMemberNicknameList: string[];
+  sharedMemberNicknameList?: string[];
 };

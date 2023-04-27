@@ -1,5 +1,5 @@
 // useSlideNavigation.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface SlideNavigation {
   currentImageIndex: number;
@@ -13,11 +13,11 @@ const useSlideNavigation = (
 ): SlideNavigation => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
-  const onNextButtonClick = () => {
+  const onNextButtonClick = useCallback(() => {
     setCurrentImageIndex(
       (currentIndex: number) => (currentIndex + 1) % imagesLength
     );
-  };
+  }, [imagesLength]);
 
   const onPrevButtonClick = () => {
     setCurrentImageIndex(
@@ -31,7 +31,7 @@ const useSlideNavigation = (
     }, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [currentImageIndex, intervalDuration]);
+  }, [currentImageIndex, intervalDuration, onNextButtonClick]);
 
   return {
     currentImageIndex,

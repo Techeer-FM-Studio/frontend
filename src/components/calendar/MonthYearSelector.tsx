@@ -1,6 +1,6 @@
 // src/components/calendar/MonthYearSelector.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/components/calendar/MonthYearSelector.module.scss';
 
 interface MonthYearSelectorProps {
@@ -16,6 +16,11 @@ const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
 }) => {
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
+
+  useEffect(() => {
+    setMonth(currentMonth);
+    setYear(currentYear);
+  }, [currentMonth, currentYear]);
 
   const handleChange = () => {
     onMonthYearChange(month, year);

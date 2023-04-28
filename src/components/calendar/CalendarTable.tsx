@@ -44,7 +44,7 @@ const CalendarTable: React.FC<CalendarTableProps> = ({
                   days.format('YYYYMMDD')
                 ? 'green'
                 : days.format('MM') !== today.format('MM')
-                ? 'gray'
+                ? 'lightgray'
                 : 'inherit';
 
             return (

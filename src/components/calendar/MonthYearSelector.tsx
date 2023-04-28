@@ -36,7 +36,7 @@ const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
           handleChange();
         }}
       />
-      년
+      년&nbsp;&nbsp;
       <select
         value={month}
         onChange={(e) => {

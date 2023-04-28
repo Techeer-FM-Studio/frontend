@@ -48,26 +48,30 @@ const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <div className={styles.calendar}>
-      <div className="control">
-        <button
-          onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
-        >
-          이전달
-        </button>
-        <span>{today.format('YYYY 년 MM 월')}</span>
-        <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
-          다음달
-        </button>
-        <button
-          onClick={() => {
-            setMoment(moment());
-            setRecentlyClickedDay(moment());
-            handleClick(moment());
-          }}
-        >
-          Today
-        </button>
-        <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
+      <div className={styles.control}>
+        <div className={styles.monthControl}>
+          <button
+            onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
+          >
+            이전달
+          </button>
+          <span>{today.format('YYYY 년 MM 월 DD 일')}</span>
+          <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
+            다음달
+          </button>
+        </div>
+        <div className={styles.otherControl}>
+          <button
+            onClick={() => {
+              setMoment(moment());
+              setRecentlyClickedDay(moment());
+              handleClick(moment());
+            }}
+          >
+            Today
+          </button>
+          <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
+        </div>
       </div>
       <CalendarTable
         today={today}

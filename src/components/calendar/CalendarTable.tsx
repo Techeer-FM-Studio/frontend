@@ -1,3 +1,5 @@
+// src/components/calendar/CalendarTable.tsx
+
 import { TaskInfo } from '@/types/routine';
 import { hasEvent } from '@/utils/calendarUtils';
 import moment, { Moment } from 'moment';
@@ -53,9 +55,13 @@ const CalendarTable: React.FC<CalendarTableProps> = ({
                 >
                   <span>{days.format('D')}</span>
                   <br />
-                  {hasEvent(days, tasks) && (
-                    <span style={{ color: 'red' }}>•</span>
-                  )}
+                  <span
+                    style={{
+                      color: hasEvent(days, tasks) ? 'red' : 'transparent',
+                    }}
+                  >
+                    •
+                  </span>
                 </button>
               </td>
             );

@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment';
 import { TaskInfo } from '@/types/routine';
 import { fetchTasks, updateSelectedTasks } from '@/utils/calendarUtils';
 import CalendarTable from './CalendarTable';
+import MonthYearSelector from './MonthYearSelector';
 
 interface CalendarProps {
   onTasksChange: (tasks: TaskInfo[]) => void;
@@ -20,6 +21,11 @@ const Calendar: React.FC<CalendarProps> = ({
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
 
   const today = getMoment;
+
+  // MonthYearSelector에서 변경된 년도와 월을 처리하는 함수를 추가합니다.
+  const handleMonthYearChange = (month: number, year: number) => {
+    setMoment(getMoment.clone().set({ month, year }));
+  };
 
   useEffect(() => {
     fetchTasks(moment(), setTasks);
@@ -67,7 +73,12 @@ const Calendar: React.FC<CalendarProps> = ({
           >
             이전달
           </button>
-          <span>{today.format('YYYY 년 MM 월 DD 일')}</span>
+          {/* 기존 년도와 월 텍스트를 새로운 MonthYearSelector 컴포넌트로 변경합니다. */}
+          <MonthYearSelector
+            currentMonth={today.month()}
+            currentYear={today.year()}
+            onMonthYearChange={handleMonthYearChange}
+          />
           <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
             다음달
           </button>

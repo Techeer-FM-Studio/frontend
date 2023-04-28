@@ -1,0 +1,52 @@
+// src/components/calendar/MonthYearSelector.tsx
+
+import React, { useState } from 'react';
+import styles from '@/styles/components/calendar/MonthYearSelector.module.scss';
+
+interface MonthYearSelectorProps {
+  currentMonth: number;
+  currentYear: number;
+  onMonthYearChange: (month: number, year: number) => void;
+}
+
+const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
+  currentMonth,
+  currentYear,
+  onMonthYearChange,
+}) => {
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
+
+  const handleChange = () => {
+    onMonthYearChange(month, year);
+  };
+
+  return (
+    <div className={styles.monthYearSelector}>
+      <input
+        type="number"
+        value={year}
+        onChange={(e) => {
+          setYear(parseInt(e.target.value));
+          handleChange();
+        }}
+      />
+      년
+      <select
+        value={month}
+        onChange={(e) => {
+          setMonth(parseInt(e.target.value));
+          handleChange();
+        }}
+      >
+        {Array.from({ length: 12 }, (_, i) => i).map((m) => (
+          <option key={m} value={m}>
+            {m + 1}월
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+export default MonthYearSelector;

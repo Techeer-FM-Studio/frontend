@@ -1,12 +1,10 @@
-// src/components/calendar/Calendar.tsx
-
 import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
-import { getRoutineListMonthly } from '@/apis/tasks/getRoutineListMonthly';
 import { TaskInfo } from '@/types/routine';
-import { text } from 'stream/consumers';
-import RoutineLayout from '../routine/RoutineLayout';
+import { fetchTasks, updateSelectedTasks } from '@/utils/calendarUtils';
+import CalendarTable from './CalendarTable';
+import MonthYearSelector from './MonthYearSelector';
 
 interface CalendarProps {
   onTasksChange: (tasks: TaskInfo[]) => void;
@@ -17,163 +15,95 @@ const Calendar: React.FC<CalendarProps> = ({
   onAddTaskClick,
   onTasksChange,
 }) => {
-  // useState hook을 사용하여 현재 날짜를 저장하고, setMoment 함수로 현재 날짜를 업데이트합니다.
   const [getMoment, setMoment] = useState(moment());
-
-  // useState hook을 사용하여 최근 클릭한 날짜를 저장하고, setRecentlyClickedDay 함수로 업데이트합니다.
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
 
-  // today 변수에 useState hook에서 저장된 현재 날짜를 할당합니다.
   const today = getMoment;
 
-  const fetchTasks = async (selectedDate: Moment) => {
-    try {
-      const data = await getRoutineListMonthly({
-        memberId: 'Alice',
-        year: selectedDate.year(),
-        month: selectedDate.month() + 1,
-      });
-      setTasks(data);
-    } catch (error) {
-      console.error(error);
-      // 에러 핸들링 로직 추가
-    }
+  // MonthYearSelector에서 변경된 년도와 월을 처리하는 함수를 추가합니다.
+  const handleMonthYearChange = (month: number, year: number) => {
+    setMoment(getMoment.clone().set({ month, year }));
   };
 
   useEffect(() => {
-    fetchTasks(moment('2023-04-01'));
+    fetchTasks(moment(), setTasks);
   }, []);
 
-  const hasEvent = (date: moment.Moment, tasks: TaskInfo[] = []): boolean => {
-    return tasks.some((task) => {
-      const start = moment(task.startAt);
-      const end = moment(task.endAt);
-      return date.isBetween(start, end, 'day', '[]');
-    });
-  };
-
   useEffect(() => {
-    fetchTasks(today);
+    fetchTasks(today, setTasks);
   }, [today]);
 
   useEffect(() => {
     if (recentlyClickedDay) {
-      fetchTasks(recentlyClickedDay);
+      fetchTasks(recentlyClickedDay, setTasks);
     }
   }, [recentlyClickedDay]);
 
-  const updateSelectedTasks = (date: moment.Moment) => {
-    const tasksOnSelectedDay = tasks.filter((task) => {
-      const start = moment(task.startAt);
-      const end = moment(task.endAt);
-      return date.isBetween(start, end, 'day', '[]');
-    });
-    setSelectedTasks(tasksOnSelectedDay);
-    onTasksChange(tasksOnSelectedDay);
-  };
-
-  // 해당 월의 첫 주와 마지막 주를 계산합니다.
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek =
     today.clone().endOf('month').week() === 1
       ? 53
       : today.clone().endOf('month').week();
 
-  // calendarArr 함수: 캘린더 테이블을 생성하는 함수입니다.
-  const calendarArr = (): JSX.Element[] => {
-    let result: JSX.Element[] = [];
-    let week = firstWeek;
-
-    // 캘린더 테이블의 행을 생성합니다.
-    for (week; week <= lastWeek; week++) {
-      result = result.concat(
-        <tr key={week}>
-          {Array(7)
-            .fill(0)
-            // 캘린더 테이블의 셀을 생성합니다.
-            .map((data, index) => {
-              // 해당 셀이 나타내는 날짜를 계산합니다.
-              let days = today
-                .clone()
-                .startOf('year')
-                .week(week)
-                .startOf('week')
-                .add(index, 'day');
-
-              // 날짜를 클릭했을 때 실행되는 함수입니다.
-              const handleClick = (date: moment.Moment) => {
-                // 다른 달의 날짜를 클릭했을 경우, 캘린더의 월을 업데이트합니다.
-                if (date.format('MM') !== getMoment.format('MM')) {
-                  const newMonth = date.clone().month();
-                  setMoment(getMoment.clone().month(newMonth));
-                }
-                // 최근에 클릭한 날짜를 업데이트합니다.
-                setRecentlyClickedDay(date);
-                console.log(
-                  `Button Clicked for year ${days.format(
-                    'Y'
-                  )} week ${week}, day ${days.format('D')}`
-                );
-                updateSelectedTasks(date);
-              };
-
-              // 버튼의 배경색을 결정합니다.
-              const buttonColor =
-                moment().format('YYYYMMDD') === days.format('YYYYMMDD') // 오늘 날짜일 경우
-                  ? 'yellow'
-                  : recentlyClickedDay?.format('YYYYMMDD') === // 최근에 클릭한 날짜일 경우
-                    days.format('YYYYMMDD')
-                  ? 'green'
-                  : days.format('MM') !== today.format('MM') // 다른 달의 날짜일 경우
-                  ? 'gray'
-                  : 'inherit';
-
-              // 캘린더 테이블의 셀을 반환합니다.
-              return (
-                <td key={index}>
-                  <button
-                    onClick={() => handleClick(days)}
-                    style={{ backgroundColor: buttonColor }}
-                  >
-                    <span>{days.format('D')}</span>
-                    <br />
-                    {hasEvent(days, tasks) && (
-                      <span style={{ color: 'red' }}>•</span>
-                    )}{' '}
-                  </button>
-                </td>
-              );
-            })}
-        </tr>
-      );
+  const handleClick = (date: moment.Moment) => {
+    if (date.month() !== today.month()) {
+      if (date.isBefore(today, 'month')) {
+        setMoment(getMoment.clone().subtract(1, 'month'));
+      } else {
+        setMoment(getMoment.clone().add(1, 'month'));
+      }
     }
-    // 캘린더 테이블을 반환합니다.
-    return result;
+    setRecentlyClickedDay(date);
+    updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
   };
 
-  // 달력 UI와 관련된 React 컴포넌트를 정의합니다.
-  // 컴포넌트 내부에는 현재 날짜를 표시하고, 이전/다음 달로 이동할 수 있도록 버튼이 제공됩니다.
-  // 또한 일정 추가하기 버튼도 포함되어 있습니다.
+  const handleClickToday = (date: moment.Moment) => {
+    setRecentlyClickedDay(date);
+    updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
+  };
+
   return (
     <div className={styles.calendar}>
-      <div className="control">
-        <button
-          onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
-        >
-          이전달
-        </button>
-        <span>{today.format('YYYY 년 MM 월')}</span>
-        <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
-          다음달
-        </button>
-        <button onClick={() => setMoment(moment())}>Today</button>
-        <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
+      <div className={styles.control}>
+        <div className={styles.monthControl}>
+          <button
+            onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
+          >
+            이전달
+          </button>
+          {/* 기존 년도와 월 텍스트를 새로운 MonthYearSelector 컴포넌트로 변경합니다. */}
+          <MonthYearSelector
+            currentMonth={today.month()}
+            currentYear={today.year()}
+            onMonthYearChange={handleMonthYearChange}
+          />
+          <button onClick={() => setMoment(getMoment.clone().add(1, 'month'))}>
+            다음달
+          </button>
+        </div>
+        <div className={styles.otherControl}>
+          <button
+            onClick={() => {
+              setMoment(moment());
+              setRecentlyClickedDay(moment());
+              handleClickToday(moment());
+            }}
+          >
+            Today
+          </button>
+          <button onClick={onAddTaskClick}>+ 일정 추가하기</button>
+        </div>
       </div>
-      <table>
-        <tbody>{calendarArr()}</tbody>
-      </table>
+      <CalendarTable
+        today={today}
+        firstWeek={firstWeek}
+        lastWeek={lastWeek}
+        recentlyClickedDay={recentlyClickedDay}
+        tasks={tasks}
+        handleClick={handleClick}
+      />
     </div>
   );
 };

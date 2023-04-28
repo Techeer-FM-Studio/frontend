@@ -26,6 +26,11 @@
 .RoutineLayout {
   width: 38rem;
   height: 52.8rem;
+  padding: 1rem;
+  /* 입체감을 높이기 위한 속성들을 추가합니다. */
+  border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자를 추가합니다. */
+
   .RoutineLayoutTop {
     height: 6.4rem;
     display: flex;
@@ -38,7 +43,9 @@
     height: 46.4rem;
     overflow: scroll;
     .TaskItem {
-      background-color: #f8f9fa;
+      background-color: #f0f0f0;
+      background-image: linear-gradient(135deg, #f0f0f0 0%, #b9b9b9 100%);
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
       border: 1px solid #dee2e6;
       border-radius: 0.5rem;
       padding: 1rem;

@@ -19,11 +19,16 @@
 }
 
 .Wrapper {
+  /* 기존 속성들을 유지합니다. */
   display: flex;
   flex-direction: column;
   width: 38rem;
   height: 28.8rem;
-  border: solid black;
+
+  /* 입체감을 높이기 위한 속성들을 추가합니다. */
+  background-color: #ffffff; /* 배경색을 설정합니다. */
+  border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자를 추가합니다. */
 }
 
 .Top {

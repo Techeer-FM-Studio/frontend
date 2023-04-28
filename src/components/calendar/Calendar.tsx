@@ -53,6 +53,11 @@ const Calendar: React.FC<CalendarProps> = ({
     updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
   };
 
+  const handleClickToday = (date: moment.Moment) => {
+    setRecentlyClickedDay(date);
+    updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
+  };
+
   return (
     <div className={styles.calendar}>
       <div className={styles.control}>
@@ -72,7 +77,7 @@ const Calendar: React.FC<CalendarProps> = ({
             onClick={() => {
               setMoment(moment());
               setRecentlyClickedDay(moment());
-              handleClick(moment());
+              handleClickToday(moment());
             }}
           >
             Today

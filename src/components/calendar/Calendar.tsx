@@ -42,6 +42,13 @@ const Calendar: React.FC<CalendarProps> = ({
       : today.clone().endOf('month').week();
 
   const handleClick = (date: moment.Moment) => {
+    if (date.month() !== today.month()) {
+      if (date.isBefore(today, 'month')) {
+        setMoment(getMoment.clone().subtract(1, 'month'));
+      } else {
+        setMoment(getMoment.clone().add(1, 'month'));
+      }
+    }
     setRecentlyClickedDay(date);
     updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
   };

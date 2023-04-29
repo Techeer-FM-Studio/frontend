@@ -10,41 +10,42 @@ import {
 } from 'next';
 import Image from 'next/image';
 import { ParsedUrlQuery } from 'querystring';
+import styles from '../../../styles/pages/BannerDetailPage.module.scss';
 
 function InfoPage({ data }: { data: BannerItemType }) {
   const {
     type,
     id,
-    owner,
+    writer,
     title,
     memo,
     startAt,
     endAt,
     imageUrl,
     likeCnt,
-    finished,
+    isFinished,
     isLiked,
     isIncluded,
     readCnt,
-    commentList,
   } = data;
   return (
-    <div>
+    <section className={styles.container}>
       <DetailTitle
         type={type}
-        owner={owner}
+        writer={writer}
         readCnt={readCnt}
         title={title}
       ></DetailTitle>
 
-      <div style={{ width: 300, height: 300, position: 'relative' }}>
-        <Image src={imageUrl[0]} alt="이미지" fill></Image>
+      <div className={styles.img}>
+        <Image src={imageUrl[0]} alt="이미지" fill unoptimized={true}></Image>
       </div>
-      <article>
-        <div>{memo}</div>
-        <div>
-          일정 : {startAt} ~ {endAt}
-        </div>
+      <article className={styles.memo}>
+        <div dangerouslySetInnerHTML={{ __html: memo }}></div>
+        <p>
+          진행 일정 : {new Date(startAt).toLocaleDateString()} ~{' '}
+          {new Date(endAt).toLocaleDateString()}
+        </p>
       </article>
 
       <DetailButtons
@@ -54,8 +55,8 @@ function InfoPage({ data }: { data: BannerItemType }) {
         isIncluded={isIncluded}
       />
 
-      <CommentList id={id} commentList={commentList} />
-    </div>
+      <CommentList id={id} />
+    </section>
   );
 }
 
@@ -63,7 +64,8 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) => {
   let { id } = context.query;
-  const data = await getBannerItem('test1', id);
+
+  const data = await getBannerItem('test3', id);
   return { props: { data } };
 };
 export default InfoPage;

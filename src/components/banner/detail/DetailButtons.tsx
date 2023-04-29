@@ -1,7 +1,5 @@
-import { postCalender } from '@/apis/postCalender';
-import { postLike } from '@/apis/postLike';
 import { useState } from 'react';
-
+import styles from '../../../styles/components/banner/detail/BannerButton.module.scss';
 function DetailButtons({
   id,
   likeCnt,
@@ -17,18 +15,29 @@ function DetailButtons({
   const [include, setInclude] = useState(isIncluded);
 
   const onChangeLike = async () => {
-    const data = await postLike('test1', id);
-    setLike(data.isLiked);
+    alert('구현중입니다😅');
+    //TODO: 구현 되면 주석 풀기
+    // const data = await postLike('test1', id);
+    // setLike(data.isLiked);
   };
 
   const onChangeCalender = async () => {
-    const data = await postCalender('test1', id);
-    setInclude(data.isIncluded);
+    alert('구현중입니다😅');
+    //TODO: 구현 되면 주석 풀기
+    // const data = await postCalender('test1', id);
+    // setInclude(data.isIncluded);
   };
 
   return (
-    <section>
-      <button onClick={onChangeLike} style={like ? { background: 'pink' } : {}}>
+    <section className={styles.container}>
+      <button
+        onClick={onChangeLike}
+        style={
+          like
+            ? { background: '#f65959', color: 'white', borderColor: '#f66969' }
+            : undefined
+        }
+      >
         좋아요 : {likeCnt}
       </button>
       <button onClick={onChangeCalender}>

@@ -1,6 +1,6 @@
 // src/components/routine/RoutineLayout.tsx
 
-import { TaskInfo } from '@/types/routine';
+import { BannerTaskInfo, TaskInfo } from '@/types/routine';
 import styles from '../../styles/components/routine/RoutineLayout.module.scss';
 import moment from 'moment';
 import { postRoutine } from '@/apis/tasks/postRoutine';
@@ -11,19 +11,25 @@ import { useEffect, useState } from 'react';
 
 interface RoutineLayoutProps {
   selectedTasks: TaskInfo[];
+  selectedBannerTasks: BannerTaskInfo[];
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
   onUpdateSelectedTask: (updatedTask: TaskInfo) => void;
+  onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfo) => void;
 }
 
 const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   selectedTasks,
+  selectedBannerTasks,
   showForm,
   setShowForm,
   onUpdateSelectedTask,
+  onUpdateSelectedBannerTask,
 }) => {
+  console.log('ssss', selectedTasks);
+  console.log('sss', selectedBannerTasks);
   const [selectedTask, setSelectedTask] = useState<TaskInfo | null>(null);
-  console.log('selectedTask', selectedTask);
+  console.log('selectedTaskAAAAAA', selectedTask);
   const [formData, setFormData] = useState({
     title: '',
     startDate: '',
@@ -194,7 +200,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
           </form>
         )}
 
-        {selectedTasks?.length > 0 ? (
+        {selectedTasks?.length > 0 || selectedBannerTasks?.length > 0 ? (
           selectedTasks.map((task, index) => {
             const startAt = moment(task.startAt).format(
               'YYYY년 MM월 DD일 HH시 mm분'
@@ -234,6 +240,28 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         ) : (
           <div>No tasks for the selected day</div>
         )}
+        {selectedBannerTasks.map((bannerTask, index) => {
+          const startAt = moment(bannerTask.startAt).format(
+            'YYYY년 MM월 DD일 HH시 mm분'
+          );
+          const endAt = moment(bannerTask.endAt).format(
+            'YYYY년 MM월 DD일 HH시 mm분'
+          );
+
+          return (
+            <div key={bannerTask.bannerId || index} className={styles.TaskItem}>
+              <div className={styles.TaskItemTitle}>
+                제목: {bannerTask.title}
+              </div>
+              <div className={styles.TaskItemDetails}>
+                <div>writer: {bannerTask.writer}</div>
+                <div>메모: {bannerTask.memo}</div>
+                <div>시작: {startAt}</div>
+                <div>종료: {endAt}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

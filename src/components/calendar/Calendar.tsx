@@ -1,24 +1,35 @@
 import styles from '../../styles/components/calendar/Calendar.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
-import { TaskInfo } from '@/types/routine';
-import { fetchTasks, updateSelectedTasks } from '@/utils/calendarUtils';
+import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import {
+  fetchTasks,
+  fetchBannerTasks,
+  updateSelectedTasks,
+  updateSelectedBannerTasks,
+} from '@/utils/calendarUtils';
 import CalendarTable from './CalendarTable';
 import MonthYearSelector from './MonthYearSelector';
 
 interface CalendarProps {
   onTasksChange: (tasks: TaskInfo[]) => void;
+  onBannerTasksChange: (tasks: BannerTaskInfo[]) => void;
   onAddTaskClick: () => void;
 }
 
 const Calendar: React.FC<CalendarProps> = ({
   onAddTaskClick,
   onTasksChange,
+  onBannerTasksChange,
 }) => {
   const [getMoment, setMoment] = useState(moment());
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+  const [bannerTasks, setBannerTasks] = useState<BannerTaskInfo[]>([]);
+  const [selectedBannerTasks, setSelectedBannerTasks] = useState<
+    BannerTaskInfo[]
+  >([]);
 
   const today = getMoment;
 
@@ -27,8 +38,14 @@ const Calendar: React.FC<CalendarProps> = ({
     setMoment(getMoment.clone().set({ month, year }));
   };
 
+  // 기존 일정 불러오기 useEffect
   useEffect(() => {
     fetchTasks(moment(), setTasks);
+  }, []);
+
+  // 새로운 배너 일정 불러오기 useEffect
+  useEffect(() => {
+    fetchBannerTasks(moment(), setBannerTasks);
   }, []);
 
   useEffect(() => {
@@ -57,11 +74,23 @@ const Calendar: React.FC<CalendarProps> = ({
     }
     setRecentlyClickedDay(date);
     updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
+    updateSelectedBannerTasks(
+      date,
+      bannerTasks,
+      setSelectedBannerTasks,
+      onBannerTasksChange
+    );
   };
 
   const handleClickToday = (date: moment.Moment) => {
     setRecentlyClickedDay(date);
     updateSelectedTasks(date, tasks, setSelectedTasks, onTasksChange);
+    updateSelectedBannerTasks(
+      date,
+      bannerTasks,
+      setSelectedBannerTasks,
+      onBannerTasksChange
+    );
   };
 
   return (
@@ -102,6 +131,7 @@ const Calendar: React.FC<CalendarProps> = ({
         lastWeek={lastWeek}
         recentlyClickedDay={recentlyClickedDay}
         tasks={tasks}
+        bannerTasks={bannerTasks} // 배너 일정 추가
         handleClick={handleClick}
       />
     </div>

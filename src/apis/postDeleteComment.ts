@@ -1,7 +1,7 @@
 import { axiosCustom } from './createAxios';
 
-export async function postDeleteComment(id: number) {
+export async function postDeleteComment(bannerId: number, id: number) {
   return await axiosCustom
-    .get(`banners/custom/comments/${id}`)
+    .delete(`banners/custom/${bannerId}/comments/${id}`)
     .then((res) => res.data);
 }

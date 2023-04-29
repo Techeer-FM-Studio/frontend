@@ -1,21 +1,31 @@
+import styles from '../../../styles/components/banner/detail/BannerDetail.module.scss';
+import { GrView } from 'react-icons/gr';
+import { RxPerson } from 'react-icons/rx';
+import { AiOutlineTag } from 'react-icons/ai';
 function DetailTitle({
   title,
-  owner,
+  writer,
   readCnt,
   type,
 }: {
   title: string;
-  owner: string;
+  writer: string;
   readCnt: number;
   type: string;
 }) {
   return (
-    <section>
-      <div>{title}</div>
-      <article>
-        <div>type : {type}</div>
-        <div>작성자 : {owner}</div>
-        <div>조회수 : {readCnt}</div>
+    <section className={styles.container}>
+      <div className={styles.title}>{title}</div>
+      <article className={styles.info}>
+        <div>
+          <RxPerson /> <p>{writer}</p>
+        </div>
+        <div>
+          <AiOutlineTag /> <p>{type}</p>
+        </div>
+        <div>
+          <GrView /> <p>{readCnt}</p>
+        </div>
       </article>
     </section>
   );

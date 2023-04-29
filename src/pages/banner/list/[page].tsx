@@ -33,10 +33,11 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) => {
   let pageable;
+  const nickname = 'test1'; // 임시 사용
 
   if (context.query) {
     const { page, size, filter } = context.query;
-    pageable = await getBannerList('test1', page, size, filter);
+    pageable = await getBannerList(nickname, page, size, filter);
     console.log(pageable);
     return { props: { data: pageable } };
   } else return { props: {} };

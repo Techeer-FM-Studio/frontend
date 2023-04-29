@@ -14,6 +14,7 @@ interface RoutineLayoutProps {
   selectedBannerTasks: BannerTaskInfo[];
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfo[]>>;
   onUpdateSelectedTask: (updatedTask: TaskInfo) => void;
   onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfo) => void;
 }
@@ -24,6 +25,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   showForm,
   setShowForm,
   onUpdateSelectedTask,
+  setSelectedTasks,
   onUpdateSelectedBannerTask,
 }) => {
   console.log('ssss', selectedTasks);
@@ -99,6 +101,16 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
       isFinished: false,
     };
 
+    const createTaskData: TaskInfo = {
+      writer: 'Alice',
+      title: formData.title,
+      startAt: startAt.toISOString(),
+      endAt: endAt.toISOString(),
+      memo: formData.memo,
+      isFinished: false,
+      sharedMembersNicknameList: [],
+    };
+
     if (isEditing) {
       if (selectedTask && selectedTask.taskId) {
         console.log('ok');
@@ -117,9 +129,11 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         console.error('Error: taskId is undefined');
       }
     } else {
-      console.log('fail');
-      postRoutine(taskData)
-        .then((task) => {
+      console.log('fail fail');
+      console.log('ㅇㄴㅁㄹㅁㅇㄴ', createTaskData);
+      postRoutine(createTaskData)
+        .then((task: TaskInfo) => {
+          setSelectedTasks((pre) => [...pre, task]);
           console.log('일정이 성공적으로 등록되었습니다:', task);
         })
         .catch((error) => {

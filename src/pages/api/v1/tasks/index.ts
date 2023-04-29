@@ -15,7 +15,7 @@ export default function handler(
     startAt: '2023-04-16 09:00:00',
     endAt: '2023-04-16 10:00:00',
     isFinished: false,
-    sharedMemberNicknameList: ['Bob'],
+    sharedMembersNicknameList: ['Bob'],
   };
 
   return res.status(200).json(req.body);

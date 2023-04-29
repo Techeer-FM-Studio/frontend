@@ -12,6 +12,6 @@ export async function getBannerRoutineListMonthly(
   params: GetBannerRoutineListMonthlyParams
 ) {
   return await axiosCustom
-    .get<BannerTaskInfo[]>('banners/mybanners/custom/list', { params })
+    .get<BannerTaskInfo[]>('banners/custom/mybanners/list', { params })
     .then((res) => res.data);
 }

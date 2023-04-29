@@ -16,7 +16,7 @@ export default function handler(
       startAt: '2023-04-25 09:00:00',
       endAt: '2023-04-26 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: [],
+      sharedMembersNicknameList: [],
     },
     {
       taskId: 2,
@@ -26,7 +26,7 @@ export default function handler(
       startAt: '2023-04-25 14:00:00',
       endAt: '2023-04-26 17:00:00',
       isFinished: true,
-      sharedMemberNicknameList: ['Jane'],
+      sharedMembersNicknameList: ['Jane'],
     },
     {
       taskId: 3,
@@ -36,7 +36,7 @@ export default function handler(
       startAt: '2023-04-26 10:00:00',
       endAt: '2023-04-26 12:00:00',
       isFinished: true,
-      sharedMemberNicknameList: ['Bob', 'Charlie'],
+      sharedMembersNicknameList: ['Bob', 'Charlie'],
     },
     {
       taskId: 4,
@@ -46,7 +46,7 @@ export default function handler(
       startAt: '2023-04-26 14:00:00',
       endAt: '2023-04-26 15:30:00',
       isFinished: true,
-      sharedMemberNicknameList: [],
+      sharedMembersNicknameList: [],
     },
     {
       taskId: 5,
@@ -56,7 +56,7 @@ export default function handler(
       startAt: '2023-04-27 09:00:00',
       endAt: '2023-04-27 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['John'],
+      sharedMembersNicknameList: ['John'],
     },
     {
       taskId: 6,
@@ -66,7 +66,7 @@ export default function handler(
       startAt: '2023-04-27 14:00:00',
       endAt: '2023-04-27 16:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Bob', 'Charlie'],
+      sharedMembersNicknameList: ['Bob', 'Charlie'],
     },
     {
       taskId: 7,
@@ -76,7 +76,7 @@ export default function handler(
       startAt: '2023-04-28 10:00:00',
       endAt: '2023-04-28 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Alice', 'David'],
+      sharedMembersNicknameList: ['Alice', 'David'],
     },
     {
       taskId: 8,
@@ -86,7 +86,7 @@ export default function handler(
       startAt: '2023-04-28 14:00:00',
       endAt: '2023-04-28 15:30:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Grace'],
+      sharedMembersNicknameList: ['Grace'],
     },
     {
       taskId: 9,
@@ -96,7 +96,7 @@ export default function handler(
       startAt: '2023-04-29 10:00:00',
       endAt: '2023-04-29 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Bob', 'David'],
+      sharedMembersNicknameList: ['Bob', 'David'],
     },
     {
       taskId: 10,
@@ -106,7 +106,7 @@ export default function handler(
       startAt: '2023-04-30 09:00:00',
       endAt: '2023-04-30 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['John', 'Alice'],
+      sharedMembersNicknameList: ['John', 'Alice'],
     },
     {
       taskId: 11,
@@ -116,7 +116,7 @@ export default function handler(
       startAt: '2023-04-30 14:00:00',
       endAt: '2023-04-30 15:30:00',
       isFinished: false,
-      sharedMemberNicknameList: [],
+      sharedMembersNicknameList: [],
     },
     {
       taskId: 12,
@@ -126,7 +126,7 @@ export default function handler(
       startAt: '2023-05-01 10:00:00',
       endAt: '2023-05-01 13:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Charlie', 'David'],
+      sharedMembersNicknameList: ['Charlie', 'David'],
     },
     {
       taskId: 13,
@@ -136,7 +136,7 @@ export default function handler(
       startAt: '2023-05-01 15:00:00',
       endAt: '2023-05-01 17:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Grace'],
+      sharedMembersNicknameList: ['Grace'],
     },
     {
       taskId: 14,
@@ -146,7 +146,7 @@ export default function handler(
       startAt: '2023-05-02 10:00:00',
       endAt: '2023-05-02 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: [],
+      sharedMembersNicknameList: [],
     },
     {
       taskId: 15,
@@ -156,7 +156,7 @@ export default function handler(
       startAt: '2023-05-02 14:00:00',
       endAt: '2023-05-02 16:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Bob', 'Alice'],
+      sharedMembersNicknameList: ['Bob', 'Alice'],
     },
     {
       taskId: 16,
@@ -166,7 +166,7 @@ export default function handler(
       startAt: '2023-05-03 09:00:00',
       endAt: '2023-05-03 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['John'],
+      sharedMembersNicknameList: ['John'],
     },
     {
       taskId: 17,
@@ -176,7 +176,7 @@ export default function handler(
       startAt: '2023-05-03 14:00:00',
       endAt: '2023-05-03 16:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Alice', 'David'],
+      sharedMembersNicknameList: ['Alice', 'David'],
     },
     {
       taskId: 18,
@@ -186,7 +186,7 @@ export default function handler(
       startAt: '2023-05-04 10:00:00',
       endAt: '2023-05-04 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Charlie', 'Grace'],
+      sharedMembersNicknameList: ['Charlie', 'Grace'],
     },
     {
       taskId: 19,
@@ -196,7 +196,7 @@ export default function handler(
       startAt: '2023-05-04 14:00:00',
       endAt: '2023-05-04 15:30:00',
       isFinished: false,
-      sharedMemberNicknameList: ['John'],
+      sharedMembersNicknameList: ['John'],
     },
     {
       taskId: 20,
@@ -206,7 +206,7 @@ export default function handler(
       startAt: '2023-05-05 10:00:00',
       endAt: '2023-05-05 12:00:00',
       isFinished: false,
-      sharedMemberNicknameList: ['Bob', 'Charlie', 'Alice', 'David', 'Grace'],
+      sharedMembersNicknameList: ['Bob', 'Charlie', 'Alice', 'David', 'Grace'],
     },
   ];
   return res.status(200).json(mockData);

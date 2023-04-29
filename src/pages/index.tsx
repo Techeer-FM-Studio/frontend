@@ -3,7 +3,7 @@
 // Columns = Width == 80, Gutter == 20
 
 import Header from '@/components/common/Header';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // css
 import styles from '../styles/pages/MainPage.module.scss';
@@ -21,6 +21,7 @@ export default function MainPage() {
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
     BannerTaskInfo[]
   >([]);
+  console.log(process.env.NODE_ENV);
   console.log(selectedTasks);
   const [showForm, setShowForm] = useState(false);
 
@@ -64,6 +65,7 @@ export default function MainPage() {
             <RoutineLayout
               selectedTasks={selectedTasks}
               selectedBannerTasks={selectedBannerTasks}
+              setSelectedTasks={setSelectedTasks}
               showForm={showForm}
               setShowForm={setShowForm}
               onUpdateSelectedBannerTask={updateBannerSelectedTask}

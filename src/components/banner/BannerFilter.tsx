@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/components/banner/BannerFilter.module.scss';
 
 function BannerFilter({ totalElements }: { totalElements: number }) {

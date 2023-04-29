@@ -13,7 +13,7 @@ function BannerItem({ item }: { item: BannerItemType }) {
     CUSTOM: '커스텀',
     OFFICIAL: '공식',
   };
-
+  console.log(item.imageUrl);
   return (
     <section
       className={styles.container}
@@ -27,12 +27,13 @@ function BannerItem({ item }: { item: BannerItemType }) {
           fill
           src={item.imageUrl[0]}
           style={{ objectFit: 'cover' }}
+          unoptimized={true}
         ></Image>
       </div>
       <div className={styles.info}>
         <div>
           <RxPerson />
-          <div>{item.owner}</div>
+          <div>{item.writer}</div>
         </div>
         <div>
           <GrView />

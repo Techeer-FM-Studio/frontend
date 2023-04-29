@@ -4,22 +4,20 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Object>
 ) {
-  const { title, memo, startAt, endAt, nickname } = req.body;
   const mockData = {
     type: 'CUSTOM',
-    bannerId: 1,
-    nickname,
-    title,
-    memo,
-    startAt,
-    endAt,
+    id: 1,
+    nickname: '백이요',
+    title: 'test title',
+    memo: 'test memo',
+    startAt: '2023-04-10T10:48:12',
+    endAt: '2023-04-11T10:48:12',
     commentList: [],
     imageUrl: [
       'https://i.pinimg.com/564x/92/6a/44/926a44c38c195bdabb29bea6bbdc1724.jpg',
-      'https://i.pinimg.com/564x/92/6a/44/926a44c38c195bdabb29bea6bbdc1724.jpg',
     ],
     likeCnt: 0,
-    finished: false,
+    isFinished: false,
     isLiked: false,
     isIncluded: true,
     readCnt: 0,

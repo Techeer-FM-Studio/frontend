@@ -16,7 +16,7 @@ function BannerPaginate({
     const selectPage = e.selected;
     const { size, filter } = router.query;
     const str = filter ? `&filter=${filter}` : '';
-    router.push(`/banner/list/${selectPage + 1}?size=${size}${str}`);
+    router.push(`/banner/list/${selectPage}?size=${size}${str}`);
   };
 
   return (

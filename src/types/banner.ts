@@ -2,18 +2,17 @@
 export type BannerItemType = {
   type: string;
   id: number;
-  owner: string;
+  writer: string;
   title: string;
   memo: string;
   startAt: string;
   endAt: string;
   imageUrl: string[];
   likeCnt: number;
-  finished: boolean;
+  isFinished: boolean;
   isLiked: boolean;
   isIncluded: boolean;
   readCnt: number;
-  commentList?: BannerComment[];
 };
 
 export type BannerPageableType = {
@@ -24,10 +23,18 @@ export type BannerPageableType = {
   content: BannerItemType[];
 };
 
+export type BannerCommentPageableType = {
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  page: number;
+  content: BannerComment[];
+};
+
 export type BannerComment = {
-  commentId: number;
+  id: number;
   writer: string;
-  content: string;
-  startAt: string;
-  updateAt: string;
+  comments: string;
+  createdAt: string;
+  updatedAt: string;
 };

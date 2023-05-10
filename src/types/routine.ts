@@ -10,15 +10,15 @@ export type TaskInfo = {
   startAt: string;
   endAt: string;
   isFinished: boolean;
-  sharedMemberNicknameList?: string[];
+  sharedMembersNicknameList?: string[];
 };
 
 // BannerTaskInfo : 배너에서 공유받은 일정과 관련된 타입 모음
 // 일정 목록 월별 불러오기 / 일정 추가 / 일정 삭제
 export type BannerTaskInfo = {
-  bannerId: number;
+  bannerId?: number;
   type: string;
-  writer: string;
+  writer?: string;
   title: string;
   memo: string;
   startAt: string;

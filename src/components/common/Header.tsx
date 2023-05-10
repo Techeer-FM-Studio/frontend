@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../../styles/components/common/Header.module.scss';
 import Logo from '../../../public/Logo.png';
 
-import { FiMenu, FiBell, FiSearch } from 'react-icons/fi';
+import { FiMenu } from 'react-icons/fi';
 import { VscBellDot } from 'react-icons/vsc';
 import { MdOutlineCancel } from 'react-icons/md';
 
@@ -62,6 +62,9 @@ function Header() {
               }}
             >
               마이 페이지
+            </Link>
+            <Link href={`/banner/create`} onClick={() => {}}>
+              글 작성하기
             </Link>
             <Link
               href={`/`}

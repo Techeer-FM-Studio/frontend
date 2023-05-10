@@ -1,13 +1,12 @@
 import React, { ChangeEvent, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic';
-import DOMPurify from 'dompurify';
-import Header from '@/components/common/Header';
 import styles from '@/styles/pages/BannerCreatePage.module.scss';
 import { postImages } from '@/apis/postImages';
 import { postBannerInfo } from '@/apis/postBannerInfo';
 import { useRouter } from 'next/router';
-
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { FcCancel } from 'react-icons/fc';
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 });
@@ -63,22 +62,32 @@ const modules = {
         },
         { background: [] },
       ],
-      ['image', 'video'],
+      // ['image', 'video'],
       ['clean'],
     ],
   },
 };
 
+type bannerInfoType = {
+  nickname: string;
+  title: string;
+  memo: string;
+  startedAt: string;
+  endAt: string;
+  imageUrl: string[];
+};
+
 function CreatePage() {
-  const [bannerInfo, setBannerInfo] = useState({
-    nickname: '',
+  const [bannerInfo, setBannerInfo] = useState<bannerInfoType>({
+    nickname: 'test3',
     title: '',
     memo: '',
     startedAt: '',
     endAt: '',
-    imageUrl: [''],
+    imageUrl: [],
   });
-  const [files, setFiles] = useState<FileList | undefined>();
+  //TODO: any 부분 해결하기
+  const [files, setFiles] = useState<FileList | any>();
 
   const onChangeMemo = (value: string) => {
     setBannerInfo((pre) => ({ ...pre, memo: value }));
@@ -86,9 +95,9 @@ function CreatePage() {
 
   const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
-    if (fileList !== null) {
-      setFiles(fileList);
-    }
+    console.log(fileList);
+    //TODO: any 부분 해결하기
+    setFiles(fileList);
   };
 
   const router = useRouter();
@@ -99,56 +108,68 @@ function CreatePage() {
   };
 
   const upload = async () => {
-    await postImages(files).then((res) =>
-      setBannerInfo((pre) => ({ ...pre, imageUrl: [res] }))
-    );
-    await postBannerInfo(bannerInfo);
+    const url = await postImages(files).then((res) => {
+      console.log(res);
+      setBannerInfo((pre) => ({ ...pre, imageUrl: [res.url] }));
+      return res.url;
+    });
+    await postBannerInfo({ ...bannerInfo, imageUrl: [url] });
     router.push('/banner/list/1?size=6');
   };
 
   return (
     <section className={styles.page}>
-      <Header></Header>
-      <div>제목</div>
-      <input
-        name="title"
-        type="text"
-        placeholder="입력해주세요"
-        onChange={onChangeBannerInfo}
-      />
-      <div>배너 사진</div>
-      <input type="file" accept="image/*" onChange={onChangeFiles} />
-      <div>일정</div>
-      <div>시작</div>
-      <input
-        name="startedAt"
-        type="datetime-local"
-        required
-        onChange={onChangeBannerInfo}
-      ></input>
-      <div>종료</div>
-      <input
-        name="endAt"
-        type="datetime-local"
-        required
-        onChange={onChangeBannerInfo}
-      ></input>
+      <article>
+        <input
+          className={styles.title}
+          type="text"
+          name="title"
+          placeholder="제목을 입력하세요"
+          onChange={onChangeBannerInfo}
+        />
+      </article>
+      <div className={styles.line}></div>
+
+      <div>기간을 정해주세요</div>
+      <article className={styles.date}>
+        <div>시작</div>
+        <input
+          name="startedAt"
+          type="datetime-local"
+          required
+          onChange={onChangeBannerInfo}
+        ></input>
+        <div>마감</div>
+        <input
+          name="endAt"
+          type="datetime-local"
+          required
+          onChange={onChangeBannerInfo}
+        ></input>
+      </article>
+      <article className={styles.fileContainer}>
+        <label htmlFor="file">
+          <div className={styles.file}>썸네일 업로드하기</div>
+        </label>
+        <input
+          className={styles.fileNone}
+          type="file"
+          name="file"
+          id="file"
+          accept="image/*"
+          onChange={onChangeFiles}
+        />
+        {files ? <AiOutlineCheckCircle /> : <FcCancel />}
+      </article>
 
       <ReactQuill
         className={styles['quill']}
         theme="snow"
         onChange={onChangeMemo}
         modules={modules}
+        placeholder="공유하고 싶은 일정을 적어주세요.."
       ></ReactQuill>
-      {process.browser ? (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(bannerInfo.memo),
-          }}
-        />
-      ) : (
-        <div></div>
-      )}
+
       <button onClick={upload}>저장하기</button>
     </section>
   );

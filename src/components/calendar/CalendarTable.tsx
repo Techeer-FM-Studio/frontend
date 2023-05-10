@@ -1,7 +1,7 @@
 // src/components/calendar/CalendarTable.tsx
 
-import { TaskInfo } from '@/types/routine';
-import { hasEvent } from '@/utils/calendarUtils';
+import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { hasEvent, hasBannerEvent } from '@/utils/calendarUtils';
 import moment, { Moment } from 'moment';
 
 interface CalendarTableProps {
@@ -10,6 +10,7 @@ interface CalendarTableProps {
   lastWeek: number;
   recentlyClickedDay: Moment | undefined;
   tasks: TaskInfo[];
+  bannerTasks: BannerTaskInfo[];
   handleClick: (date: moment.Moment) => void;
 }
 
@@ -19,6 +20,7 @@ const CalendarTable: React.FC<CalendarTableProps> = ({
   lastWeek,
   recentlyClickedDay,
   tasks,
+  bannerTasks,
   handleClick,
 }) => {
   let result: JSX.Element[] = [];
@@ -58,6 +60,15 @@ const CalendarTable: React.FC<CalendarTableProps> = ({
                   <span
                     style={{
                       color: hasEvent(days, tasks) ? 'red' : 'transparent',
+                    }}
+                  >
+                    •
+                  </span>
+                  <span
+                    style={{
+                      color: hasBannerEvent(days, bannerTasks)
+                        ? 'orange'
+                        : 'transparent',
                     }}
                   >
                     •

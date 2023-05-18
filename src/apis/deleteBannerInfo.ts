@@ -1,7 +1,7 @@
-import { axiosCustom } from './createAxios'
+import { axiosCustom } from './createAxios';
 
 export async function deleteBannerInfo(id: number) {
-    return await axiosCustom
-        .delete(`banners/custom/${id}`)
-        .then((res) => res.data)
+  return await axiosCustom
+    .delete(`banners/custom/${id}`)
+    .then((res) => res.data);
 }

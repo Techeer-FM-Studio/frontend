@@ -3,11 +3,11 @@
    License: none (public domain)
 */
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-        format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 html,
 body,
@@ -92,12 +92,12 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -111,53 +111,53 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 body {
-    line-height: 1;
+  line-height: 1;
 }
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: '';
-    content: none;
+  content: '';
+  content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 html {
-    font-size: 62.5%; // 10px
-    @media (max-width: 768px) {
-        // 태블릿
-        font-size: 50%; // 8px
-    }
-    @media (max-width: 480px) {
-        // 모바일
-        font-size: 25%; // 4px
-    }
+  font-size: 62.5%; // 10px
+  @media (max-width: 768px) {
+    // 태블릿
+    font-size: 50%; // 8px
+  }
+  @media (max-width: 480px) {
+    // 모바일
+    font-size: 25%; // 4px
+  }
 }
 body {
-    font-size: 1.6rem;
-    font-family: 'Pretendard-Regular';
+  font-size: 1.6rem;
+  font-family: 'Pretendard-Regular';
 }
 
 // 페이지네이션 커스텀 스타일
 .selected {
-    border-radius: 100%;
-    // background-color: #36f;
-    color: #36f;
+  border-radius: 100%;
+  // background-color: #36f;
+  color: #36f;
 }

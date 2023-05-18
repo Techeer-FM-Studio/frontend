@@ -1,32 +1,32 @@
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 1rem;
-    margin-bottom: 4rem;
-    border-bottom: 2px solid #e1e2e4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+  margin-bottom: 4rem;
+  border-bottom: 2px solid #e1e2e4;
 }
 
 .filter {
-    display: flex;
-    gap: 1rem;
-    color: #8a8a8a;
-    & > li {
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        border: 1px solid;
-        cursor: pointer;
-    }
+  display: flex;
+  gap: 1rem;
+  color: #8a8a8a;
+  & > li {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid;
+    cursor: pointer;
+  }
 }
 
 .select {
-    border-color: #36f;
-    color: #36f;
+  border-color: #36f;
+  color: #36f;
 }
 
 .unselect {
-    border-color: #eeeeef;
-    &:hover {
-        background-color: #f4f4f4;
-    }
+  border-color: #eeeeef;
+  &:hover {
+    background-color: #f4f4f4;
+  }
 }

@@ -1,54 +1,54 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  position: relative;
 
-    &:hover {
-        cursor: pointer;
-        transform: translateY(-1rem);
-        .info {
-            opacity: 1;
-        }
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-1rem);
+    .info {
+      opacity: 1;
     }
-    & > div:last-of-type {
-        border-radius: 5px;
-        padding: 0.5rem;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-    }
+  }
+  & > div:last-of-type {
+    border-radius: 5px;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
 }
 
 .info {
+  display: flex;
+
+  align-items: center;
+  padding: 1rem;
+  opacity: 0.6;
+
+  & > div {
     display: flex;
-
-    align-items: center;
-    padding: 1rem;
-    opacity: 0.6;
-
-    & > div {
-        display: flex;
-        &:first-of-type {
-            margin-right: auto;
-        }
+    &:first-of-type {
+      margin-right: auto;
     }
+  }
 }
 
 .img {
-    position: relative;
-    width: 100%;
-    height: 18rem;
+  position: relative;
+  width: 100%;
+  height: 18rem;
 }
 
 .CUSTOM {
-    color: #0095ff;
-    background-color: white;
-    border: 1px solid #0095ff;
+  color: #0095ff;
+  background-color: white;
+  border: 1px solid #0095ff;
 }
 
 .OFFICIAL {
-    color: #93c400;
-    background-color: white;
-    border: 1px solid #93c400;
+  color: #93c400;
+  background-color: white;
+  border: 1px solid #93c400;
 }

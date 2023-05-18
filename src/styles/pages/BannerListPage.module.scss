@@ -1,38 +1,38 @@
 .page {
-    & > article {
-        width: 100%;
-        max-width: 120rem;
-        margin: 0 auto;
-    }
+  & > article {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+  }
 }
 
 .title {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4.8rem;
-    padding: 3rem 7rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-bottom: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4.8rem;
+  padding: 3rem 7rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 3.2rem;
 }
 
 .list {
-    display: flex;
+  display: flex;
 
-    li {
-        text-align: center;
-        margin-left: 2rem;
-        cursor: pointer;
-    }
+  li {
+    text-align: center;
+    margin-left: 2rem;
+    cursor: pointer;
+  }
 }
 
 .pagination {
-    background-color: rgb(233, 238, 238);
-    ul {
-        display: flex;
-        justify-content: center;
-        li {
-            margin: 20px;
-        }
+  background-color: rgb(233, 238, 238);
+  ul {
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 20px;
     }
+  }
 }

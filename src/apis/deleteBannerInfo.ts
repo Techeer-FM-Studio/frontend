@@ -1,7 +1,7 @@
 import { axiosCustom } from './createAxios'
 
-export async function postBannerInfo(bannerInfo: any) {
+export async function deleteBannerInfo(id: number) {
     return await axiosCustom
-        .post('banners/custom', bannerInfo)
+        .delete(`banners/custom/${id}`)
         .then((res) => res.data)
 }

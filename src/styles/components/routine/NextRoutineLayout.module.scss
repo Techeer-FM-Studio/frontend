@@ -1,74 +1,74 @@
 .NextRoutineLayout {
-  width: 38rem;
-  height: 22.4rem;
-  padding: 1.6rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* 입체감을 높이기 위한 속성들을 추가합니다. */
-  background-color: #ffffff; /* 배경색을 설정합니다. */
-  border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자를 추가합니다. */
+    width: 38rem;
+    height: 22.4rem;
+    padding: 1.6rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 입체감을 높이기 위한 속성들을 추가합니다. */
+    background-color: #ffffff; /* 배경색을 설정합니다. */
+    border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자를 추가합니다. */
 }
 
 .SelectMenu {
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: #333;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #333;
 }
 
 .RoutineInfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(5, auto);
-  grid-gap: 0.8rem;
-  font-size: 1.6rem;
-  color: #444;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-gap: 0.8rem;
+    font-size: 1.6rem;
+    color: #444;
 
-  p {
-    margin-bottom: 0;
+    p {
+        margin-bottom: 0;
 
-    &.Memo {
-      grid-column: 1 / 3;
-      grid-row: 3;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+        &.Memo {
+            grid-column: 1 / 3;
+            grid-row: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &.Time {
+            font-size: 2.4rem;
+            font-weight: bold;
+            color: #2a9d8f;
+            grid-column: 1 / 3;
+            grid-row: 5;
+        }
+
+        &.Status {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #e76f51;
+            grid-column: 1;
+            grid-row: 4;
+        }
+
+        &.StartTime {
+            grid-row: 4;
+        }
+
+        &.EndTime {
+            grid-column: 2;
+            grid-row: 4;
+            text-align: right;
+        }
     }
-
-    &.Time {
-      font-size: 2.4rem;
-      font-weight: bold;
-      color: #2a9d8f;
-      grid-column: 1 / 3;
-      grid-row: 5;
-    }
-
-    &.Status {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #e76f51;
-      grid-column: 1;
-      grid-row: 4;
-    }
-
-    &.StartTime {
-      grid-row: 4;
-    }
-
-    &.EndTime {
-      grid-column: 2;
-      grid-row: 4;
-      text-align: right;
-    }
-  }
 }
 
 .TimeLeft {
-  width: 100%;
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-align: center;
-  color: #264653;
+    width: 100%;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #264653;
 }

@@ -1,17 +1,17 @@
 .container {
-  display: flex;
-  justify-content: center;
-  color: #8a8a8a;
-  margin: 7rem 0 3rem 0;
-  & > li {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    margin: 1rem;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
+    color: #8a8a8a;
+    margin: 7rem 0 3rem 0;
+    & > li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin: 1rem;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.8;
+        }
     }
-  }
 }

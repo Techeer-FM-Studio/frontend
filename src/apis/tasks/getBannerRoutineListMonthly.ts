@@ -1,17 +1,17 @@
 // src/apis/tasks/getRoutineListMonthly.ts
-import { BannerTaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { BannerTaskInfo } from '@/types/routine'
+import { axiosCustom } from '../createAxios'
 
 interface GetBannerRoutineListMonthlyParams {
-  memberId: string;
-  year: number;
-  month: number;
+    memberId: string
+    year: number
+    month: number
 }
 
 export async function getBannerRoutineListMonthly(
-  params: GetBannerRoutineListMonthlyParams
+    params: GetBannerRoutineListMonthlyParams
 ) {
-  return await axiosCustom
-    .get<BannerTaskInfo[]>('banners/custom/mybanners/list', { params })
-    .then((res) => res.data);
+    return await axiosCustom
+        .get<BannerTaskInfo[]>('banners/custom/mybanners/list', { params })
+        .then((res) => res.data)
 }

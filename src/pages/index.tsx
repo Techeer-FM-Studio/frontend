@@ -32,16 +32,16 @@ export default function MainPage() {
   const updateSelectedTask = (updatedTask: TaskInfo) => {
     setSelectedTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.taskId === updatedTask.taskId ? updatedTask : task
-      )
+        task.taskId === updatedTask.taskId ? updatedTask : task,
+      ),
     );
   };
 
   const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfo) => {
     setSelectedBannerTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task
-      )
+        task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task,
+      ),
     );
   };
 

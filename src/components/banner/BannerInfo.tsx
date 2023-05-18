@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 function BannerInfo() {
-  return <div>bannerInfo</div>;
+    return <div>bannerInfo</div>
 }
 
-export default BannerInfo;
+export default BannerInfo

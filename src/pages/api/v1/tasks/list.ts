@@ -5,7 +5,7 @@ import { TaskInfo } from '../../../../types/routine';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Object>
+  res: NextApiResponse<Object>,
 ) {
   const mockData: TaskInfo[] = [
     {

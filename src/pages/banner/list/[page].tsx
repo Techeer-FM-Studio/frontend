@@ -30,7 +30,7 @@ function BannerListPage({ data }: { data: BannerPageableType }) {
 export default BannerListPage;
 
 export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ) => {
   let pageable;
   const nickname = 'test1'; // 임시 사용

@@ -34,7 +34,11 @@ function DetailButtons({
         onClick={onChangeLike}
         style={
           like
-            ? { background: '#f65959', color: 'white', borderColor: '#f66969' }
+            ? {
+                background: '#f65959',
+                color: 'white',
+                borderColor: '#f66969',
+              }
             : undefined
         }
       >

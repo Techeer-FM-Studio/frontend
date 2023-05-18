@@ -44,10 +44,10 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   console.log('formdata', formData);
   useEffect(() => {
     const startAt = new Date(
-      `${formData.startDate || '2000-01-01'}T${formData.startTime || '00:00'}`
+      `${formData.startDate || '2000-01-01'}T${formData.startTime || '00:00'}`,
     );
     const endAt = new Date(
-      `${formData.endDate || '2000-01-01'}T${formData.endTime || '00:00'}`
+      `${formData.endDate || '2000-01-01'}T${formData.endTime || '00:00'}`,
     );
 
     setFormData((prevData) => ({
@@ -63,7 +63,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   ]);
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -217,10 +217,10 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         {selectedTasks?.length > 0 || selectedBannerTasks?.length > 0 ? (
           selectedTasks.map((task, index) => {
             const startAt = moment(task.startAt).format(
-              'YYYY년 MM월 DD일 HH시 mm분'
+              'YYYY년 MM월 DD일 HH시 mm분',
             );
             const endAt = moment(task.endAt).format(
-              'YYYY년 MM월 DD일 HH시 mm분'
+              'YYYY년 MM월 DD일 HH시 mm분',
             );
 
             return (
@@ -256,10 +256,10 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         )}
         {selectedBannerTasks.map((bannerTask, index) => {
           const startAt = moment(bannerTask.startAt).format(
-            'YYYY년 MM월 DD일 HH시 mm분'
+            'YYYY년 MM월 DD일 HH시 mm분',
           );
           const endAt = moment(bannerTask.endAt).format(
-            'YYYY년 MM월 DD일 HH시 mm분'
+            'YYYY년 MM월 DD일 HH시 mm분',
           );
 
           return (

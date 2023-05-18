@@ -1,5 +1,6 @@
 import { TaskInfo } from '@/types/routine';
 
+// TODO: eslint에서 no-unused-vars를 error로 하면 에러가 발생하는데, 해결방법을 찾아보자.
 const updateTaskStatusAndTimeLeft = (
   taskInfo: TaskInfo, // TaskInfo 객체
   setTimeLeft: (timeLeft: {
@@ -7,7 +8,7 @@ const updateTaskStatusAndTimeLeft = (
     hours: number;
     minutes: number;
   }) => void, // setTimeLeft 함수
-  setRoutineStatus: (status: string) => void // setRoutineStatus 함수
+  setRoutineStatus: (status: string) => void, // setRoutineStatus 함수
 ) => {
   const currentTime = new Date().getTime(); // 현재 시간(ms)
   const startAtTime = new Date(taskInfo.startAt).getTime(); // 시작 시간(ms)
@@ -16,7 +17,7 @@ const updateTaskStatusAndTimeLeft = (
 
   const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // 남은 일 수 계산
   const hours = Math.floor(
-    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
   ); // 남은 시간 계산
   const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)); // 남은 분 계산
 

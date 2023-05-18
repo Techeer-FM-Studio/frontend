@@ -8,7 +8,7 @@ import { getBannerRoutineListMonthly } from '@/apis/tasks/getBannerRoutineListMo
 
 export const fetchTasks = async (
   selectedDate: Moment,
-  setTasks: (tasks: TaskInfo[]) => void
+  setTasks: (tasks: TaskInfo[]) => void,
 ) => {
   try {
     const data = await getRoutineListMonthly({
@@ -25,7 +25,7 @@ export const fetchTasks = async (
 
 export const fetchBannerTasks = async (
   selectedDate: Moment,
-  setBannerTasks: (tasks: BannerTaskInfo[]) => void
+  setBannerTasks: (tasks: BannerTaskInfo[]) => void,
 ) => {
   try {
     const data = await getBannerRoutineListMonthly({
@@ -41,7 +41,7 @@ export const fetchBannerTasks = async (
 
 export const hasEvent = (
   date: moment.Moment,
-  tasks: TaskInfo[] = []
+  tasks: TaskInfo[] = [],
 ): boolean => {
   return tasks.some((task) => {
     const start = moment(task.startAt);
@@ -52,7 +52,7 @@ export const hasEvent = (
 
 export const hasBannerEvent = (
   date: moment.Moment,
-  tasks: BannerTaskInfo[] = []
+  tasks: BannerTaskInfo[] = [],
 ): boolean => {
   return tasks.some((task) => {
     const start = moment(task.startAt);
@@ -65,7 +65,7 @@ export const updateSelectedTasks = (
   date: moment.Moment,
   tasks: TaskInfo[],
   setSelectedTasks: (tasks: TaskInfo[]) => void,
-  onTasksChange: (tasks: TaskInfo[]) => void
+  onTasksChange: (tasks: TaskInfo[]) => void,
 ) => {
   const tasksOnSelectedDay = tasks.filter((task) => {
     const start = moment(task.startAt);
@@ -80,7 +80,7 @@ export const updateSelectedBannerTasks = (
   date: moment.Moment,
   tasks: BannerTaskInfo[],
   setSelectedTasks: (tasks: BannerTaskInfo[]) => void,
-  onTasksChange: (tasks: BannerTaskInfo[]) => void
+  onTasksChange: (tasks: BannerTaskInfo[]) => void,
 ) => {
   const tasksOnSelectedDay = tasks.filter((task) => {
     const start = moment(task.startAt);

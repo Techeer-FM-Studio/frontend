@@ -77,7 +77,7 @@ const CalendarTable: React.FC<CalendarTableProps> = ({
               </td>
             );
           })}
-      </tr>
+      </tr>,
     );
   }
 

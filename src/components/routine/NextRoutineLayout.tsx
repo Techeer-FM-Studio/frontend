@@ -17,7 +17,7 @@ const NextRoutineLayout = () => {
   });
   const [routineStatus, setRoutineStatus] = useState<string>('');
   const [nextRoutineData, setNextRoutineData] = useState<TaskInfo | undefined>(
-    undefined
+    undefined,
   );
 
   useEffect(() => {
@@ -35,10 +35,10 @@ const NextRoutineLayout = () => {
 
           const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
           const hours = Math.floor(
-            (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
           );
           const minutes = Math.floor(
-            (timeDiff % (1000 * 60 * 60)) / (1000 * 60)
+            (timeDiff % (1000 * 60 * 60)) / (1000 * 60),
           );
 
           setTimeLeft({ days, hours, minutes });

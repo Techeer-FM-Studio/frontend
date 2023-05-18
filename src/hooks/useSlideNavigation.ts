@@ -9,19 +9,20 @@ interface SlideNavigation {
 
 const useSlideNavigation = (
   imagesLength: number,
-  intervalDuration: number = 3000
+  intervalDuration: number = 3000,
 ): SlideNavigation => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
   const onNextButtonClick = useCallback(() => {
     setCurrentImageIndex(
-      (currentIndex: number) => (currentIndex + 1) % imagesLength
+      (currentIndex: number) => (currentIndex + 1) % imagesLength,
     );
   }, [imagesLength]);
 
   const onPrevButtonClick = () => {
     setCurrentImageIndex(
-      (currentIndex: number) => (currentIndex + imagesLength - 1) % imagesLength
+      (currentIndex: number) =>
+        (currentIndex + imagesLength - 1) % imagesLength,
     );
   };
 

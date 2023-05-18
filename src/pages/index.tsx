@@ -2,8 +2,7 @@
 // Rows = Height == 16, Gutter == 16
 // Columns = Width == 80, Gutter == 20
 
-import Header from '@/components/common/Header';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // css
 import styles from '../styles/pages/MainPage.module.scss';
@@ -32,22 +31,23 @@ export default function MainPage() {
   const updateSelectedTask = (updatedTask: TaskInfo) => {
     setSelectedTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.taskId === updatedTask.taskId ? updatedTask : task
-      )
+        task.taskId === updatedTask.taskId ? updatedTask : task,
+      ),
     );
   };
 
   const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfo) => {
     setSelectedBannerTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task
-      )
+        task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task,
+      ),
     );
   };
 
-  const handleBannerTasksChange = (tasks: BannerTaskInfo[]) => {
-    console.log('Banner tasks have been updated:', tasks);
-  };
+  // TODO: 사용할건지 물어보기
+  // const handleBannerTasksChange = (tasks: BannerTaskInfo[]) => {
+  //   console.log('Banner tasks have been updated:', tasks);
+  // };
 
   return (
     <div className={styles.page}>

@@ -61,7 +61,7 @@ function InfoPage({ data }: { data: BannerItemType }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ) => {
   let { id } = context.query;
 

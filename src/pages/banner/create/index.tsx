@@ -163,7 +163,7 @@ function CreatePage() {
       </article>
 
       <ReactQuill
-        className={styles['quill']}
+        className={styles.quill}
         theme="snow"
         onChange={onChangeMemo}
         modules={modules}

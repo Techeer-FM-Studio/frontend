@@ -9,7 +9,7 @@ interface GetBannerRoutineListMonthlyParams {
 }
 
 export async function getBannerRoutineListMonthly(
-  params: GetBannerRoutineListMonthlyParams
+  params: GetBannerRoutineListMonthlyParams,
 ) {
   return await axiosCustom
     .get<BannerTaskInfo[]>('banners/custom/mybanners/list', { params })

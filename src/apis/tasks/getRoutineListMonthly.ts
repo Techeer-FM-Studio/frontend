@@ -9,7 +9,7 @@ interface GetRoutineListMonthlyParams {
 }
 
 export async function getRoutineListMonthly(
-  params: GetRoutineListMonthlyParams
+  params: GetRoutineListMonthlyParams,
 ) {
   return await axiosCustom
     .get<TaskInfo[]>('tasks/list', { params })

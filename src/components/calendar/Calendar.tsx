@@ -78,7 +78,7 @@ const Calendar: React.FC<CalendarProps> = ({
       date,
       bannerTasks,
       setSelectedBannerTasks,
-      onBannerTasksChange
+      onBannerTasksChange,
     );
   };
 
@@ -89,7 +89,7 @@ const Calendar: React.FC<CalendarProps> = ({
       date,
       bannerTasks,
       setSelectedBannerTasks,
-      onBannerTasksChange
+      onBannerTasksChange,
     );
   };
 

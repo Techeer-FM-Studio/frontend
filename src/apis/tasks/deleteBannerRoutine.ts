@@ -1,12 +1,12 @@
 // src/apis/tasks/deleteBannerRoutine.ts
-import { axiosCustom } from '../customAxios';
+import { customAxios } from '../customAxios';
 
 export interface DeleteRoutineResponse {
   nickname: string;
 }
 
 export async function deleteBannerRoutine(bannerId: number) {
-  return await axiosCustom
+  return await customAxios
     .delete<DeleteRoutineResponse>(`banners/mybanners/${bannerId}`)
     .then((res) => res.data);
 }

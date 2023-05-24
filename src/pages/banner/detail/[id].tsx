@@ -1,4 +1,3 @@
-import { getBannerItem } from '@/apis/getBannerItem';
 import CommentList from '@/components/Banner/detail/CommentList';
 import DetailButtons from '@/components/Banner/detail/DetailButtons';
 import DetailTitle from '@/components/Banner/detail/DetailTitle';
@@ -11,6 +10,7 @@ import {
 import Image from 'next/image';
 import { ParsedUrlQuery } from 'querystring';
 import styles from './styles.module.scss';
+import { getBannerItem } from '@/apis/banner';
 
 function InfoPage({ data }: { data: BannerItemType }) {
   const {

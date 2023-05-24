@@ -1,7 +1,7 @@
 import { getBannerList } from '@/apis/getBannerList';
-import BannerList from '@/components/banner/BannerList';
-import styles from '@/styles/pages/BannerListPage.module.scss';
-import BannerFilter from '@/components/banner/BannerFilter';
+import BannerList from '@/components/Banner/List';
+import styles from './styles.module.scss';
+import BannerFilter from '@/components/Banner/Filter';
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -9,8 +9,8 @@ import {
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { BannerPageableType } from '@/types/banner';
-import BannerPaginate from '@/components/banner/BannerPaginate';
-import BannerSlider from '@/components/banner/BannerSlider';
+import BannerPaginate from '@/components/Banner/Paginate';
+import BannerSlider from '@/components/Banner/Slider';
 
 function BannerListPage({ data }: { data: BannerPageableType }) {
   const { totalElements, totalPages, page, size, content } = data;

@@ -1,7 +1,7 @@
 import { getBannerItem } from '@/apis/getBannerItem';
-import CommentList from '@/components/banner/detail/CommentList';
-import DetailButtons from '@/components/banner/detail/DetailButtons';
-import DetailTitle from '@/components/banner/detail/DetailTitle';
+import CommentList from '@/components/Banner/detail/CommentList';
+import DetailButtons from '@/components/Banner/detail/DetailButtons';
+import DetailTitle from '@/components/Banner/detail/DetailTitle';
 import { BannerItemType } from '@/types/banner';
 import {
   GetServerSideProps,
@@ -10,7 +10,7 @@ import {
 } from 'next';
 import Image from 'next/image';
 import { ParsedUrlQuery } from 'querystring';
-import styles from '../../../styles/pages/BannerDetailPage.module.scss';
+import styles from './styles.module.scss';
 
 function InfoPage({ data }: { data: BannerItemType }) {
   const {

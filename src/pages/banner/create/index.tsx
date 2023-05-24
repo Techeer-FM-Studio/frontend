@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic';
-import styles from '@/styles/pages/BannerCreatePage.module.scss';
+import styles from './styles.module.scss';
 import { postImages } from '@/apis/postImages';
 import { postBannerInfo } from '@/apis/postBannerInfo';
 import { useRouter } from 'next/router';

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import styles from '@/styles/components/banner/BannerFilter.module.scss';
+import styles from './styles.module.scss';
 
 function BannerFilter({ totalElements }: { totalElements: number }) {
   const [select, setSelect] = useState('모두');

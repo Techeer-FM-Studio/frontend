@@ -1,8 +1,9 @@
 import { BannerCommentPageableType } from '@/types/banner';
 import React, { useEffect, useState } from 'react';
-import styles from '../../../styles/components/banner/detail/BannerCommetList.module.scss';
-import { getComments, postComment } from '@/apis/comment';
 import CommentItem from './CommentItem';
+import { postComment } from '@/apis/postComment';
+import { getComments } from '@/apis/getComments';
+import styles from '../../../styles/components/banner/detail/BannerCommetList.module.scss';
 
 function CommentList({ id }: { id: number }) {
   const [text, setText] = useState('');

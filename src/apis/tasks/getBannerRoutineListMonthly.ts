@@ -1,6 +1,6 @@
 // src/apis/tasks/getRoutineListMonthly.ts
 import { BannerTaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 interface GetBannerRoutineListMonthlyParams {
   memberId: string;

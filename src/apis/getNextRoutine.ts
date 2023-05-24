@@ -1,4 +1,4 @@
-import { axiosCustom } from './createAxios';
+import { axiosCustom } from './customAxios';
 
 export async function getNextRoutine(year: number, month: number) {
   return await axiosCustom

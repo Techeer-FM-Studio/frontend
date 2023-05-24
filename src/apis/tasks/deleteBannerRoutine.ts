@@ -1,5 +1,5 @@
 // src/apis/tasks/deleteBannerRoutine.ts
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 export interface DeleteRoutineResponse {
   nickname: string;

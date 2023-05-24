@@ -1,7 +1,7 @@
 // src/apis/tasks/postBannerRoutine.ts
 
 import { BannerTaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 export async function postBannerRoutine(taskData: BannerTaskInfo) {
   return await axiosCustom

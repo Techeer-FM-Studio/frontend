@@ -1,6 +1,6 @@
 // src/apis/tasks/getRoutineListMonthly.ts
 import { TaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 interface GetRoutineListMonthlyParams {
   memberId: string;

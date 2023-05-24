@@ -1,7 +1,7 @@
 // src/apis/tasks/postRoutine.ts
 
 import { TaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 export async function postRoutine(taskData: TaskInfo) {
   console.log(taskData);

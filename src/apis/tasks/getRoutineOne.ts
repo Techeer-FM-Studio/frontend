@@ -1,6 +1,6 @@
 // src/apis/tasks/getRoutineOne.ts
 import { TaskInfo } from '@/types/routine';
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 export async function getRoutineOne(taskId: number) {
   return await axiosCustom

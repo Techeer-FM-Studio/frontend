@@ -1,5 +1,5 @@
 // src/apis/tasks/deleteRoutine.ts
-import { axiosCustom } from '../createAxios';
+import { axiosCustom } from '../customAxios';
 
 export interface DeleteRoutineResponse {
   message: string;

@@ -2,11 +2,11 @@ import React, { ChangeEvent, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic';
 import styles from './styles.module.scss';
-import { postImages } from '@/apis/postImages';
-import { postBannerInfo } from '@/apis/postBannerInfo';
 import { useRouter } from 'next/router';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FcCancel } from 'react-icons/fc';
+import { postImages } from '@/apis/image';
+import { postBannerInfo } from '@/apis/banner';
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
 });

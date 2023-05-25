@@ -1,4 +1,4 @@
-import styles from '../../../styles/components/banner/detail/BannerDetail.module.scss';
+import styles from './styles.module.scss';
 import { GrView } from 'react-icons/gr';
 import { RxPerson } from 'react-icons/rx';
 import { AiOutlineTag } from 'react-icons/ai';

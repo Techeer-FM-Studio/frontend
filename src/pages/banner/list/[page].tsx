@@ -1,4 +1,3 @@
-import { getBannerList } from '@/apis/getBannerList';
 import BannerList from '@/components/Banner/List';
 import styles from './styles.module.scss';
 import BannerFilter from '@/components/Banner/Filter';
@@ -11,6 +10,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { BannerPageableType } from '@/types/banner';
 import BannerPaginate from '@/components/Banner/Paginate';
 import BannerSlider from '@/components/Banner/Slider';
+import { getBannerList } from '@/apis/banner';
 
 function BannerListPage({ data }: { data: BannerPageableType }) {
   const { totalElements, totalPages, page, size, content } = data;

@@ -1,4 +1,6 @@
-import styles from '../../styles/components/calendar/Calendar.module.scss';
+// src/components/calendar/Calendar.tsx
+
+import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
 import { BannerTaskInfo, TaskInfo } from '@/types/routine';
@@ -8,8 +10,8 @@ import {
   updateSelectedTasks,
   updateSelectedBannerTasks,
 } from '@/utils/calendarUtils';
-import CalendarTable from './CalendarTable';
-import MonthYearSelector from './MonthYearSelector';
+import CalendarTable from '../CalendarTable';
+import MonthYearSelector from '../MonthYearSelector';
 
 interface CalendarProps {
   onTasksChange: (tasks: TaskInfo[]) => void;

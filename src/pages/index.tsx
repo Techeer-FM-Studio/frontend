@@ -9,10 +9,10 @@ import styles from '../styles/pages/MainPage.module.scss';
 
 // import pages
 import Calendar from '@/components/calendar/Calendar';
-import RoutineLayout from '@/components/routine/RoutineLayout';
-import BannerMainLayout from '@/components/Banner/BannerMainLayout';
+import RoutineLayout from '@/components/routine/Routine/RoutineLayout';
+import BannerMainLayout from '@/components/banner/BannerMainLayout';
 import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
-import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
+import NextRoutineLayout from '@/components/routine/NextRoutine/NextRoutineLayout';
 import { BannerTaskInfo, TaskInfo } from '@/types/routine';
 
 export default function MainPage() {

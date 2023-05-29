@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
 // Design file
-import styles from '../../styles/components/user/UserInfoMainLayout.module.scss';
+import styles from './index.module.scss';
 
 // Temp Image
 import InfoImage from '../../../public/temp_images/UserInfoTempImage.png';
 
-const UserInfoMainLayout = () => {
+const UserMainInfo = () => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Top}>
@@ -77,4 +77,4 @@ const UserInfoMainLayout = () => {
   );
 };
 
-export default UserInfoMainLayout;
+export default UserMainInfo;

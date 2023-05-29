@@ -9,10 +9,10 @@ import styles from '../styles/pages/MainPage.module.scss';
 
 // import pages
 import Calendar from '@/components/calendar/Calendar';
-import RoutineLayout from '@/components/routine/Routine/RoutineLayout';
-import BannerMainLayout from '@/components/banner/BannerMainLayout';
-import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
-import NextRoutineLayout from '@/components/routine/NextRoutine/NextRoutineLayout';
+import RoutineMain from '@/components/routine/Main';
+import BannerMainSlider from '@/components/banner/MainSlider';
+import UserMainInfo from '@/components/user/MainInfo';
+import RoutineSpecial from '@/components/routine/Special';
 import { BannerTaskInfo, TaskInfo } from '@/types/routine';
 
 export default function MainPage() {
@@ -20,8 +20,8 @@ export default function MainPage() {
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
     BannerTaskInfo[]
   >([]);
-  console.log(process.env.NODE_ENV);
-  console.log(selectedTasks);
+  // console.log(process.env.NODE_ENV);
+  // console.log(selectedTasks);
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
@@ -62,7 +62,7 @@ export default function MainPage() {
           />
           {/* 루틴 정보를 나타내는 RoutineLayout 컴포넌트 */}
           <div className={styles.routine}>
-            <RoutineLayout
+            <RoutineMain
               selectedTasks={selectedTasks}
               selectedBannerTasks={selectedBannerTasks}
               setSelectedTasks={setSelectedTasks}
@@ -73,12 +73,12 @@ export default function MainPage() {
             />
           </div>
           <div className={styles.contentRight}>
-            <UserInfoMainLayout />
-            <NextRoutineLayout />
+            <UserMainInfo />
+            <RoutineSpecial />
           </div>
         </div>
         <div className={styles.contentBottom}>
-          <BannerMainLayout />
+          <BannerMainSlider />
         </div>
       </div>
     </div>

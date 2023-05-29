@@ -1,11 +1,9 @@
-// src/components/routine/NextRoutineLayout.tsx
-
 import { useEffect, useState } from 'react';
-import styles from '../../styles/components/routine/NextRoutineLayout.module.scss';
+import styles from './styles.module.scss';
 import { getRoutineOne } from '@/apis/tasks/getRoutineOne';
 import { TaskInfo } from '@/types/routine';
 
-const NextRoutineLayout = () => {
+const RoutineSpecial = () => {
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
@@ -23,7 +21,7 @@ const NextRoutineLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getRoutineOne(1);
-      console.log(data);
+      // console.log(data);
       if (data) {
         setNextRoutineData(data);
 
@@ -103,4 +101,4 @@ const NextRoutineLayout = () => {
   );
 };
 
-export default NextRoutineLayout;
+export default RoutineSpecial;

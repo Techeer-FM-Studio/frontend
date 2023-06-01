@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { getRoutineOne } from '@/apis/tasks/getRoutineOne';
-import { TaskInfo } from '@/types/routine';
+import { TaskInfoType } from '@/types/routine';
 
 const RoutineSpecial = () => {
   const [timeLeft, setTimeLeft] = useState<{
@@ -14,9 +14,9 @@ const RoutineSpecial = () => {
     minutes: 0,
   });
   const [routineStatus, setRoutineStatus] = useState<string>('');
-  const [nextRoutineData, setNextRoutineData] = useState<TaskInfo | undefined>(
-    undefined,
-  );
+  const [nextRoutineData, setNextRoutineData] = useState<
+    TaskInfoType | undefined
+  >(undefined);
 
   useEffect(() => {
     const fetchData = async () => {

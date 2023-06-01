@@ -1,59 +1,63 @@
 import { customAxios } from './customAxios';
-import { TaskInfo } from '@/types/routine';
-import { BannerTaskInfo } from '@/types/routine';
+// prettier-ignore
+import { TaskInfoType, BannerTaskInfoType, DeleteRoutineResponseType } from '@/types/routine';
 
-export const putRoutine = async (taskData: TaskInfo) => {
+// 네이밍 변경된 사항은 주석으로 설명, 후에 기존 파일들에 적용 후 주석 제거 요망
+
+// Routine = 개인이 생성하고 관리하는 일정 관련 API
+
+// putRoutine =
+export const putRoutine = async (taskData: TaskInfoType) => {
   return await customAxios
-    .put<TaskInfo>('tasks', taskData)
+    .put<TaskInfoType>('tasks', taskData)
     .then((res) => res.data);
 };
 
-export const postRoutine = async (taskData: TaskInfo) => {
+export const postRoutine = async (taskData: TaskInfoType) => {
   return await customAxios
-    .post<TaskInfo>('tasks', taskData)
+    .post<TaskInfoType>('tasks', taskData)
     .then((res) => res.data);
 };
 
-export const getRoutineOne = async (taskId: number) => {
+// getRoutineOne -> getSingleRoutine
+export const getSingleRoutine = async (taskId: number) => {
   return await customAxios
-    .get<TaskInfo>(`tasks/${taskId}`)
+    .get<TaskInfoType>(`tasks/${taskId}`)
     .then((res) => res.data);
 };
 
-export const getRoutineListMonthly = async (
+// getRoutineListMonthly -> getMonthlyListRoutine
+export const getMonthlyListRoutine = async (
   memberId: string,
   year: number,
   month: number,
 ) => {
   return await customAxios
-    .get<TaskInfo[]>('tasks/list', { params: { memberId, year, month } })
+    .get<TaskInfoType[]>('tasks/list', { params: { memberId, year, month } })
     .then((res) => res.data);
 };
 
-export const getBannerRoutineListMonthly = async (
+// getBannerRoutineListMonthly -> getMonthlyListBannerRoutine
+export const getMonthlyListBannerRoutine = async (
   memberId: string,
   year: number,
   month: number,
 ) => {
   return await customAxios
-    .get<BannerTaskInfo[]>('banners/custom/mybanners/list', {
+    .get<BannerTaskInfoType[]>('banners/custom/mybanners/list', {
       params: { memberId, year, month },
     })
     .then((res) => res.data);
 };
 
-export type DeleteRoutineResponse = {
-  nickname: string;
-};
-
 export const deleteRoutine = async (taskId: number) => {
   return await customAxios
-    .delete<DeleteRoutineResponse>(`tasks/${taskId}`)
+    .delete<DeleteRoutineResponseType>(`tasks/${taskId}`)
     .then((res) => res.data);
 };
 
 export const deleteBannerRoutine = async (bannerId: number) => {
   return await customAxios
-    .delete<DeleteRoutineResponse>(`banners/mybanners/${bannerId}`)
+    .delete<DeleteRoutineResponseType>(`banners/mybanners/${bannerId}`)
     .then((res) => res.data);
 };

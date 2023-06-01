@@ -1,4 +1,4 @@
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import styles from './styles.module.scss';
 import moment from 'moment';
 import { postRoutine } from '@/apis/tasks/postRoutine';
@@ -8,13 +8,13 @@ import { deleteRoutine } from '@/apis/tasks/deleteRoutine';
 import { useEffect, useState } from 'react';
 
 interface RoutineMainProps {
-  selectedTasks: TaskInfo[];
-  selectedBannerTasks: BannerTaskInfo[];
+  selectedTasks: TaskInfoType[];
+  selectedBannerTasks: BannerTaskInfoType[];
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfo[]>>;
-  onUpdateSelectedTask: (updatedTask: TaskInfo) => void;
-  onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfo) => void;
+  setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfoType[]>>;
+  onUpdateSelectedTask: (updatedTask: TaskInfoType) => void;
+  onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfoType) => void;
 }
 
 const RoutineMain: React.FC<RoutineMainProps> = ({
@@ -28,7 +28,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
 }) => {
   // console.log('ssss', selectedTasks);
   // console.log('sss', selectedBannerTasks);
-  const [selectedTask, setSelectedTask] = useState<TaskInfo | null>(null);
+  const [selectedTask, setSelectedTask] = useState<TaskInfoType | null>(null);
   // console.log('selectedTaskAAAAAA', selectedTask);
   const [formData, setFormData] = useState({
     title: '',
@@ -71,7 +71,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
   };
   // console.log('수정된 폼', formData);
 
-  const handleEdit = (task: TaskInfo) => {
+  const handleEdit = (task: TaskInfoType) => {
     setFormData({
       title: task.title,
       startDate: moment(task.startAt).format('YYYY-MM-DD'),
@@ -90,7 +90,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
     const startAt = new Date(`${formData.startDate}T${formData.startTime}`);
     const endAt = new Date(`${formData.endDate}T${formData.endTime}`);
 
-    const taskData: TaskInfo = {
+    const taskData: TaskInfoType = {
       taskId: selectedTask?.taskId,
       title: formData.title,
       startAt: startAt.toISOString(),
@@ -99,7 +99,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
       isFinished: false,
     };
 
-    const createTaskData: TaskInfo = {
+    const createTaskData: TaskInfoType = {
       writer: 'Alice',
       title: formData.title,
       startAt: startAt.toISOString(),
@@ -130,7 +130,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
       // console.log('fail fail');
       // console.log('ㅇㄴㅁㄹㅁㅇㄴ', createTaskData);
       postRoutine(createTaskData)
-        .then((task: TaskInfo) => {
+        .then((task: TaskInfoType) => {
           setSelectedTasks((pre) => [...pre, task]);
           // console.log('일정이 성공적으로 등록되었습니다:', task);
         })
@@ -140,7 +140,7 @@ const RoutineMain: React.FC<RoutineMainProps> = ({
     }
   };
 
-  const handleDelete = (task: TaskInfo) => {
+  const handleDelete = (task: TaskInfoType) => {
     if (task.taskId !== undefined) {
       deleteRoutine(task.taskId)
         .then((deletedTask) => {

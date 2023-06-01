@@ -13,12 +13,12 @@ import RoutineMain from '@/components/routine/Main';
 import BannerMainSlider from '@/components/banner/MainSlider';
 import UserMainInfo from '@/components/user/MainInfo';
 import RoutineSpecial from '@/components/routine/Special';
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 
 export default function MainPage() {
-  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfoType[]>([]);
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
-    BannerTaskInfo[]
+    BannerTaskInfoType[]
   >([]);
   // console.log(process.env.NODE_ENV);
   // console.log(selectedTasks);
@@ -28,7 +28,7 @@ export default function MainPage() {
     setShowForm(!showForm);
   };
 
-  const updateSelectedTask = (updatedTask: TaskInfo) => {
+  const updateSelectedTask = (updatedTask: TaskInfoType) => {
     setSelectedTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.taskId === updatedTask.taskId ? updatedTask : task,
@@ -36,7 +36,7 @@ export default function MainPage() {
     );
   };
 
-  const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfo) => {
+  const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfoType) => {
     setSelectedBannerTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task,
@@ -45,7 +45,7 @@ export default function MainPage() {
   };
 
   // TODO: 사용할건지 물어보기
-  // const handleBannerTasksChange = (tasks: BannerTaskInfo[]) => {
+  // const handleBannerTasksChange = (tasks: BannerTaskInfoType[]) => {
   //   console.log('Banner tasks have been updated:', tasks);
   // };
 

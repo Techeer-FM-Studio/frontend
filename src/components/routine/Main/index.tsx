@@ -1,11 +1,8 @@
-import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
-import styles from './styles.module.scss';
-import moment from 'moment';
-import { postRoutine } from '@/apis/tasks/postRoutine';
-import { putRoutine } from '@/apis/tasks/putRoutine';
-import { deleteRoutine } from '@/apis/tasks/deleteRoutine';
-
 import { useEffect, useState } from 'react';
+import moment from 'moment';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
+import { putRoutine, postRoutine, deleteRoutine } from '@/apis/routine';
+import styles from './styles.module.scss';
 
 interface RoutineMainProps {
   selectedTasks: TaskInfoType[];

@@ -6,20 +6,21 @@ import { TaskInfoType, BannerTaskInfoType, DeleteRoutineResponseType } from '@/t
 
 // Routine = 개인이 생성하고 관리하는 일정 관련 API
 
-// putRoutine =
+// putRoutine = 일정 수정을 위한 API
 export const putRoutine = async (taskData: TaskInfoType) => {
   return await customAxios
     .put<TaskInfoType>('tasks', taskData)
     .then((res) => res.data);
 };
 
+// postRoutne = 일정 추가를 위한 API
 export const postRoutine = async (taskData: TaskInfoType) => {
   return await customAxios
     .post<TaskInfoType>('tasks', taskData)
     .then((res) => res.data);
 };
 
-// getRoutineOne -> getSingleRoutine
+// getSingleRoutine = 단일 일정 불러오기를 위한 API
 export const getSingleRoutine = async (taskId: number) => {
   return await customAxios
     .get<TaskInfoType>(`tasks/${taskId}`)

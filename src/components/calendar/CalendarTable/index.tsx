@@ -1,6 +1,4 @@
-// src/components/calendar/CalendarTable.tsx
-
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import { hasEvent, hasBannerEvent } from '@/utils/calendarUtils';
 import moment, { Moment } from 'moment';
 
@@ -9,8 +7,8 @@ interface CalendarTableProps {
   firstWeek: number;
   lastWeek: number;
   recentlyClickedDay: Moment | undefined;
-  tasks: TaskInfo[];
-  bannerTasks: BannerTaskInfo[];
+  tasks: TaskInfoType[];
+  bannerTasks: BannerTaskInfoType[];
   handleClick: (date: moment.Moment) => void;
 }
 

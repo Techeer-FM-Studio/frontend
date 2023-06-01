@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-import { getRoutineOne } from '@/apis/tasks/getRoutineOne';
 import { TaskInfoType } from '@/types/routine';
+import { getSingleRoutine } from '@/apis/routine';
 
 const RoutineSpecial = () => {
   const [timeLeft, setTimeLeft] = useState<{
@@ -20,7 +20,7 @@ const RoutineSpecial = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getRoutineOne(1);
+      const data = await getSingleRoutine(1);
       // console.log(data);
       if (data) {
         setNextRoutineData(data);

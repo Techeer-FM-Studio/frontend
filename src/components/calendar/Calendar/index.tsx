@@ -1,9 +1,7 @@
-// src/components/calendar/Calendar.tsx
-
 import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import {
   fetchTasks,
   fetchBannerTasks,
@@ -14,8 +12,8 @@ import CalendarTable from '../CalendarTable';
 import MonthYearSelector from '../MonthYearSelector';
 
 interface CalendarProps {
-  onTasksChange: (tasks: TaskInfo[]) => void;
-  onBannerTasksChange: (tasks: BannerTaskInfo[]) => void;
+  onTasksChange: (tasks: TaskInfoType[]) => void;
+  onBannerTasksChange: (tasks: BannerTaskInfoType[]) => void;
   onAddTaskClick: () => void;
 }
 
@@ -26,11 +24,11 @@ const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const [getMoment, setMoment] = useState(moment());
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
-  const [bannerTasks, setBannerTasks] = useState<BannerTaskInfo[]>([]);
+  const [tasks, setTasks] = useState<TaskInfoType[]>([]);
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfoType[]>([]);
+  const [bannerTasks, setBannerTasks] = useState<BannerTaskInfoType[]>([]);
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
-    BannerTaskInfo[]
+    BannerTaskInfoType[]
   >([]);
 
   const today = getMoment;

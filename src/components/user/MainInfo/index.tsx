@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 // Design file
-import styles from './index.module.scss';
+import styles from './styles.module.scss';
 
 // Temp Image
 import InfoImage from '../../../public/temp_images/UserInfoTempImage.png';

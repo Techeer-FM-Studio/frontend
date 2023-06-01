@@ -2,7 +2,7 @@
 name: 리팩토링
 about: 코드 리팩토링
 title: '[refactor]'
-labels: '리팩토링'
+labels: ''
 assignees: ''
 ---
 
@@ -14,6 +14,6 @@ assignees: ''
 
 리팩토링을 하게된 이유에 대해 설명해주세요!
 
-<br>
+## 🗓️ 예상기간
 
-### 📕 래퍼런스
+0월00일 ~ 0월00일

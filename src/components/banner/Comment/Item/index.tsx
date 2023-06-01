@@ -1,6 +1,6 @@
 import { BannerComment } from '@/types/banner';
 import React from 'react';
-import styles from '../../../styles/components/banner/detail/BannerCommentItem.module.scss';
+import styles from './styles.module.scss';
 import { FiClock } from 'react-icons/fi';
 import { RxPerson } from 'react-icons/rx';
 import { postDeleteComment } from '@/apis/comment';

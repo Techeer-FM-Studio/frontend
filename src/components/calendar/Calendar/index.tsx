@@ -94,15 +94,14 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div className={styles.calendar}>
-      <div className={styles.control}>
-        <div className={styles.monthControl}>
+    <div className={styles.calendarComponent}>
+      <div className={styles.calendarComponent__control}>
+        <div className={styles.calendarComponent__monthControl}>
           <button
             onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
           >
             이전달
           </button>
-          {/* 기존 년도와 월 텍스트를 새로운 MonthYearSelector 컴포넌트로 변경합니다. */}
           <MonthYearSelector
             currentMonth={today.month()}
             currentYear={today.year()}
@@ -112,7 +111,7 @@ const Calendar: React.FC<CalendarProps> = ({
             다음달
           </button>
         </div>
-        <div className={styles.otherControl}>
+        <div className={styles.calendarComponent__otherControl}>
           <button
             onClick={() => {
               setMoment(moment());

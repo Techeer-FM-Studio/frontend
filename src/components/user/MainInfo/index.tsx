@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 
 // Temp Image
-import InfoImage from '../../../public/temp_images/UserInfoTempImage.png';
+import InfoImage from '/public/temp_images/UserInfoTempImage.png';
 
 const UserMainInfo = () => {
   return (

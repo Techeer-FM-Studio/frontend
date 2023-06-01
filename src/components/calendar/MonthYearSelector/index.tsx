@@ -1,5 +1,3 @@
-// src/components/calendar/MonthYearSelector.tsx
-
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
@@ -27,7 +25,7 @@ const CalendarMonthYearSelector: React.FC<MonthYearSelectorProps> = ({
   };
 
   return (
-    <div className={styles.monthYearSelector}>
+    <div className={styles.calendarMonthYearSelector}>
       <input
         type="number"
         value={year}

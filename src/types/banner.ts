@@ -38,3 +38,8 @@ export type BannerComment = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type BannerFilterCategoryType = {
+  name: string;
+  type: string;
+};

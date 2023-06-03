@@ -1,3 +1,5 @@
+// 댓글 관련 api 정의
+
 import { customAxios } from './customAxios';
 
 export const postDeleteComment = async (bannerId: number, id: number) => {

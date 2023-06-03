@@ -1,6 +1,6 @@
-import { axiosCustom } from './createAxios';
+import { customAxios } from './customAxios';
 
-export async function postImages(files: FileList | any) {
+export const postImages = async (files: FileList | any) => {
   if (files === undefined)
     return {
       imageUrl:
@@ -19,7 +19,7 @@ export async function postImages(files: FileList | any) {
     console.log(value);
   }
 
-  return await axiosCustom
+  return await customAxios
     .post('banners/images', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
@@ -27,4 +27,4 @@ export async function postImages(files: FileList | any) {
       console.log(res.data);
       return res.data;
     });
-}
+};

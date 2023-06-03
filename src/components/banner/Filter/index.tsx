@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import styles from '@/styles/components/banner/BannerFilter.module.scss';
+import styles from './styles.module.scss';
+import { filterCategory } from '@/constants/banner';
 
 function BannerFilter({ totalElements }: { totalElements: number }) {
   const [select, setSelect] = useState('모두');
-  const filterName = ['공식', '커스텀', '모두'];
   const router = useRouter();
   const handleFilterBannerList = (e: React.MouseEvent<HTMLLIElement>) => {
     const text = e.currentTarget.innerText;
@@ -28,13 +28,15 @@ function BannerFilter({ totalElements }: { totalElements: number }) {
   return (
     <section className={styles.container}>
       <ul className={styles.filter}>
-        {filterName.map((title) => (
+        {filterCategory.map((category) => (
           <li
-            className={select === title ? styles.select : styles.unselect}
-            key={title}
+            className={
+              select === category.name ? styles.select : styles.unselect
+            }
+            key={category.type}
             onClick={handleFilterBannerList}
           >
-            {title}
+            {category.name}
           </li>
         ))}
       </ul>

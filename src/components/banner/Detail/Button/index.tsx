@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../../../styles/components/banner/detail/BannerButton.module.scss';
+import styles from './styles.module.scss';
 function DetailButtons({
   id,
   likeCnt,

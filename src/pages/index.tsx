@@ -10,7 +10,7 @@ import styles from '../styles/pages/MainPage.module.scss';
 // import pages
 import Calendar from '@/components/calendar/Calendar';
 import RoutineLayout from '@/components/routine/RoutineLayout';
-import BannerMainLayout from '@/components/banner/BannerMainLayout';
+import BannerMainLayout from '@/components/Banner/BannerMainLayout';
 import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
 import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
 import { BannerTaskInfo, TaskInfo } from '@/types/routine';

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import styles from '../../styles/components/banner/BannerItem.module.scss';
+import styles from './styles.module.scss';
 import { AiFillHeart } from 'react-icons/ai';
 import { GrView } from 'react-icons/gr';
 import { RxPerson } from 'react-icons/rx';

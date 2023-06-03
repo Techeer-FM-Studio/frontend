@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from '../../styles/components/banner/BannerSlider.module.scss';
+import styles from './styles.module.scss';
 function BannerSlider() {
   const settings = {
     dots: false,
@@ -15,6 +15,7 @@ function BannerSlider() {
   };
   return (
     //TODO: 최근 배너만 보여줄지 고민하기
+    //TODO: 현재 더미 데이터로 구현되어 있음, 실제 데이터로 변경 필요 (api 연동 로직 작성하기)
     <div>
       <Slider {...settings}>
         <div className={styles.img}>

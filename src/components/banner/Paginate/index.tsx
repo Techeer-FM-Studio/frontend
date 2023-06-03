@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-import styles from '@/styles/components/banner/BannerPaginate.module.scss';
+import styles from './styles.module.scss';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 function BannerPaginate({
   totalPages,

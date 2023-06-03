@@ -1,7 +1,6 @@
-import { getBannerList } from '@/apis/getBannerList';
-import BannerList from '@/components/banner/BannerList';
-import styles from '@/styles/pages/BannerListPage.module.scss';
-import BannerFilter from '@/components/banner/BannerFilter';
+import BannerList from '@/components/Banner/List';
+import styles from './styles.module.scss';
+import BannerFilter from '@/components/Banner/Filter';
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -9,11 +8,12 @@ import {
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { BannerPageableType } from '@/types/banner';
-import BannerPaginate from '@/components/banner/BannerPaginate';
-import BannerSlider from '@/components/banner/BannerSlider';
+import BannerPaginate from '@/components/Banner/Paginate';
+import BannerSlider from '@/components/Banner/Slider';
+import { getBannerList } from '@/apis/banner';
 
 function BannerListPage({ data }: { data: BannerPageableType }) {
-  const { totalElements, totalPages, page, size, content } = data;
+  const { totalElements, totalPages, page, content } = data;
 
   return (
     <section className={styles.page}>
@@ -33,12 +33,12 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ) => {
   let pageable;
-  const nickname = 'test1'; // 임시 사용
+  // TODO: 로그인 기능 구현 후, 로그인한 유저의 닉네임을 가져와서 사용
+  const nickname = 'test1';
 
   if (context.query) {
     const { page, size, filter } = context.query;
     pageable = await getBannerList(nickname, page, size, filter);
-    console.log(pageable);
     return { props: { data: pageable } };
   } else return { props: {} };
 };

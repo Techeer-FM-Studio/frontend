@@ -5,11 +5,11 @@ import useBannerNavigation from '../../../hooks/useSlideNavigation'; // Import t
 import styles from './styles.module.scss';
 
 // Import BannerTempImages
-import BannerImage1 from '/public/temp_images/BannerTempImage1.png';
-import BannerImage2 from '/public/temp_images/BannerTempImage2.png';
-import BannerImage3 from '/public/temp_images/BannerTempImage3.png';
-import BannerImage4 from '/public/temp_images/BannerTempImage4.png';
-import BannerImage5 from '/public/temp_images/BannerTempImage5.png';
+import BannerImage1 from '/src/assets/temp_images/BannerTempImage1.png';
+import BannerImage2 from '/src/assets/temp_images/BannerTempImage2.png';
+import BannerImage3 from '/src/assets/temp_images/BannerTempImage3.png';
+import BannerImage4 from '/src/assets/temp_images/BannerTempImage4.png';
+import BannerImage5 from '/src/assets/temp_images/BannerTempImage5.png';
 
 // StaticImageData 타입을 배열로 만듦
 const IMAGE_URLS: StaticImageData[] = [

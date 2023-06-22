@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
-import Logo from '../../../../public/logo.png';
+import Logo from '@/assets/Logo.png';
 
 import { FiMenu } from 'react-icons/fi';
 import { VscBellDot } from 'react-icons/vsc';

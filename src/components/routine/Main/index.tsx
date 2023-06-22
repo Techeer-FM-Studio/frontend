@@ -1,25 +1,20 @@
-// src/components/routine/RoutineLayout.tsx
-
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
-import styles from '../../styles/components/routine/RoutineLayout.module.scss';
-import moment from 'moment';
-import { postRoutine } from '@/apis/tasks/postRoutine';
-import { putRoutine } from '@/apis/tasks/putRoutine';
-import { deleteRoutine } from '@/apis/tasks/deleteRoutine';
-
 import { useEffect, useState } from 'react';
+import moment from 'moment';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
+import { putRoutine, postRoutine, deleteRoutine } from '@/apis/routine';
+import styles from './styles.module.scss';
 
-interface RoutineLayoutProps {
-  selectedTasks: TaskInfo[];
-  selectedBannerTasks: BannerTaskInfo[];
+type RoutineMainPropsType = {
+  selectedTasks: TaskInfoType[];
+  selectedBannerTasks: BannerTaskInfoType[];
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfo[]>>;
-  onUpdateSelectedTask: (updatedTask: TaskInfo) => void;
-  onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfo) => void;
-}
+  setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfoType[]>>;
+  onUpdateSelectedTask: (updatedTask: TaskInfoType) => void;
+  onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfoType) => void;
+};
 
-const RoutineLayout: React.FC<RoutineLayoutProps> = ({
+const RoutineMain: React.FC<RoutineMainPropsType> = ({
   selectedTasks,
   selectedBannerTasks,
   showForm,
@@ -28,10 +23,10 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   setSelectedTasks,
   onUpdateSelectedBannerTask,
 }) => {
-  console.log('ssss', selectedTasks);
-  console.log('sss', selectedBannerTasks);
-  const [selectedTask, setSelectedTask] = useState<TaskInfo | null>(null);
-  console.log('selectedTaskAAAAAA', selectedTask);
+  // console.log('ssss', selectedTasks);
+  // console.log('sss', selectedBannerTasks);
+  const [selectedTask, setSelectedTask] = useState<TaskInfoType | null>(null);
+  // console.log('selectedTaskAAAAAA', selectedTask);
   const [formData, setFormData] = useState({
     title: '',
     startDate: '',
@@ -41,7 +36,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
     memo: '',
   });
   const [isEditing, setIsEditing] = useState(false);
-  console.log('formdata', formData);
+  // console.log('formdata', formData);
   useEffect(() => {
     const startAt = new Date(
       `${formData.startDate || '2000-01-01'}T${formData.startTime || '00:00'}`,
@@ -71,9 +66,9 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
       [name]: value,
     }));
   };
-  console.log('수정된 폼', formData);
+  // console.log('수정된 폼', formData);
 
-  const handleEdit = (task: TaskInfo) => {
+  const handleEdit = (task: TaskInfoType) => {
     setFormData({
       title: task.title,
       startDate: moment(task.startAt).format('YYYY-MM-DD'),
@@ -92,7 +87,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
     const startAt = new Date(`${formData.startDate}T${formData.startTime}`);
     const endAt = new Date(`${formData.endDate}T${formData.endTime}`);
 
-    const taskData: TaskInfo = {
+    const taskData: TaskInfoType = {
       taskId: selectedTask?.taskId,
       title: formData.title,
       startAt: startAt.toISOString(),
@@ -101,7 +96,7 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
       isFinished: false,
     };
 
-    const createTaskData: TaskInfo = {
+    const createTaskData: TaskInfoType = {
       writer: 'Alice',
       title: formData.title,
       startAt: startAt.toISOString(),
@@ -113,11 +108,11 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
 
     if (isEditing) {
       if (selectedTask && selectedTask.taskId) {
-        console.log('ok');
+        // console.log('ok');
         putRoutine(taskData)
           .then((updatedTask) => {
-            console.log(updatedTask);
-            console.log('일정이 성공적으로 수정되었습니다:', updatedTask);
+            // console.log(updatedTask);
+            // console.log('일정이 성공적으로 수정되었습니다:', updatedTask);
             onUpdateSelectedTask(taskData);
             setIsEditing(false); // 수정 상태를 종료합니다.
             setShowForm(false); // 폼을 숨깁니다.
@@ -129,12 +124,12 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
         console.error('Error: taskId is undefined');
       }
     } else {
-      console.log('fail fail');
-      console.log('ㅇㄴㅁㄹㅁㅇㄴ', createTaskData);
+      // console.log('fail fail');
+      // console.log('ㅇㄴㅁㄹㅁㅇㄴ', createTaskData);
       postRoutine(createTaskData)
-        .then((task: TaskInfo) => {
+        .then((task: TaskInfoType) => {
           setSelectedTasks((pre) => [...pre, task]);
-          console.log('일정이 성공적으로 등록되었습니다:', task);
+          // console.log('일정이 성공적으로 등록되었습니다:', task);
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -142,11 +137,11 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
     }
   };
 
-  const handleDelete = (task: TaskInfo) => {
+  const handleDelete = (task: TaskInfoType) => {
     if (task.taskId !== undefined) {
       deleteRoutine(task.taskId)
         .then((deletedTask) => {
-          console.log('일정이 성공적으로 삭제되었습니다:', deletedTask);
+          // console.log('일정이 성공적으로 삭제되었습니다:', deletedTask);
           // 여기서 필요한 경우, 삭제된 일정을 화면에서 제거하거나 상태를 업데이트하세요.
         })
         .catch((error) => {
@@ -281,4 +276,4 @@ const RoutineLayout: React.FC<RoutineLayoutProps> = ({
   );
 };
 
-export default RoutineLayout;
+export default RoutineMain;

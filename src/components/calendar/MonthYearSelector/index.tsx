@@ -1,15 +1,13 @@
-// src/components/calendar/MonthYearSelector.tsx
-
 import React, { useEffect, useState } from 'react';
-import styles from '@/styles/components/calendar/MonthYearSelector.module.scss';
+import styles from './styles.module.scss';
 
-interface MonthYearSelectorProps {
+type MonthYearSelectorPropsType = {
   currentMonth: number;
   currentYear: number;
   onMonthYearChange: (month: number, year: number) => void;
-}
+};
 
-const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
+const CalendarMonthYearSelector: React.FC<MonthYearSelectorPropsType> = ({
   currentMonth,
   currentYear,
   onMonthYearChange,
@@ -27,7 +25,7 @@ const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
   };
 
   return (
-    <div className={styles.monthYearSelector}>
+    <div className={styles.calendarMonthYearSelector}>
       <input
         type="number"
         value={year}
@@ -54,4 +52,4 @@ const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
   );
 };
 
-export default MonthYearSelector;
+export default CalendarMonthYearSelector;

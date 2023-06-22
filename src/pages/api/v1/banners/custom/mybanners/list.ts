@@ -3,13 +3,13 @@
 // src/pages/api/v1/tasks/list.ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { BannerTaskInfo } from '../../../../../../types/routine';
+import { BannerTaskInfoType } from '../../../../../../types/routine';
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Object>,
 ) {
-  const mockData: BannerTaskInfo[] = [
+  const mockData: BannerTaskInfoType[] = [
     {
       type: 'CUSTOM',
       bannerId: 1,

@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import useBannerNavigation from '../../hooks/useSlideNavigation'; // Import the custom hook
+import useBannerNavigation from '../../../hooks/useSlideNavigation'; // Import the custom hook
 
 // Import Sass File
-import styles from '../../styles/components/banner/BannerMainLayout.module.scss';
+import styles from './styles.module.scss';
 
 // Import BannerTempImages
-import BannerImage1 from '../../../public/temp_images/BannerTempImage1.png';
-import BannerImage2 from '../../../public/temp_images/BannerTempImage2.png';
-import BannerImage3 from '../../../public/temp_images/BannerTempImage3.png';
-import BannerImage4 from '../../../public/temp_images/BannerTempImage4.png';
-import BannerImage5 from '../../../public/temp_images/BannerTempImage5.png';
+import BannerImage1 from '/src/assets/temp_images/BannerTempImage1.png';
+import BannerImage2 from '/src/assets/temp_images/BannerTempImage2.png';
+import BannerImage3 from '/src/assets/temp_images/BannerTempImage3.png';
+import BannerImage4 from '/src/assets/temp_images/BannerTempImage4.png';
+import BannerImage5 from '/src/assets/temp_images/BannerTempImage5.png';
 
 // StaticImageData 타입을 배열로 만듦
 const IMAGE_URLS: StaticImageData[] = [
@@ -21,19 +20,19 @@ const IMAGE_URLS: StaticImageData[] = [
   BannerImage5,
 ];
 
-interface BannerMainLayoutProps {
+type BannerMainSliderPropsType = {
   imageUrls?: StaticImageData[]; // 이미지 URL 배열 프로퍼티
-}
+};
 
 // 배너 메인 레이아웃 컴포넌트
-const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
+const BannerMainSlider = ({
   imageUrls = IMAGE_URLS, // 이미지 URL 배열을 전달받지 않으면 기본 이미지 URL 배열 사용
-}) => {
+}: BannerMainSliderPropsType) => {
   const { currentImageIndex, onNextButtonClick, onPrevButtonClick } =
     useBannerNavigation(imageUrls.length);
 
   return (
-    // BannerMainLayout 컴포넌트의 최상위 요소, 이미지와 함께 배경색을 입히기 위한 wrapper
+    // BannerMainSlider 컴포넌트의 최상위 요소, 이미지와 함께 배경색을 입히기 위한 wrapper
     <div className={styles.BannerMainLayout}>
       {/* 이미지와 이미지 정보(인덱스, 화살표 버튼)를 감싸는 wrapper */}
       <div className={styles.BannerImageWrapper}>
@@ -81,4 +80,4 @@ const BannerMainLayout: React.FC<BannerMainLayoutProps> = ({
   );
 };
 
-export default BannerMainLayout;
+export default BannerMainSlider;

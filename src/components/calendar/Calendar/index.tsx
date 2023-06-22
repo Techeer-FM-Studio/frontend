@@ -1,34 +1,34 @@
-import styles from '../../styles/components/calendar/Calendar.module.scss';
+import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import {
   fetchTasks,
   fetchBannerTasks,
   updateSelectedTasks,
   updateSelectedBannerTasks,
 } from '@/utils/calendarUtils';
-import CalendarTable from './CalendarTable';
-import MonthYearSelector from './MonthYearSelector';
+import CalendarTable from '../CalendarTable';
+import MonthYearSelector from '../MonthYearSelector';
 
-interface CalendarProps {
-  onTasksChange: (tasks: TaskInfo[]) => void;
-  onBannerTasksChange: (tasks: BannerTaskInfo[]) => void;
+type CalendarPropsType = {
+  onTasksChange: (tasks: TaskInfoType[]) => void;
+  onBannerTasksChange: (tasks: BannerTaskInfoType[]) => void;
   onAddTaskClick: () => void;
-}
+};
 
-const Calendar: React.FC<CalendarProps> = ({
+const Calendar: React.FC<CalendarPropsType> = ({
   onAddTaskClick,
   onTasksChange,
   onBannerTasksChange,
 }) => {
   const [getMoment, setMoment] = useState(moment());
   const [recentlyClickedDay, setRecentlyClickedDay] = useState<Moment>();
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
-  const [bannerTasks, setBannerTasks] = useState<BannerTaskInfo[]>([]);
+  const [tasks, setTasks] = useState<TaskInfoType[]>([]);
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfoType[]>([]);
+  const [bannerTasks, setBannerTasks] = useState<BannerTaskInfoType[]>([]);
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
-    BannerTaskInfo[]
+    BannerTaskInfoType[]
   >([]);
 
   const today = getMoment;
@@ -94,15 +94,14 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div className={styles.calendar}>
-      <div className={styles.control}>
-        <div className={styles.monthControl}>
+    <div className={styles.calendarComponent}>
+      <div className={styles.calendarComponent__control}>
+        <div className={styles.calendarComponent__monthControl}>
           <button
             onClick={() => setMoment(getMoment.clone().subtract(1, 'month'))}
           >
             이전달
           </button>
-          {/* 기존 년도와 월 텍스트를 새로운 MonthYearSelector 컴포넌트로 변경합니다. */}
           <MonthYearSelector
             currentMonth={today.month()}
             currentYear={today.year()}
@@ -112,7 +111,7 @@ const Calendar: React.FC<CalendarProps> = ({
             다음달
           </button>
         </div>
-        <div className={styles.otherControl}>
+        <div className={styles.calendarComponent__otherControl}>
           <button
             onClick={() => {
               setMoment(moment());

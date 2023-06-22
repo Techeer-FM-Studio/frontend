@@ -4,7 +4,7 @@ import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import { putRoutine, postRoutine, deleteRoutine } from '@/apis/routine';
 import styles from './styles.module.scss';
 
-interface RoutineMainProps {
+type RoutineMainPropsType = {
   selectedTasks: TaskInfoType[];
   selectedBannerTasks: BannerTaskInfoType[];
   showForm: boolean;
@@ -14,7 +14,7 @@ interface RoutineMainProps {
   onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfoType) => void;
 }
 
-const RoutineMain: React.FC<RoutineMainProps> = ({
+const RoutineMain: React.FC<RoutineMainPropsType> = ({
   selectedTasks,
   selectedBannerTasks,
   showForm,

@@ -11,13 +11,13 @@ import {
 import CalendarTable from '../CalendarTable';
 import MonthYearSelector from '../MonthYearSelector';
 
-interface CalendarProps {
+type CalendarPropsType = {
   onTasksChange: (tasks: TaskInfoType[]) => void;
   onBannerTasksChange: (tasks: BannerTaskInfoType[]) => void;
   onAddTaskClick: () => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({
+const Calendar: React.FC<CalendarPropsType> = ({
   onAddTaskClick,
   onTasksChange,
   onBannerTasksChange,

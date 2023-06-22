@@ -2,7 +2,7 @@ import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 import { hasEvent, hasBannerEvent } from '@/utils/calendarUtils';
 import moment, { Moment } from 'moment';
 
-interface CalendarTableProps {
+type CalendarTablePropsType = {
   today: Moment;
   firstWeek: number;
   lastWeek: number;
@@ -12,7 +12,7 @@ interface CalendarTableProps {
   handleClick: (date: moment.Moment) => void;
 }
 
-const CalendarTable: React.FC<CalendarTableProps> = ({
+const CalendarTable: React.FC<CalendarTablePropsType> = ({
   today,
   firstWeek,
   lastWeek,

@@ -15,7 +15,7 @@ type CalendarPropsType = {
   onTasksChange: (tasks: TaskInfoType[]) => void;
   onBannerTasksChange: (tasks: BannerTaskInfoType[]) => void;
   onAddTaskClick: () => void;
-}
+};
 
 const Calendar: React.FC<CalendarPropsType> = ({
   onAddTaskClick,

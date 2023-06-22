@@ -10,7 +10,7 @@ type CalendarTablePropsType = {
   tasks: TaskInfoType[];
   bannerTasks: BannerTaskInfoType[];
   handleClick: (date: moment.Moment) => void;
-}
+};
 
 const CalendarTable: React.FC<CalendarTablePropsType> = ({
   today,

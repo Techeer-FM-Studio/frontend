@@ -5,7 +5,7 @@ type MonthYearSelectorPropsType = {
   currentMonth: number;
   currentYear: number;
   onMonthYearChange: (month: number, year: number) => void;
-}
+};
 
 const CalendarMonthYearSelector: React.FC<MonthYearSelectorPropsType> = ({
   currentMonth,

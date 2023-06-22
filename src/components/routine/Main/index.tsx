@@ -12,7 +12,7 @@ type RoutineMainPropsType = {
   setSelectedTasks: React.Dispatch<React.SetStateAction<TaskInfoType[]>>;
   onUpdateSelectedTask: (updatedTask: TaskInfoType) => void;
   onUpdateSelectedBannerTask: (updatedBannerTask: BannerTaskInfoType) => void;
-}
+};
 
 const RoutineMain: React.FC<RoutineMainPropsType> = ({
   selectedTasks,

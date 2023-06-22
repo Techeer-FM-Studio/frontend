@@ -22,12 +22,12 @@ const IMAGE_URLS: StaticImageData[] = [
 
 type BannerMainSliderPropsType = {
   imageUrls?: StaticImageData[]; // 이미지 URL 배열 프로퍼티
-}
+};
 
 // 배너 메인 레이아웃 컴포넌트
 const BannerMainSlider = ({
   imageUrls = IMAGE_URLS, // 이미지 URL 배열을 전달받지 않으면 기본 이미지 URL 배열 사용
-} : BannerMainSliderPropsType) => {
+}: BannerMainSliderPropsType) => {
   const { currentImageIndex, onNextButtonClick, onPrevButtonClick } =
     useBannerNavigation(imageUrls.length);
 

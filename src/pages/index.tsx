@@ -14,6 +14,8 @@ import BannerMainLayout from '@/components/Banner/BannerMainLayout';
 import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
 import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
 import { BannerTaskInfo, TaskInfo } from '@/types/routine';
+import { useRouter } from 'next/router';
+import { AuthContext } from './_app';
 
 export default function MainPage() {
   const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);

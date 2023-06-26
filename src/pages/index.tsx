@@ -1,36 +1,30 @@
-// 그리드 정보
-// Rows = Height == 16, Gutter == 16
-// Columns = Width == 80, Gutter == 20
-
 import React, { useState } from 'react';
 
-// css
+// import styles
 import styles from '../styles/pages/MainPage.module.scss';
 
-// import pages
+// import components
 import Calendar from '@/components/calendar/Calendar';
-import RoutineLayout from '@/components/routine/RoutineLayout';
-import BannerMainLayout from '@/components/Banner/BannerMainLayout';
-import UserInfoMainLayout from '@/components/user/UserInfoMainLayout';
-import NextRoutineLayout from '@/components/routine/NextRoutineLayout';
-import { BannerTaskInfo, TaskInfo } from '@/types/routine';
-import { useRouter } from 'next/router';
-import { AuthContext } from './_app';
+import RoutineMain from '@/components/routine/Main';
+import BannerMainSlider from '@/components/banner/MainSlider';
+import UserMainInfo from '@/components/user/MainInfo';
+import RoutineSpecial from '@/components/routine/Special';
+import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';
 
 export default function MainPage() {
-  const [selectedTasks, setSelectedTasks] = useState<TaskInfo[]>([]);
+  const [selectedTasks, setSelectedTasks] = useState<TaskInfoType[]>([]);
   const [selectedBannerTasks, setSelectedBannerTasks] = useState<
-    BannerTaskInfo[]
+    BannerTaskInfoType[]
   >([]);
-  console.log(process.env.NODE_ENV);
-  console.log(selectedTasks);
+  // console.log(process.env.NODE_ENV);
+  // console.log(selectedTasks);
   const [showForm, setShowForm] = useState(false);
 
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
 
-  const updateSelectedTask = (updatedTask: TaskInfo) => {
+  const updateSelectedTask = (updatedTask: TaskInfoType) => {
     setSelectedTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.taskId === updatedTask.taskId ? updatedTask : task,
@@ -38,7 +32,7 @@ export default function MainPage() {
     );
   };
 
-  const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfo) => {
+  const updateBannerSelectedTask = (updatedBannerTask: BannerTaskInfoType) => {
     setSelectedBannerTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.bannerId === updatedBannerTask.bannerId ? updatedBannerTask : task,
@@ -47,7 +41,7 @@ export default function MainPage() {
   };
 
   // TODO: 사용할건지 물어보기
-  // const handleBannerTasksChange = (tasks: BannerTaskInfo[]) => {
+  // const handleBannerTasksChange = (tasks: BannerTaskInfoType[]) => {
   //   console.log('Banner tasks have been updated:', tasks);
   // };
 
@@ -64,7 +58,7 @@ export default function MainPage() {
           />
           {/* 루틴 정보를 나타내는 RoutineLayout 컴포넌트 */}
           <div className={styles.routine}>
-            <RoutineLayout
+            <RoutineMain
               selectedTasks={selectedTasks}
               selectedBannerTasks={selectedBannerTasks}
               setSelectedTasks={setSelectedTasks}
@@ -75,12 +69,12 @@ export default function MainPage() {
             />
           </div>
           <div className={styles.contentRight}>
-            <UserInfoMainLayout />
-            <NextRoutineLayout />
+            <UserMainInfo />
+            <RoutineSpecial />
           </div>
         </div>
         <div className={styles.contentBottom}>
-          <BannerMainLayout />
+          <BannerMainSlider />
         </div>
       </div>
     </div>

@@ -1,14 +1,14 @@
 // src/utils/calendarUtils.ts
 
 import moment, { Moment } from 'moment';
-import { TaskInfo } from '@/types/routine';
+import { TaskInfoType } from '@/types/routine';
 import { getRoutineListMonthly } from '@/apis/tasks/getRoutineListMonthly';
-import { BannerTaskInfo } from '@/types/routine';
+import { BannerTaskInfoType } from '@/types/routine';
 import { getBannerRoutineListMonthly } from '@/apis/tasks/getBannerRoutineListMonthly';
 
 export const fetchTasks = async (
   selectedDate: Moment,
-  setTasks: (tasks: TaskInfo[]) => void,
+  setTasks: (tasks: TaskInfoType[]) => void,
 ) => {
   try {
     const data = await getRoutineListMonthly({
@@ -25,7 +25,7 @@ export const fetchTasks = async (
 
 export const fetchBannerTasks = async (
   selectedDate: Moment,
-  setBannerTasks: (tasks: BannerTaskInfo[]) => void,
+  setBannerTasks: (tasks: BannerTaskInfoType[]) => void,
 ) => {
   try {
     const data = await getBannerRoutineListMonthly({
@@ -41,7 +41,7 @@ export const fetchBannerTasks = async (
 
 export const hasEvent = (
   date: moment.Moment,
-  tasks: TaskInfo[] = [],
+  tasks: TaskInfoType[] = [],
 ): boolean => {
   return tasks.some((task) => {
     const start = moment(task.startAt);
@@ -52,7 +52,7 @@ export const hasEvent = (
 
 export const hasBannerEvent = (
   date: moment.Moment,
-  tasks: BannerTaskInfo[] = [],
+  tasks: BannerTaskInfoType[] = [],
 ): boolean => {
   return tasks.some((task) => {
     const start = moment(task.startAt);
@@ -63,9 +63,9 @@ export const hasBannerEvent = (
 
 export const updateSelectedTasks = (
   date: moment.Moment,
-  tasks: TaskInfo[],
-  setSelectedTasks: (tasks: TaskInfo[]) => void,
-  onTasksChange: (tasks: TaskInfo[]) => void,
+  tasks: TaskInfoType[],
+  setSelectedTasks: (tasks: TaskInfoType[]) => void,
+  onTasksChange: (tasks: TaskInfoType[]) => void,
 ) => {
   const tasksOnSelectedDay = tasks.filter((task) => {
     const start = moment(task.startAt);
@@ -78,9 +78,9 @@ export const updateSelectedTasks = (
 
 export const updateSelectedBannerTasks = (
   date: moment.Moment,
-  tasks: BannerTaskInfo[],
-  setSelectedTasks: (tasks: BannerTaskInfo[]) => void,
-  onTasksChange: (tasks: BannerTaskInfo[]) => void,
+  tasks: BannerTaskInfoType[],
+  setSelectedTasks: (tasks: BannerTaskInfoType[]) => void,
+  onTasksChange: (tasks: BannerTaskInfoType[]) => void,
 ) => {
   const tasksOnSelectedDay = tasks.filter((task) => {
     const start = moment(task.startAt);

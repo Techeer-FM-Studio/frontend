@@ -13,7 +13,7 @@ function BannerItem({ item }: { item: BannerItemType }) {
     CUSTOM: '커스텀',
     OFFICIAL: '공식',
   };
-  console.log(item.imageUrl);
+  // console.log(item.imageUrl);
   return (
     <section
       className={styles.container}

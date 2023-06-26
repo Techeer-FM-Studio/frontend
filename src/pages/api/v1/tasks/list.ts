@@ -1,13 +1,13 @@
 // src/pages/api/v1/tasks/list.ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { TaskInfo } from '../../../../types/routine';
+import { TaskInfoType } from '../../../../types/routine';
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Object>,
 ) {
-  const mockData: TaskInfo[] = [
+  const mockData: TaskInfoType[] = [
     {
       taskId: 1,
       writer: 'Grace',

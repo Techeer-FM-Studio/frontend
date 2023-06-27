@@ -1,5 +1,5 @@
 // src/apis/tasks/getRoutineListMonthly.ts
-import { TaskInfo } from '@/types/routine';
+import { TaskInfoType } from '@/types/routine';
 import { customAxios } from '../customAxios';
 
 interface GetRoutineListMonthlyParams {
@@ -12,6 +12,6 @@ export async function getRoutineListMonthly(
   params: GetRoutineListMonthlyParams,
 ) {
   return await customAxios
-    .get<TaskInfo[]>('tasks/list', { params })
+    .get<TaskInfoType[]>('tasks/list', { params })
     .then((res) => res.data);
 }

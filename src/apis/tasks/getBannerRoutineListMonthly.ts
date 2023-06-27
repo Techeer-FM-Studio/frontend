@@ -1,5 +1,5 @@
 // src/apis/tasks/getRoutineListMonthly.ts
-import { BannerTaskInfo } from '@/types/routine';
+import { BannerTaskInfoType } from '@/types/routine';
 import { customAxios } from '../customAxios';
 
 interface GetBannerRoutineListMonthlyParams {
@@ -12,6 +12,6 @@ export async function getBannerRoutineListMonthly(
   params: GetBannerRoutineListMonthlyParams,
 ) {
   return await customAxios
-    .get<BannerTaskInfo[]>('banners/custom/mybanners/list', { params })
+    .get<BannerTaskInfoType[]>('banners/custom/mybanners/list', { params })
     .then((res) => res.data);
 }

@@ -1,6 +1,6 @@
-import CommentList from '@/components/banner/Comment/List';
-import DetailButtons from '@/components/banner/Detail/Button';
-import DetailTitle from '@/components/banner/Detail/Title';
+import CommentList from '@/components/Banner/Comment/List';
+import DetailButtons from '@/components/Banner/Detail/Button';
+import DetailTitle from '@/components/Banner/Detail/Title';
 import { BannerItemType } from '@/types/banner';
 import {
   GetServerSideProps,

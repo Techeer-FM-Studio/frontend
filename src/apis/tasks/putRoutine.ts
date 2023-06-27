@@ -1,9 +1,9 @@
 // src/apis/tasks/putRoutine.ts
-import { TaskInfo } from '@/types/routine';
+import { TaskInfoType } from '@/types/routine';
 import { customAxios } from '../customAxios';
 
-export async function putRoutine(taskData: TaskInfo) {
+export async function putRoutine(taskData: TaskInfoType) {
   return await customAxios
-    .put<TaskInfo>('tasks', taskData)
+    .put<TaskInfoType>('tasks', taskData)
     .then((res) => res.data);
 }

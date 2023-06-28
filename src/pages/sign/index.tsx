@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import styles from './styles.module.scss';
 import SignIn from '@/components/Sign/SignIn';
+import SignUp from '@/components/Sign/SignUp';
 
 function SignPage() {
+  const [isSignUp, setIsSginUp] = useState<boolean>(false);
   return (
     <section className={styles.signinContainer}>
       <section className={styles.signinContainer__box}>
         <article className={styles.signinContainer__left}>
           <h1>HQ Rutine</h1>
-          <SignIn />
+          {isSignUp ? (
+            <SignUp setIsSginUp={setIsSginUp} />
+          ) : (
+            <SignIn setIsSginUp={setIsSginUp} />
+          )}
         </article>
         <article className={styles.signinContainer__right}>
           <Player

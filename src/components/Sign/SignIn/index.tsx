@@ -7,7 +7,11 @@ type InputsType = {
   password: string;
 };
 
-function SignIn() {
+type SignInPropsType = {
+  setIsSginUp: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function SignIn({ setIsSginUp }: SignInPropsType) {
   // TODO: errors에 대한 다양한 유형 처리하기 (ex) 아이디가 없는 경우, 비밀번호가 틀린 경우 등)
   const {
     register,
@@ -60,7 +64,14 @@ function SignIn() {
 
         <button type="submit">로그인</button>
         <p>
-          아직 회원이 아니신가요? <span>회원가입</span>
+          아직 회원이 아니신가요?{' '}
+          <span
+            onClick={() => {
+              setIsSginUp((pre) => !pre);
+            }}
+          >
+            회원가입
+          </span>
         </p>
       </form>
     </article>

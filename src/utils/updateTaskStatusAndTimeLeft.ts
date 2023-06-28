@@ -1,8 +1,8 @@
-import { TaskInfo } from '@/types/routine';
+import { TaskInfoType } from '@/types/routine';
 
 // TODO: eslint에서 no-unused-vars를 error로 하면 에러가 발생하는데, 해결방법을 찾아보자.
 const updateTaskStatusAndTimeLeft = (
-  taskInfo: TaskInfo, // TaskInfo 객체
+  taskInfo: TaskInfoType, // TaskInfo 객체
   setTimeLeft: (timeLeft: {
     days: number;
     hours: number;

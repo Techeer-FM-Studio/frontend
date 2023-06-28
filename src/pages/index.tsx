@@ -6,7 +6,7 @@ import styles from '../styles/pages/MainPage.module.scss';
 // import components
 import Calendar from '@/components/calendar/Calendar';
 import RoutineMain from '@/components/routine/Main';
-import BannerMainSlider from '@/components/banner/MainSlider';
+import BannerMainSlider from '@/components/Banner/MainSlider';
 import UserMainInfo from '@/components/user/MainInfo';
 import RoutineSpecial from '@/components/routine/Special';
 import { BannerTaskInfoType, TaskInfoType } from '@/types/routine';

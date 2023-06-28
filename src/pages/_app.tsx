@@ -1,13 +1,14 @@
+import LoginCheckComponent from '@/components/Auth';
 import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
-import Header from '@/components/common/Header';
+import React from 'react';
+import { RecoilRoot } from 'recoil';
 
 export default function App({ Component, pageProps }: AppProps) {
-  console.log('hello');
   return (
-    <>
-      <Header />
+    <RecoilRoot>
+      <LoginCheckComponent />
       <Component {...pageProps} />;
-    </>
+    </RecoilRoot>
   );
 }
